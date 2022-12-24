@@ -1,6 +1,6 @@
 import sistatisApi from "./index";
 
-const thesisProposalSchedulesApi = "/scheduled-thesis-proposal-seminars";
+const thesisProposalSchedulesApi = "/schedule-thesis-proposal-seminars";
 
 export const getThesisProposalSchedules = () =>
   sistatisApi

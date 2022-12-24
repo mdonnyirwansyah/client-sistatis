@@ -5,10 +5,7 @@ function Input({ children, label, id, name, type, isInvalid }) {
     <>
       {type === "select" ? (
         <div className="form-group row">
-          <label
-            htmlFor={id}
-            className="col-sm-3 col-form-label text-right text-left-sm"
-          >
+          <label htmlFor={id} className="col-sm-3 col-form-label text-sm-right">
             {label}
           </label>
           <div className="col-sm-9">
@@ -33,7 +30,7 @@ function Input({ children, label, id, name, type, isInvalid }) {
         </div>
       ) : (
         <div className="form-group row">
-          <label htmlFor={id} className="col-sm-3 col-form-label text-right">
+          <label htmlFor={id} className="col-sm-3 col-form-label text-sm-right">
             {label}
           </label>
           <div className="col-sm-9">

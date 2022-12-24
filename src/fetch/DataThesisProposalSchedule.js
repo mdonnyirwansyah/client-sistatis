@@ -27,11 +27,11 @@ function DataThesisProposalSchedule() {
         </h2>
         <hr />
         <div className="row">
-          <label className="col-sm-3 text-right">Nama:</label>
+          <label className="col-sm-3 text-sm-right">Nama:</label>
           <div className="col-sm-9">{thesisProposalSchedule.student.name}</div>
         </div>
         <div className="row">
-          <label className="col-sm-3 text-right">NIM:</label>
+          <label className="col-sm-3 text-sm-right">NIM:</label>
           <div className="col-sm-9">
             {thesisProposalSchedule.student.student_id}
           </div>
@@ -45,7 +45,9 @@ function DataThesisProposalSchedule() {
         {thesisProposalSchedule.seminar.examiners.map((examiner, index) => {
           return (
             <div className="row" key={index}>
-              <label className="col-sm-3 text-right">{examiner.status}:</label>
+              <label className="col-sm-3 text-sm-right">
+                {examiner.status}:
+              </label>
               <div className="col-sm-9">{examiner.name}</div>
             </div>
           );

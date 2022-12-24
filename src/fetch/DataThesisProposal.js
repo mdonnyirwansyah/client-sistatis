@@ -29,19 +29,19 @@ function DataThesisProposal() {
           </h2>
           <hr />
           <div className="row">
-            <label className="col-sm-3 text-right">Nama:</label>
+            <label className="col-sm-3 text-sm-right">Nama:</label>
             <div className="col-sm-9">{thesisProposal.student.name}</div>
           </div>
           <div className="row">
-            <label className="col-sm-3 text-right">NIM:</label>
+            <label className="col-sm-3 text-sm-right">NIM:</label>
             <div className="col-sm-9">{thesisProposal.student.student_id}</div>
           </div>
           <div className="row">
-            <label className="col-sm-3 text-right">No. HP:</label>
+            <label className="col-sm-3 text-sm-right">No. HP:</label>
             <div className="col-sm-9">{thesisProposal.student.phone}</div>
           </div>
           <div className="row">
-            <label className="col-sm-3 text-right">Status:</label>
+            <label className="col-sm-3 text-sm-right">Status:</label>
             <div className="col-sm-9">{thesisProposal.student.status}</div>
           </div>
         </div>
@@ -51,23 +51,23 @@ function DataThesisProposal() {
           </h2>
           <hr />
           <div className="row">
-            <label className="col-sm-3 text-right">Tanggal Daftar:</label>
+            <label className="col-sm-3 text-sm-right">Tanggal Daftar:</label>
             <div className="col-sm-9">
               {thesisProposal.thesis.date_register}
             </div>
           </div>
           <div className="row">
-            <label className="col-sm-3 text-right">Judul:</label>
+            <label className="col-sm-3 text-sm-right">Judul:</label>
             <div className="col-sm-9">{thesisProposal.thesis.title}</div>
           </div>
           <div className="row">
-            <label className="col-sm-3 text-right">KBK:</label>
+            <label className="col-sm-3 text-sm-right">KBK:</label>
             <div className="col-sm-9">{thesisProposal.thesis.field}</div>
           </div>
           {thesisProposal.thesis.supervisors.map((supervisor, index) => {
             return (
               <div className="row" key={index}>
-                <label className="col-sm-3 text-right">
+                <label className="col-sm-3 text-sm-right">
                   {supervisor.status}:
                 </label>
                 <div className="col-sm-9">{supervisor.name}</div>
@@ -83,7 +83,7 @@ function DataThesisProposal() {
           </h2>
         </div>
         <div className="col-sm-6">
-          <h2 className="lead text-right">
+          <h2 className="lead text-sm-right">
             <strong>Semester: {thesisProposal.seminar.semester}</strong>
           </h2>
         </div>
@@ -92,15 +92,15 @@ function DataThesisProposal() {
       <div className="row">
         <div className="col-sm-6">
           <div className="row">
-            <label className="col-sm-3 text-right">Tanggal:</label>
+            <label className="col-sm-3 text-sm-right">Tanggal:</label>
             <div className="col-sm-9">{thesisProposal.seminar.date}</div>
           </div>
           <div className="row">
-            <label className="col-sm-3 text-right">Jam:</label>
+            <label className="col-sm-3 text-sm-right">Jam:</label>
             <div className="col-sm-9">{thesisProposal.seminar.time}</div>
           </div>
           <div className="row">
-            <label className="col-sm-3 text-right">Lokasi:</label>
+            <label className="col-sm-3 text-sm-right">Lokasi:</label>
             <div className="col-sm-9">{thesisProposal.seminar.location}</div>
           </div>
         </div>
@@ -108,7 +108,7 @@ function DataThesisProposal() {
           {thesisProposal.seminar.examiners.map((examiner, index) => {
             return (
               <div className="row" key={index}>
-                <label className="col-sm-3 text-right">
+                <label className="col-sm-3 text-sm-right">
                   {examiner.status}:
                 </label>
                 <div className="col-sm-9">{examiner.name}</div>

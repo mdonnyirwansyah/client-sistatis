@@ -17,6 +17,7 @@ import {
   ThesisProposalValidate,
   ThesisProposalValidateDetail,
   NotFound,
+  ThesisDetail,
 } from "./pages";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="thesis">
             <Route index element={<Thesis />} />
             <Route path="create" element={<ThesisCreate />} />
+            <Route path="show/:id" element={<ThesisDetail />} />
             <Route path="edit/:id" element={<ThesisEdit />} />
           </Route>
           <Route path="seminar">
@@ -47,15 +49,10 @@ function App() {
             <Route path="show/:id" element={<ThesisProposalScheduleDetail />} />
           </Route>
         </Route>
-        <Route path="validate">
-          <Route path="seminar-register">
-            <Route path="thesis-proposal">
-              <Route index element={<ThesisProposalValidate />} />
-              <Route
-                path="show/:id"
-                element={<ThesisProposalValidateDetail />}
-              />
-            </Route>
+        <Route path="seminar-validate">
+          <Route path="thesis-proposal">
+            <Route index element={<ThesisProposalValidate />} />
+            <Route path="show/:id" element={<ThesisProposalValidateDetail />} />
           </Route>
         </Route>
         <Route path="account">

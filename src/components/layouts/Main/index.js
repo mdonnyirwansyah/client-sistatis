@@ -3,7 +3,7 @@ import { Header, Sidebar } from "../../../components";
 
 function Main({ children, title }) {
   return (
-    <div>
+    <>
       <Header />
       <Sidebar />
       <div className="content-wrapper">
@@ -20,7 +20,7 @@ function Main({ children, title }) {
           <div className="container-fluid">{children}</div>
         </section>
       </div>
-    </div>
+    </>
   );
 }
 

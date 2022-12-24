@@ -9,13 +9,17 @@ function ThesisProposalRegister() {
           <strong>Mahasiswa</strong>
         </h2>
         <hr />
-        <Input label="NIM" name="nim" id="nim" type="select">
-          <option>Pilih NIM</option>
-        </Input>
+        <Input label="NIM" name="nim" id="nim" />
         <h2 className="lead">
           <strong>Seminar</strong>
         </h2>
         <hr />
+        <Input
+          label="Tanggal Daftar"
+          name="register_date"
+          id="register_date"
+          type="date"
+        />
         <Input
           label="Penguji 1"
           name="examiner[]"

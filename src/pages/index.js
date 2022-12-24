@@ -2,6 +2,7 @@ import Login from "./Login";
 import Dashboard from "./Dashboard";
 import Thesis from "./data/theses/Thesis";
 import ThesisCreate from "./data/theses/ThesisCreate";
+import ThesisDetail from "./data/theses/ThesisDetail";
 import ThesisEdit from "./data/theses/ThesisEdit";
 import ThesisProposal from "./data/thesis-proposals/ThesisProposal";
 import ThesisProposalDetail from "./data/thesis-proposals/ThesisProposalDetail";
@@ -19,6 +20,7 @@ export {
   Login,
   Dashboard,
   Thesis,
+  ThesisDetail,
   ThesisCreate,
   ThesisEdit,
   ThesisProposal,

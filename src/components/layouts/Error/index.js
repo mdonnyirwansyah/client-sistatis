@@ -3,7 +3,7 @@ import { Header, Sidebar } from "../../../components";
 
 function Error({ children, title }) {
   return (
-    <div>
+    <>
       <Header />
       <Sidebar />
       <div className="content-wrapper">
@@ -18,12 +18,11 @@ function Error({ children, title }) {
         </section>
         <section className="content">
           <div className="error-page">
-            <h2 className="headline text-warning">{title}</h2>
             <div className="error-content">{children}</div>
           </div>
         </section>
       </div>
-    </div>
+    </>
   );
 }
 

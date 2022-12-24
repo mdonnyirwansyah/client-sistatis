@@ -17,7 +17,8 @@ function Thesis() {
             Tambah
           </Link>
         </div>
-        <div className="mt-3">
+        <hr />
+        <div>
           <ul
             className="nav nav-tabs"
             id="custom-content-below-tab"

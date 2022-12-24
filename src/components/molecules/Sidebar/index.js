@@ -111,35 +111,27 @@ function Sidebar() {
             />
           </NavTreeview>
           <NavTreeview
-            title="Validasi"
+            title="Validasi Seminar"
             icon={<FaFileSignature className="nav-icon" />}
-            active={location.pathname.includes("/validate") ? true : false}
+            active={
+              location.pathname.includes("/seminar-validate") ? true : false
+            }
           >
-            <NavTreeview
-              title="Pendaftaran Seminar"
+            <NavItem
+              title="Proposal TA"
+              url="/seminar-validate/thesis-proposal"
               icon={<FaRegCircle className="nav-icon" />}
-              active={
-                location.pathname.includes("/validate/seminar-register")
-                  ? true
-                  : false
-              }
-            >
-              <NavItem
-                title="Proposal TA"
-                url="/validate/seminar-register/thesis-proposal"
-                icon={<FaRegDotCircle className="nav-icon" />}
-              />
-              <NavItem
-                title="Hasil TA"
-                url="/validate/seminar-register/thesis-result"
-                icon={<FaRegDotCircle className="nav-icon" />}
-              />
-              <NavItem
-                title="Sidang TA"
-                url="/validate/seminar-register/thesis-defence"
-                icon={<FaRegDotCircle className="nav-icon" />}
-              />
-            </NavTreeview>
+            />
+            <NavItem
+              title="Hasil TA"
+              url="/seminar-validate/thesis-result"
+              icon={<FaRegCircle className="nav-icon" />}
+            />
+            <NavItem
+              title="Sidang TA"
+              url="/seminar-validate/thesis-defence"
+              icon={<FaRegCircle className="nav-icon" />}
+            />
           </NavTreeview>
           <NavTreeview
             title="Akun"
