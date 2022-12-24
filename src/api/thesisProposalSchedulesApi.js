@@ -7,12 +7,12 @@ export const getThesisProposalSchedules = () =>
     .get(thesisProposalSchedulesApi)
     .then((response) => {
       localStorage.setItem(
-        "scheduleThesisProposals",
+        "thesisProposalSchedules",
         JSON.stringify(response.data)
       );
       return response.data;
     })
-    .catch(() => JSON.parse(localStorage.getItem("scheduleThesisProposals")));
+    .catch(() => JSON.parse(localStorage.getItem("thesisProposalSchedules")));
 
 export const getThesisProposalSchedule = (id) =>
   sistatisApi
