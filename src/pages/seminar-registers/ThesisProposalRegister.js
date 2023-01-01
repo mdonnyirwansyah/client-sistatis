@@ -1,5 +1,11 @@
 import React from "react";
-import { Card, Input, Main } from "../../components";
+import {
+  Card,
+  FormInput,
+  FormSelect,
+  FormButton,
+  Main,
+} from "../../components";
 
 function ThesisProposalRegister() {
   return (
@@ -9,45 +15,30 @@ function ThesisProposalRegister() {
           <strong>Mahasiswa</strong>
         </h2>
         <hr />
-        <Input label="NIM" name="nim" id="nim" />
+        <FormInput label="NIM" name="nim" id="nim" type="text" />
         <h2 className="lead">
           <strong>Seminar</strong>
         </h2>
         <hr />
-        <Input
+        <FormInput
           label="Tanggal Daftar"
           name="register_date"
           id="register_date"
           type="date"
         />
-        <Input
-          label="Penguji 1"
-          name="examiner[]"
-          id="examiner_1"
-          type="select"
-        >
+        <FormSelect label="Penguji 1" name="examiner[]" id="examiner_1">
           <option>Pilih Penguji 1</option>
-        </Input>
-        <Input
-          label="Penguji 2"
-          name="examiner[]"
-          id="examiner_2"
-          type="select"
-        >
+        </FormSelect>
+        <FormSelect label="Penguji 2" name="examiner[]" id="examiner_2">
           <option>Pilih Penguji 2</option>
-        </Input>
-        <Input
-          label="Penguji 3"
-          name="examiner[]"
-          id="examiner_3"
-          type="select"
-        >
+        </FormSelect>
+        <FormSelect label="Penguji 3" name="examiner[]" id="examiner_3">
           <option>Pilih Penguji 3</option>
-        </Input>
-        <Input label="Semester" name="semester" id="semester" type="select">
+        </FormSelect>
+        <FormSelect label="Semester" name="semester" id="semester">
           <option>Pilih Semester</option>
-        </Input>
-        <Input label="Submit" type="button" />
+        </FormSelect>
+        <FormButton label="Submit" type="submit" />
       </Card>
     </Main>
   );

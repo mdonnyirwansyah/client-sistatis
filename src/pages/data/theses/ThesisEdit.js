@@ -1,5 +1,11 @@
 import React from "react";
-import { Card, Input, Main } from "../../../components";
+import {
+  Card,
+  FormInput,
+  FormSelect,
+  FormButton,
+  Main,
+} from "../../../components";
 
 function ThesisEdit() {
   return (
@@ -9,43 +15,30 @@ function ThesisEdit() {
           <strong>Mahasiswa</strong>
         </h2>
         <hr />
-        <Input label="Nama" name="name" id="name" type="text" />
-        <Input label="NIM" name="nim" id="nim" type="text" />
-        <Input label="No. HP" name="phone" id="phone" type="text" />
-        <Input label="Status" name="status" id="status" type="select">
-          <option>Pilih Status</option>
-        </Input>
+        <FormInput label="Nama" name="name" id="name" type="text" />
+        <FormInput label="NIM" name="nim" id="nim" type="text" />
+        <FormInput label="No. HP" name="phone" id="phone" type="text" />
         <h2 className="lead">
           <strong>Tugas Akhir</strong>
         </h2>
         <hr />
-        <Input
+        <FormInput
           label="Tanggal Daftar"
           name="register_date"
           id="register_date"
           type="date"
         />
-        <Input label="Judul" name="title" id="title" type="text" />
-        <Input label="KBK" name="field" id="field" type="select">
+        <FormInput label="Judul" name="title" id="title" type="text" />
+        <FormSelect label="KBK" name="field" id="field">
           <option>Pilih KBK</option>
-        </Input>
-        <Input
-          label="Pembimbing 1"
-          name="supervisor[]"
-          id="supervisor_1"
-          type="select"
-        >
+        </FormSelect>
+        <FormSelect label="Pembimbing 1" name="supervisor[]" id="supervisor_1">
           <option>Pilih Pembimbing 1</option>
-        </Input>
-        <Input
-          label="Pembimbing 2"
-          name="supervisor[]"
-          id="supervisor_2"
-          type="select"
-        >
+        </FormSelect>
+        <FormSelect label="Pembimbing 2" name="supervisor[]" id="supervisor_2">
           <option>Pilih Pembimbing 2</option>
-        </Input>
-        <Input label="Simpan Perubahan" type="button" />
+        </FormSelect>
+        <FormButton label="Simpan Perubahan" type="submit" />
       </Card>
     </Main>
   );

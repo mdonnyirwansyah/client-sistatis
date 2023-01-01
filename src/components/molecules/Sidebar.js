@@ -10,7 +10,7 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
-import { Nav, NavItem, NavTreeview } from "../../../components";
+import { Nav, NavItem, NavTreeview } from "../../components";
 
 function Sidebar() {
   const location = useLocation();

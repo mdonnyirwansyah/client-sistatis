@@ -1,29 +1,29 @@
 import React from "react";
-import { Main, Card, Input } from "../../components";
+import { Main, Card, FormInput, FormButton } from "../../components";
 
 function UpdatePassword() {
   return (
     <Main title="Update Password">
       <Card>
-        <Input
+        <FormInput
           label="Current Password"
           name="current_password"
           id="current_password"
           type="password"
         />
-        <Input
+        <FormInput
           label="New Password"
           name="password"
           id="password"
           type="password"
         />
-        <Input
+        <FormInput
           label="Confirm Password"
           name="confirm_password"
           id="confirm_password"
           type="password"
         />
-        <Input label="Simpan Perubahan" type="button" />
+        <FormButton label="Simpan Perubahan" type="submit" />
       </Card>
     </Main>
   );

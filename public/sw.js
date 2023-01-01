@@ -13,9 +13,13 @@ this.addEventListener("install", (event) => {
         "/favicon.ico",
         "/index.html",
         "/",
+        "/login",
         "/data/thesis",
-        "/data/thesis/create",
         "/data/seminar/thesis-proposal",
+        "/seminar-register/thesis-proposal",
+        "/seminar-schedule/thesis-proposal",
+        "/seminar-validate/thesis-proposal",
+        "/account/profile",
       ]);
     })
   );

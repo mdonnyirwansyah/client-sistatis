@@ -1,5 +1,5 @@
 import React from "react";
-import { PageLink } from "../../../components";
+import { PageLink } from "../../components";
 
 function Pagination({ pageLinks }) {
   return (

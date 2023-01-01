@@ -4,7 +4,7 @@ import { DataThesisProposalValidates } from "../../../fetch";
 
 function ThesisProposalValidate() {
   return (
-    <Main title="Validasi Pendaftaran Seminar Proposal TA">
+    <Main title="Validasi Seminar Proposal TA">
       <Card>
         <div>
           <table className="table table-bordered">

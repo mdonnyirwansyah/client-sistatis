@@ -4,7 +4,7 @@ import DataThesis from "../../../fetch/DataThesis";
 
 function ThesisDetail() {
   return (
-    <Main title="Lihat Seminar Proposal TA">
+    <Main title="Lihat Data Tugas Akhir">
       <Card>
         <DataThesis />
       </Card>

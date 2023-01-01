@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Input, Main } from "../../../components";
+import { Card, FormInput, FormSelect, FormButton, Main } from "../../../components";
 
 function ThesisProposalEdit() {
   return (
@@ -9,33 +9,36 @@ function ThesisProposalEdit() {
           <strong>Mahasiswa</strong>
         </h2>
         <hr />
-        <Input label="NIM" name="nim" id="nim" type="select">
-          <option>Pilih NIM</option>
-        </Input>
+        <FormInput label="NIM" name="nim" id="nim" type="text" />
         <h2 className="lead">
           <strong>Seminar</strong>
         </h2>
         <hr />
-        <Input
+        <FormSelect
           label="Penguji 1"
           name="examiner[]"
           id="examiner_1"
-          type="select"
         >
           <option>Pilih Penguji 1</option>
-        </Input>
-        <Input
+        </FormSelect>
+        <FormSelect
           label="Penguji 2"
           name="examiner[]"
           id="examiner_2"
-          type="select"
         >
-          <option>Pilih Penguji 2</option>
-        </Input>
-        <Input label="Semester" name="semester" id="semester" type="select">
+          <option>Pilih Penguji 3</option>
+        </FormSelect>
+        <FormSelect
+          label="Penguji 3"
+          name="examiner[]"
+          id="examiner_3"
+        >
+          <option>Pilih Penguji 3</option>
+        </FormSelect>
+        <FormSelect label="Semester" name="semester" id="semester" type="select">
           <option>Pilih Semester</option>
-        </Input>
-        <Input label="Simpan Perubahan" type="button" />
+        </FormSelect>
+        <FormButton label="Simpan Perubahan" type="submit" />
       </Card>
     </Main>
   );

@@ -31,7 +31,7 @@ function DataThesisProposalSchedules() {
           <td>{index + 1}</td>
           <td>{thesisProposalSchedule.thesis.date_register}</td>
           <td>{thesisProposalSchedule.student.name}</td>
-          <td>{thesisProposalSchedule.thesis.field}</td>
+          <td>{thesisProposalSchedule.thesis.title}</td>
           <td>
             <ButtonIcon
               title="Lihat"

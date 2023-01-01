@@ -1,5 +1,11 @@
 import React from "react";
-import { Card, Input, Main } from "../../../components";
+import {
+  Card,
+  FormInput,
+  FormSelect,
+  FormButton,
+  Main,
+} from "../../../components";
 import { DataThesisProposalSchedule } from "../../../fetch";
 
 function ThesisProposalScheduleDetail() {
@@ -13,12 +19,12 @@ function ThesisProposalScheduleDetail() {
               <strong>Jadwal</strong>
             </h2>
             <hr />
-            <Input label="Tanggal" name="date" id="date" type="date" />
-            <Input label="Jam" name="time" id="time" type="time" />
-            <Input label="Lokasi" name="location" id="location" type="select">
+            <FormInput label="Tanggal" name="date" id="date" type="date" />
+            <FormInput label="Jam" name="time" id="time" type="time" />
+            <FormSelect label="Lokasi" name="location" id="location">
               <option>Pilih Lokasi</option>
-            </Input>
-            <Input label="Atur Jadwal" type="button" />
+            </FormSelect>
+            <FormButton label="Atur Jadwal" type="submit" />
           </div>
         </div>
       </Card>

@@ -5,7 +5,7 @@ function Dashboard() {
   return (
     <Main title="Dashboard">
       <div className="callout callout-info">
-        <p className="text-center my-3">Selamat Datang Administrator TA</p>
+        <p className="text-center my-3">Selamat Datang KAPRODI TA</p>
       </div>
     </Main>
   );

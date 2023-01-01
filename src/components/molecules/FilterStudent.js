@@ -1,5 +1,5 @@
 import React from "react";
-import { DataLoading } from "../../../components";
+import { DataLoading } from "../../components";
 
 function FilterStudent() {
   return (

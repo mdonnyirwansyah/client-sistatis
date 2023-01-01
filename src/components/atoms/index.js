@@ -1,5 +1,7 @@
 import ButtonIcon from "./ButtonIcon";
-import Input from "./Input";
+import FormInput from "./FormInput";
+import FormSelect from "./FormSelect";
+import FormButton from "./FormButton";
 import Card from "./Card";
 import DataError from "./DataError";
 import DataLoading from "./DataLoading";
@@ -11,7 +13,9 @@ import PageLink from "./PageLink";
 
 export {
   ButtonIcon,
-  Input,
+  FormInput,
+  FormSelect,
+  FormButton,
   Card,
   DataError,
   DataLoading,

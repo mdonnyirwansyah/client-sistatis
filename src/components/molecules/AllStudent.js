@@ -1,4 +1,4 @@
-import { DataTheses } from "../../../fetch";
+import { DataTheses } from "../../fetch";
 
 function AllStudent() {
   return (

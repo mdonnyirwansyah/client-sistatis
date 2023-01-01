@@ -1,5 +1,5 @@
 import React from "react";
-import { DataNotFound } from "../../../components";
+import { DataNotFound } from "../../components";
 
 function FilterStudentSupervisor() {
   return (
