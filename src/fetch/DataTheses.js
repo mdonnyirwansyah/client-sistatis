@@ -25,7 +25,7 @@ function DataTheses() {
       return (
         <tr key={theses.id}>
           <td>{index + 1}</td>
-          <td>{theses.date_register}</td>
+          <td>{theses.register_date}</td>
           <td>{theses.nim}</td>
           <td>{theses.name}</td>
           <td>{theses.title}</td>

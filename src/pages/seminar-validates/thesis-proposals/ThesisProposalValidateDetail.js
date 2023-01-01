@@ -7,12 +7,6 @@ function ThesisProposalValidateDetail() {
     <Main title="Lihat Validasi Seminar Proposal TA">
       <Card>
         <DataThesisProposalValidate />
-        <hr />
-        <div className="d-flex justify-content-end">
-          <button type="submit" className="btn btn-primary">
-            Validasi
-          </button>
-        </div>
       </Card>
     </Main>
   );

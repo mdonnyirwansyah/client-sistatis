@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { getThesisProposalValidate } from "../api/thesisProposalValidatesApi";
+import { FormThesisProposalValidate } from "../components";
 
 function DataThesisProposalValidate() {
   const { id } = useParams();
@@ -28,50 +29,56 @@ function DataThesisProposalValidate() {
             <strong>Mahasiswa</strong>
           </h2>
           <hr />
-          <div className="row">
-            <label className="col-sm-3 text-sm-right">Nama:</label>
+          <div className="row mb-sm-0 mb-3">
+            <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">Nama:</label>
             <div className="col-sm-9">
               {thesisProposalValidate.student.name}
             </div>
           </div>
-          <div className="row">
-            <label className="col-sm-3 text-sm-right">NIM:</label>
-            <div className="col-sm-9">
-              {thesisProposalValidate.student.student_id}
-            </div>
+          <div className="row mb-sm-0 mb-3">
+            <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">NIM:</label>
+            <div className="col-sm-9">{thesisProposalValidate.student.nim}</div>
           </div>
-          <div className="row">
-            <label className="col-sm-3 text-sm-right">No. HP:</label>
+          <div className="row mb-sm-0 mb-3">
+            <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
+              No. HP:
+            </label>
             <div className="col-sm-9">
               {thesisProposalValidate.student.phone}
             </div>
           </div>
-          <div className="row">
-            <label className="col-sm-3 text-sm-right">Status:</label>
+          <div className="row mb-sm-0 mb-3">
+            <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
+              Status:
+            </label>
             <div className="col-sm-9">
               {thesisProposalValidate.student.status}
             </div>
           </div>
         </div>
-        <div className="col-sm-6">
+        <div className="col-sm-6 mt-sm-0 mt-3">
           <h2 className="lead">
             <strong>Tugas Akhir</strong>
           </h2>
           <hr />
-          <div className="row">
-            <label className="col-sm-3 text-sm-right">Tanggal Daftar:</label>
+          <div className="row mb-sm-0 mb-3">
+            <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
+              Tanggal Daftar:
+            </label>
             <div className="col-sm-9">
               {thesisProposalValidate.thesis.date_register}
             </div>
           </div>
-          <div className="row">
-            <label className="col-sm-3 text-sm-right">Judul:</label>
+          <div className="row mb-sm-0 mb-3">
+            <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
+              Judul:
+            </label>
             <div className="col-sm-9">
               {thesisProposalValidate.thesis.title}
             </div>
           </div>
-          <div className="row">
-            <label className="col-sm-3 text-sm-right">KBK:</label>
+          <div className="row mb-sm-0 mb-3">
+            <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">KBK:</label>
             <div className="col-sm-9">
               {thesisProposalValidate.thesis.field}
             </div>
@@ -79,8 +86,8 @@ function DataThesisProposalValidate() {
           {thesisProposalValidate.thesis.supervisors.map(
             (supervisor, index) => {
               return (
-                <div className="row" key={index}>
-                  <label className="col-sm-3 text-sm-right">
+                <div className="row mb-sm-0 mb-3" key={index}>
+                  <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
                     {supervisor.status}:
                   </label>
                   <div className="col-sm-9">{supervisor.name}</div>
@@ -90,7 +97,7 @@ function DataThesisProposalValidate() {
           )}
         </div>
       </div>
-      <div className="row">
+      <div className="row mt-sm-0 mt-3">
         <div className="col-sm-6">
           <h2 className="lead">
             <strong>Seminar</strong>
@@ -105,20 +112,24 @@ function DataThesisProposalValidate() {
       <hr />
       <div className="row">
         <div className="col-sm-6">
-          <div className="row">
-            <label className="col-sm-3 text-sm-right">Tanggal:</label>
+          <div className="row mb-sm-0 mb-3">
+            <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
+              Tanggal:
+            </label>
             <div className="col-sm-9">
               {thesisProposalValidate.seminar.date}
             </div>
           </div>
-          <div className="row">
-            <label className="col-sm-3 text-sm-right">Jam:</label>
+          <div className="row mb-sm-0 mb-3">
+            <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">Jam:</label>
             <div className="col-sm-9">
               {thesisProposalValidate.seminar.time}
             </div>
           </div>
-          <div className="row">
-            <label className="col-sm-3 text-sm-right">Lokasi:</label>
+          <div className="row mb-sm-0 mb-3">
+            <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
+              Lokasi:
+            </label>
             <div className="col-sm-9">
               {thesisProposalValidate.seminar.location}
             </div>
@@ -127,8 +138,8 @@ function DataThesisProposalValidate() {
         <div className="col-sm-6">
           {thesisProposalValidate.seminar.examiners.map((examiner, index) => {
             return (
-              <div className="row">
-                <label className="col-sm-3 text-sm-right">
+              <div className="row mb-sm-0 mb-3" key={index}>
+                <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
                   {examiner.status}:
                 </label>
                 <div className="col-sm-9">{examiner.name}</div>
@@ -137,6 +148,7 @@ function DataThesisProposalValidate() {
           })}
         </div>
       </div>
+      <FormThesisProposalValidate />
     </>
   ) : (
     "Data Not Found."

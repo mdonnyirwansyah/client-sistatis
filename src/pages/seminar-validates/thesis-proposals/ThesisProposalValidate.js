@@ -6,7 +6,7 @@ function ThesisProposalValidate() {
   return (
     <Main title="Validasi Seminar Proposal TA">
       <Card>
-        <div>
+        <div className="table-responsive">
           <table className="table table-bordered">
             <thead>
               <tr>

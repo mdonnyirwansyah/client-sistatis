@@ -12,8 +12,7 @@ export const getFields = () =>
     .catch(() => JSON.parse(localStorage.getItem("fields")));
 
 export const getFieldLecturers = (id) =>
-  sistatisApi.get(`${fieldsApi}/${id}/lecturers`).then((response) => {
-    console.log(response.data.data);
+  sistatisApi.get(`${fieldsApi}/${id}/lecturer`).then((response) => {
     return response.data.data;
   });
 

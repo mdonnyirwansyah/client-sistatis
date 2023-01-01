@@ -29,9 +29,9 @@ function DataThesisProposalSchedules() {
       return (
         <tr key={thesisProposalSchedule.id}>
           <td>{index + 1}</td>
-          <td>{thesisProposalSchedule.thesis.date_register}</td>
-          <td>{thesisProposalSchedule.student.name}</td>
-          <td>{thesisProposalSchedule.thesis.title}</td>
+          <td>{thesisProposalSchedule.register_date}</td>
+          <td>{thesisProposalSchedule.name}</td>
+          <td>{thesisProposalSchedule.title}</td>
           <td>
             <ButtonIcon
               title="Lihat"

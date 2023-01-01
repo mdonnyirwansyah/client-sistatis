@@ -29,9 +29,17 @@ function DataThesisProposals() {
       return (
         <tr key={thesisProposal.id}>
           <td>{index + 1}</td>
-          <td>{thesisProposal.seminar.date}</td>
-          <td>{thesisProposal.student.name}</td>
-          <td>{thesisProposal.thesis.title}</td>
+          <td>
+            {thesisProposal.date ? (
+              thesisProposal.date
+            ) : (
+              <span className="badge badge-warning text-white">
+                Belum Ditentukan
+              </span>
+            )}
+          </td>
+          <td>{thesisProposal.name}</td>
+          <td>{thesisProposal.title}</td>
           <td>
             <div className="d-flex align-items-center justify-content-center">
               <ButtonIcon

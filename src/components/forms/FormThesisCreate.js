@@ -51,12 +51,13 @@ const FormThesisCreate = () => {
     const data = new FormData(e.target);
     const created = await addThesis(data);
     if (created.code === "200") {
+      console.log(created);
     } else {
       created.data.name && setErrorName(created.data.name);
       created.data.nim && setErrorNim(created.data.nim);
       created.data.phone && setErrorPhone(created.data.phone);
-      created.data.date_register &&
-        setErrorRegisterDate(created.data.date_register);
+      created.data.register_date &&
+        setErrorRegisterDate(created.data.register_date);
       created.data.title && setErrorTitle(created.data.title);
       created.data.field && setErrorField(created.data.field);
       created.data.supervisors && setErrorSupervisor1(created.data.supervisors);
