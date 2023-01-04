@@ -2,6 +2,7 @@ import ButtonIcon from "./ButtonIcon";
 import FormInput from "./FormInput";
 import FormSelect from "./FormSelect";
 import FormButton from "./FormButton";
+import FormButtonDelete from "./FormButtonDelete";
 import Card from "./Card";
 import DataError from "./DataError";
 import DataLoading from "./DataLoading";
@@ -16,6 +17,7 @@ export {
   FormInput,
   FormSelect,
   FormButton,
+  FormButtonDelete,
   Card,
   DataError,
   DataLoading,

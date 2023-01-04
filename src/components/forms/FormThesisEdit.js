@@ -1,22 +1,22 @@
 import { useState } from "react";
 import { FormInput, FormSelect, FormButton } from "../../components";
 import { DataFields, DataLecturersByField } from "../../fetch";
-import thesesApi from "../../api/thesesApi";
-import sistatisApi from "../../api";
 import toast from "react-hot-toast";
+import sistatisApi from "../../api";
+import thesesApi from "../../api/thesesApi";
+import { useParams } from "react-router-dom";
 
-const FormThesisCreate = () => {
-  const [name, setName] = useState("");
-  const [nim, setNim] = useState("");
-  const [phone, setPhone] = useState("");
-  const [registerDate, setRegisterDate] = useState("");
-  const [title, setTitle] = useState("");
-  const [field, setField] = useState("");
-  const [supervisor1, setSupervisor1] = useState("");
-  const [supervisor2, setSupervisor2] = useState("");
-
+const FormThesisEdit = ({ data }) => {
+  const { id } = useParams();
+  const [name, setName] = useState(data.student.name);
+  const [nim, setNim] = useState(data.student.nim);
+  const [phone, setPhone] = useState(data.student.phone);
+  const [registerDate, setRegisterDate] = useState(data.thesis.register_date);
+  const [title, setTitle] = useState(data.thesis.title);
+  const [field, setField] = useState(data.thesis.field_id);
+  const [supervisor1, setSupervisor1] = useState(data.thesis.supervisors[0].id);
+  const [supervisor2, setSupervisor2] = useState(data.thesis.supervisors[1].id);
   const [errors, setErrors] = useState({});
-
   const handleName = (e) => {
     setName(e.target.value);
   };
@@ -43,49 +43,46 @@ const FormThesisCreate = () => {
   };
   const handleClearForm = () => {
     setErrors({});
-    setName("");
-    setNim("");
-    setPhone("");
-    setRegisterDate("");
-    setTitle("");
-    setField("");
-    setSupervisor1("");
-    setSupervisor2("");
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = (id, e) => {
     e.preventDefault();
-    const toastAddThesis = toast.loading("Loading...");
+    const toastUpdateData = toast.loading("Loading...");
     const formData = new FormData(e.target);
-    const addThesis = async (formData) => {
+    const updateData = async (id, formData) => {
       try {
-        const response = await sistatisApi.post(thesesApi, formData);
+        const response = await sistatisApi.post(`${thesesApi}/${id}`, formData);
         const data = response.data;
         handleClearForm();
-        toast.success(`Successfully created!`, {
-          id: toastAddThesis,
+        toast.success(`Successfully saved!`, {
+          id: toastUpdateData,
         });
       } catch (error) {
         if (error.response) {
           if (error.response.status === 422) {
             const data = error.response.data;
             toast.error(data.status, {
-              id: toastAddThesis,
+              id: toastUpdateData,
             });
             setErrors(data.data);
+          } else {
+            toast.error("Something when wrong...", {
+              id: toastUpdateData,
+            });
           }
         } else {
           toast.error(error.message, {
-            id: toastAddThesis,
+            id: toastUpdateData,
           });
         }
       }
     };
 
-    addThesis(formData);
+    updateData(id, formData);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={(e) => handleSubmit(id, e)}>
+      <input type="hidden" name="_method" value="put" />
       <h2 className="lead">
         <strong>Mahasiswa</strong>
       </h2>
@@ -147,7 +144,7 @@ const FormThesisCreate = () => {
         value={field}
         errors={errors && errors.field}
       >
-        <DataFields />
+        <DataFields data={field} />
       </FormSelect>
       <FormSelect
         label="Pembimbing 1"
@@ -160,7 +157,7 @@ const FormThesisCreate = () => {
         <DataLecturersByField
           field_id={field}
           selected_id={supervisor2}
-          value="Pembimbing 1"
+          data={supervisor1}
         />
       </FormSelect>
       {supervisor1 ? (
@@ -181,7 +178,7 @@ const FormThesisCreate = () => {
         <DataLecturersByField
           field_id={field}
           selected_id={supervisor1}
-          value="Pembimbing 2"
+          data={supervisor2}
         />
       </FormSelect>
       {supervisor2 ? (
@@ -191,9 +188,9 @@ const FormThesisCreate = () => {
           value="Pembimbing 2"
         />
       ) : null}
-      <FormButton label="Submit" type="submit" />
+      <FormButton label="Simpan Perubahan" type="submit" />
     </form>
   );
 };
 
-export default FormThesisCreate;
+export default FormThesisEdit;

@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { getThesisProposal } from "../api/thesisProposalsApi";
+import moment from "moment";
 
 function DataThesisProposal() {
   const { id } = useParams();
@@ -59,7 +60,7 @@ function DataThesisProposal() {
               Tanggal Daftar:
             </label>
             <div className="col-sm-9">
-              {thesisProposal.thesis.register_date}
+              {moment(thesisProposal.thesis.register_date).format("LL")}
             </div>
           </div>
           <div className="row mb-sm-0 mb-3">
@@ -105,7 +106,7 @@ function DataThesisProposal() {
             </label>
             <div className="col-sm-9">
               {thesisProposal.seminar.date ? (
-                thesisProposal.seminar.date
+                moment(thesisProposal.seminar.date).format("dddd, D MMMM YYYY")
               ) : (
                 <span className="badge badge-warning text-white">
                   Tanggal Belum Ditentukan
@@ -117,7 +118,9 @@ function DataThesisProposal() {
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">Jam:</label>
             <div className="col-sm-9">
               {thesisProposal.seminar.time ? (
-                thesisProposal.seminar.time
+                moment(thesisProposal.seminar.time, "HH:mm:ss").format(
+                  "LT [WIB]"
+                )
               ) : (
                 <span className="badge badge-warning text-white">
                   Jam Belum Ditentukan
@@ -163,7 +166,7 @@ function DataThesisProposal() {
       <hr />
       <div className="row">
         <div className="col-sm-12 d-flex justify-content-end">
-        <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary">
             Print Berita Acara
           </button>
           <button type="submit" className="btn btn-primary ml-3">

@@ -1,16 +1,25 @@
 import React from "react";
 import { FaEye, FaPen, FaTrashAlt } from "react-icons/fa";
 import { useQuery } from "react-query";
-import { getTheses } from "../api/thesesApi";
+import thesesApi, { getTheses } from "../api/thesesApi";
 import {
   ButtonIcon,
   DataError,
   DataLoading,
   DataNotFound,
+  FormButtonDelete,
 } from "../components";
+import swal from "sweetalert";
+import sistatisApi from "../api";
+import toast from "react-hot-toast";
 
 function DataTheses() {
-  const { isLoading, isError, data: theses } = useQuery("theses", getTheses);
+  const {
+    isLoading,
+    isError,
+    refetch,
+    data: theses,
+  } = useQuery("theses", getTheses);
 
   if (isLoading) {
     return <DataLoading colSpan="7" />;
@@ -19,6 +28,46 @@ function DataTheses() {
   if (isError) {
     return <DataError colSpan="7" />;
   }
+
+  const handleDelete = (id) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this data!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        const toastDeleteThesis = toast.loading("Loading...");
+        const deleteThesis = async (id) => {
+          try {
+            const response = await sistatisApi.delete(`${thesesApi}/${id}`);
+            const data = response.data;
+            refetch();
+            toast.success(`Successfully deleted!`, {
+              id: toastDeleteThesis,
+            });
+          } catch (error) {
+            if (error.response) {
+              if (error.response) {
+                toast.error("Something when wrong...", {
+                  id: toastDeleteThesis,
+                });
+              }
+            } else {
+              toast.error(error.message, {
+                id: toastDeleteThesis,
+              });
+            }
+          }
+        };
+
+        deleteThesis(id);
+      } else {
+        swal("Your data is safe!");
+      }
+    });
+  };
 
   return theses ? (
     theses.map((theses, index) => {
@@ -42,9 +91,10 @@ function DataTheses() {
                 icon={<FaPen className="text-warning" />}
                 url={"edit/" + theses.id}
               />
-              <ButtonIcon
+              <FormButtonDelete
                 title="Hapus"
                 icon={<FaTrashAlt className="text-danger" />}
+                onClick={() => handleDelete(theses.id)}
               />
             </div>
           </td>

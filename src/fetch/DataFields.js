@@ -1,16 +1,12 @@
-import React from "react";
 import { useQuery } from "react-query";
 import { getFields } from "../api/fieldsApi";
 
-function DataFields() {
+const DataFields = ({ data }) => {
   const { isLoading, isError, data: fields } = useQuery("fields", getFields);
 
   if (isLoading) {
     return (
       <>
-        <option disabled selected>
-          Pilih KBK
-        </option>
         <option disabled>Loading...</option>
       </>
     );
@@ -19,9 +15,6 @@ function DataFields() {
   if (isError) {
     return (
       <>
-        <option disabled selected>
-          Pilih KBK
-        </option>
         <option disabled>Something when wrong...</option>
       </>
     );
@@ -29,13 +22,14 @@ function DataFields() {
 
   return (
     <>
-      <option disabled selected>
-        Pilih KBK
-      </option>
       {fields
         ? fields.map((field, index) => {
             return (
-              <option key={index} value={field.id}>
+              <option
+                key={index}
+                value={field.id}
+                selected={field.id == data ? true : false}
+              >
                 {field.name}
               </option>
             );
@@ -43,6 +37,6 @@ function DataFields() {
         : null}
     </>
   );
-}
+};
 
 export default DataFields;

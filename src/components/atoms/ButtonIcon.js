@@ -1,7 +1,6 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function ButtonIcon({ title, icon, url }) {
+const ButtonIcon = ({ title, icon, url }) => {
   const navigate = useNavigate();
   return (
     <button
@@ -13,6 +12,6 @@ function ButtonIcon({ title, icon, url }) {
       {icon}
     </button>
   );
-}
+};
 
 export default ButtonIcon;

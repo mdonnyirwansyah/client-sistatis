@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { getThesisProposalValidate } from "../api/thesisProposalValidatesApi";
 import { FormThesisProposalValidate } from "../components";
+import moment from "moment";
 
 function DataThesisProposalValidate() {
   const { id } = useParams();
@@ -66,7 +67,7 @@ function DataThesisProposalValidate() {
               Tanggal Daftar:
             </label>
             <div className="col-sm-9">
-              {thesisProposalValidate.thesis.date_register}
+              {moment(thesisProposalValidate.thesis.register_date).format("LL")}
             </div>
           </div>
           <div className="row mb-sm-0 mb-3">
@@ -117,13 +118,17 @@ function DataThesisProposalValidate() {
               Tanggal:
             </label>
             <div className="col-sm-9">
-              {thesisProposalValidate.seminar.date}
+              {moment(thesisProposalValidate.seminar.date).format(
+                "dddd, D MMMM YYYY"
+              )}
             </div>
           </div>
           <div className="row mb-sm-0 mb-3">
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">Jam:</label>
             <div className="col-sm-9">
-              {thesisProposalValidate.seminar.time}
+              {moment(thesisProposalValidate.seminar.time, "HH:mm:ss").format(
+                "LT [WIB]"
+              )}
             </div>
           </div>
           <div className="row mb-sm-0 mb-3">

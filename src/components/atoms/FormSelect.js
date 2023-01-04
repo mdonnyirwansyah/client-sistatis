@@ -1,6 +1,14 @@
 import React from "react";
 
-function FormSelect({ children, label, id, name, onChange, value, errors }) {
+function FormSelect({
+  children,
+  label,
+  id,
+  name,
+  onChange,
+  value,
+  errors,
+}) {
   return (
     <div className="form-group row">
       <label htmlFor={id} className="col-sm-3 col-form-label text-sm-right">
@@ -16,6 +24,9 @@ function FormSelect({ children, label, id, name, onChange, value, errors }) {
           onChange={onChange}
           value={value}
         >
+          <option value="" disabled={value ? true : false}>
+            Pilih {label}
+          </option>
           {children}
         </select>
         <small className="invalid-feedback">

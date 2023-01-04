@@ -1,19 +1,16 @@
 import { useQuery } from "react-query";
-import { getFieldLecturers } from "../api/fieldsApi";
+import { getLecturersByField } from "../api/lecturersApi";
 
-const DataFieldLecturers = ({ field_id = 0, selected_id }) => {
+const DataLecturersByField = ({ field_id, selected_id, data }) => {
   const {
     isLoading,
     isError,
     data: lecturers,
-  } = useQuery(["lecturers", field_id], () => getFieldLecturers(field_id));
+  } = useQuery(["lecturers", field_id], () => getLecturersByField(field_id));
 
   if (isLoading) {
     return (
       <>
-        <option disabled selected>
-          Pilih Pembimbing
-        </option>
         <option disabled>Loading...</option>
       </>
     );
@@ -22,9 +19,6 @@ const DataFieldLecturers = ({ field_id = 0, selected_id }) => {
   if (isError) {
     return (
       <>
-        <option disabled selected>
-          Pilih Pembimbing
-        </option>
         <option disabled>Something when wrong...</option>
       </>
     );
@@ -32,9 +26,6 @@ const DataFieldLecturers = ({ field_id = 0, selected_id }) => {
 
   return (
     <>
-      <option disabled selected>
-        Pilih Pembimbing
-      </option>
       {lecturers
         ? lecturers.map((lecturer, index) => {
             return (
@@ -42,6 +33,7 @@ const DataFieldLecturers = ({ field_id = 0, selected_id }) => {
                 key={index}
                 value={lecturer.id}
                 disabled={selected_id == lecturer.id ? true : false}
+                selected={lecturer.id == data ? true : false}
               >
                 {lecturer.name}
               </option>
@@ -52,4 +44,4 @@ const DataFieldLecturers = ({ field_id = 0, selected_id }) => {
   );
 };
 
-export default DataFieldLecturers;
+export default DataLecturersByField;

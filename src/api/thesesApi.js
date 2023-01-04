@@ -18,7 +18,7 @@ export const addThesis = (data) =>
   sistatisApi
     .post(thesesApi, data)
     .then((response) => {
-      return response.data.data;
+      return response.data;
     })
     .catch((error) => {
       return error.response.data;
