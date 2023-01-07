@@ -5,6 +5,7 @@ function FormSelect({
   label,
   id,
   name,
+  disabled,
   onChange,
   value,
   errors,
@@ -23,10 +24,9 @@ function FormSelect({
           name={name}
           onChange={onChange}
           value={value}
+          disabled={disabled}
         >
-          <option value="" disabled={value ? true : false}>
-            Pilih {label}
-          </option>
+          <option value="">Pilih {label}</option>
           {children}
         </select>
         <small className="invalid-feedback">

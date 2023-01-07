@@ -14,7 +14,7 @@ const FormThesisDetail = ({ data }) => {
             <div className="col-sm-9">{data.student.name}</div>
           </div>
           <div className="row mb-sm-0 mb-3">
-            <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">NIM:</label>
+            <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">Nim:</label>
             <div className="col-sm-9">{data.student.nim}</div>
           </div>
           <div className="row mb-sm-0 mb-3">

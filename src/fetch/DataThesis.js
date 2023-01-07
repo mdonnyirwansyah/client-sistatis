@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { useLocation, useParams } from "react-router-dom";
 import { getThesis } from "../api/thesesApi";
-import {FormThesisEdit, FormThesisDetail} from "../components";
+import { FormThesisEdit, FormThesisDetail } from "../components";
 
 function DataThesis() {
   const { id } = useParams();

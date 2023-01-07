@@ -1,12 +1,19 @@
 import { useQuery } from "react-query";
 import { getLecturersByField } from "../api/lecturersApi";
 
-const DataLecturersByField = ({ field_id, selected_id, data }) => {
+const DataLecturersByField = ({ fieldId, disabled, disabledOther, data }) => {
   const {
     isLoading,
     isError,
     data: lecturers,
-  } = useQuery(["lecturers", field_id], () => getLecturersByField(field_id));
+  } = useQuery(["lecturers", fieldId], () => getLecturersByField(fieldId));
+
+  let filter;
+  if (lecturers && data) {
+    filter = lecturers.filter(
+      (lecturer) => !data.find((data) => lecturer.id === data.id)
+    );
+  }
 
   if (isLoading) {
     return (
@@ -26,20 +33,37 @@ const DataLecturersByField = ({ field_id, selected_id, data }) => {
 
   return (
     <>
-      {lecturers
-        ? lecturers.map((lecturer, index) => {
+      {filter
+        ? filter?.map((lecturer, index) => {
             return (
               <option
                 key={index}
                 value={lecturer.id}
-                disabled={selected_id == lecturer.id ? true : false}
-                selected={lecturer.id == data ? true : false}
+                disabled={
+                  disabled == lecturer.id || disabledOther == lecturer.id
+                    ? true
+                    : false
+                }
               >
                 {lecturer.name}
               </option>
             );
           })
-        : null}
+        : lecturers?.map((lecturer, index) => {
+            return (
+              <option
+                key={index}
+                value={lecturer.id}
+                disabled={
+                  disabled == lecturer.id || disabledOther == lecturer.id
+                    ? true
+                    : false
+                }
+              >
+                {lecturer.name}
+              </option>
+            );
+          })}
     </>
   );
 };

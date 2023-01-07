@@ -73,11 +73,10 @@ const FormThesisCreate = () => {
             });
             setErrors(data.data);
           }
-        } else {
-          toast.error(error.message, {
-            id: toastAddThesis,
-          });
         }
+        toast.error(error.message, {
+          id: toastAddThesis,
+        });
       }
     };
 
@@ -100,7 +99,7 @@ const FormThesisCreate = () => {
         errors={errors && errors.name}
       />
       <FormInput
-        label="NIM"
+        label="Nim"
         name="nim"
         id="nim"
         type="text"
@@ -157,11 +156,7 @@ const FormThesisCreate = () => {
         value={supervisor1}
         errors={errors && errors.supervisor_1}
       >
-        <DataLecturersByField
-          field_id={field}
-          selected_id={supervisor2}
-          value="Pembimbing 1"
-        />
+        <DataLecturersByField fieldId={field} disabled={supervisor2} />
       </FormSelect>
       {supervisor1 ? (
         <input
@@ -178,11 +173,7 @@ const FormThesisCreate = () => {
         value={supervisor2}
         errors={errors && errors.supervisor_2}
       >
-        <DataLecturersByField
-          field_id={field}
-          selected_id={supervisor1}
-          value="Pembimbing 2"
-        />
+        <DataLecturersByField fieldId={field} disabled={supervisor1} />
       </FormSelect>
       {supervisor2 ? (
         <input

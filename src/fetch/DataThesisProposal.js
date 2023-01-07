@@ -166,10 +166,20 @@ function DataThesisProposal() {
       <hr />
       <div className="row">
         <div className="col-sm-12 d-flex justify-content-end">
-          <button type="submit" className="btn btn-primary">
+          <button
+            className="btn btn-primary mr-1"
+            disabled={
+              thesisProposal.seminar.status !== "Validated" ? true : false
+            }
+          >
             Print Berita Acara
           </button>
-          <button type="submit" className="btn btn-primary ml-3">
+          <button
+            className="btn btn-primary ml-1"
+            disabled={
+              thesisProposal.seminar.status !== "Validated" ? true : false
+            }
+          >
             Print Undangan
           </button>
         </div>

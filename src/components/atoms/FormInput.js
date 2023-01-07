@@ -1,6 +1,15 @@
 import React from "react";
 
-function FormInput({ label, type, id, name, onChange, value, errors }) {
+function FormInput({
+  label,
+  type,
+  id,
+  name,
+  disabled,
+  onChange,
+  value,
+  errors,
+}) {
   return (
     <div className="form-group row">
       <label htmlFor={id} className="col-sm-3 col-form-label text-sm-right">
@@ -16,6 +25,7 @@ function FormInput({ label, type, id, name, onChange, value, errors }) {
           name={name}
           onChange={onChange}
           value={value}
+          disabled={disabled}
         />
         <small className="invalid-feedback">
           {errors?.map((error) => error)}

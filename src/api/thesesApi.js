@@ -14,14 +14,13 @@ export const getTheses = () =>
 export const getThesis = (id) =>
   sistatisApi.get(`${thesesApi}/${id}`).then((response) => response.data.data);
 
-export const addThesis = (data) =>
+export const getThesisByNim = (nim) =>
   sistatisApi
-    .post(thesesApi, data)
-    .then((response) => {
-      return response.data;
+    .get(`${thesesApi}/show`, {
+      params: { nim: nim },
     })
-    .catch((error) => {
-      return error.response.data;
+    .then((response) => {
+      return response.data.data;
     });
 
 export default thesesApi;
