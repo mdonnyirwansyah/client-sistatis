@@ -14,7 +14,9 @@ function DataThesisProposalSchedules() {
     isLoading,
     isError,
     data: thesisProposalSchedules,
-  } = useQuery("thesisProposalSchedules", getThesisProposalSchedules, { retry: false });
+  } = useQuery("thesisProposalSchedules", getThesisProposalSchedules, {
+    retry: false,
+  });
 
   if (isLoading) {
     return <DataLoading colSpan="5" />;
@@ -24,7 +26,7 @@ function DataThesisProposalSchedules() {
     return <DataError colSpan="5" />;
   }
 
-  return thesisProposalSchedules ? (
+  return thesisProposalSchedules.length > 0 ? (
     thesisProposalSchedules.map((thesisProposalSchedule, index) => {
       return (
         <tr key={thesisProposalSchedule.id}>
@@ -35,8 +37,9 @@ function DataThesisProposalSchedules() {
           <td>
             <ButtonIcon
               title="Lihat"
-              icon={<FaEye className="text-primary" />}
-              url={"show/" + thesisProposalSchedule.id}
+              type="btn-outline-success"
+              icon={<FaEye />}
+              url={`show/${thesisProposalSchedule.id}`}
             />
           </td>
         </tr>

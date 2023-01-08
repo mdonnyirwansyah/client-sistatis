@@ -4,10 +4,11 @@ import { DataFields, DataLecturersByField } from "../../fetch";
 import toast from "react-hot-toast";
 import sistatisApi from "../../api";
 import thesesApi from "../../api/thesesApi";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const FormThesisEdit = ({ data }) => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [name, setName] = useState(data.student.name);
   const [nim, setNim] = useState(data.student.nim);
   const [phone, setPhone] = useState(data.student.phone);
@@ -44,11 +45,11 @@ const FormThesisEdit = ({ data }) => {
   const handleClearForm = () => {
     setErrors({});
   };
-  const handleSubmit = (id, e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const toastUpdateData = toast.loading("Loading...");
     const formData = new FormData(e.target);
-    const updateData = async (id, formData) => {
+    const updateData = async () => {
       try {
         const response = await sistatisApi.post(`${thesesApi}/${id}`, formData);
         const data = response.data;
@@ -56,6 +57,7 @@ const FormThesisEdit = ({ data }) => {
         toast.success(`Successfully saved!`, {
           id: toastUpdateData,
         });
+        return navigate(-1);
       } catch (error) {
         if (error.response) {
           if (error.response.status === 422) {
@@ -77,11 +79,11 @@ const FormThesisEdit = ({ data }) => {
       }
     };
 
-    updateData(id, formData);
+    updateData();
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(id, e)}>
+    <form onSubmit={handleSubmit}>
       <input type="hidden" name="_method" value="put" />
       <h2 className="lead">
         <strong>Mahasiswa</strong>

@@ -4,8 +4,10 @@ import { DataFields, DataLecturersByField } from "../../fetch";
 import thesesApi from "../../api/thesesApi";
 import sistatisApi from "../../api";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const FormThesisCreate = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [nim, setNim] = useState("");
   const [phone, setPhone] = useState("");
@@ -56,7 +58,7 @@ const FormThesisCreate = () => {
     e.preventDefault();
     const toastAddData = toast.loading("Loading...");
     const formData = new FormData(e.target);
-    const addData = async (formData) => {
+    const addData = async () => {
       try {
         const response = await sistatisApi.post(thesesApi, formData);
         const data = response.data;
@@ -64,6 +66,7 @@ const FormThesisCreate = () => {
         toast.success(`Successfully created!`, {
           id: toastAddData,
         });
+        return navigate(-1);
       } catch (error) {
         if (error.response) {
           if (error.response.status === 422) {
@@ -81,7 +84,7 @@ const FormThesisCreate = () => {
       }
     };
 
-    addData(formData);
+    addData();
   };
 
   return (

@@ -1,10 +1,11 @@
 import sistatisApi from "./index";
+import thesisProposalsApi from "./thesisProposalsApi";
 
-const thesisProposalSchedulesApi = "/seminar";
+const thesisProposalSchedulesApi = "/seminar/schedule";
 
 export const getThesisProposalSchedules = () =>
   sistatisApi
-    .get(thesisProposalSchedulesApi, {
+    .get(thesisProposalsApi, {
       params: { name: "Seminar Proposal Tugas Akhir", status: "Registered" },
     })
     .then((response) => {
@@ -18,7 +19,7 @@ export const getThesisProposalSchedules = () =>
 
 export const getThesisProposalSchedule = (id) =>
   sistatisApi
-    .get(`${thesisProposalSchedulesApi}/${id}`)
+    .get(`${thesisProposalsApi}/${id}`)
     .then((response) => response.data.data);
 
 export default thesisProposalSchedulesApi;

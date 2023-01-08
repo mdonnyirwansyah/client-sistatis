@@ -26,7 +26,7 @@ function DataThesisProposalValidates() {
     return <DataError colSpan="5" />;
   }
 
-  return thesisProposalValidates ? (
+  return thesisProposalValidates.length > 0 ? (
     thesisProposalValidates.map((thesisProposalValidate, index) => {
       return (
         <tr key={thesisProposalValidate.id}>
@@ -37,8 +37,9 @@ function DataThesisProposalValidates() {
           <td>
             <ButtonIcon
               title="Lihat"
-              icon={<FaEye className="text-primary" />}
-              url={"show/" + thesisProposalValidate.id}
+              type="btn-outline-success"
+              icon={<FaEye />}
+              url={`show/${thesisProposalValidate.id}`}
             />
           </td>
         </tr>

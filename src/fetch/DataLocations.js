@@ -11,9 +11,6 @@ const DataLocations = () => {
   if (isLoading) {
     return (
       <>
-        <option disabled selected>
-          Pilih Lokasi
-        </option>
         <option disabled>Loading...</option>
       </>
     );
@@ -22,9 +19,6 @@ const DataLocations = () => {
   if (isError) {
     return (
       <>
-        <option disabled selected>
-          Pilih Lokasi
-        </option>
         <option disabled>Something when wrong...</option>
       </>
     );
@@ -32,9 +26,6 @@ const DataLocations = () => {
 
   return (
     <>
-      <option disabled selected>
-        Pilih Lokasi
-      </option>
       {locations
         ? locations.map((location, index) => {
             return (

@@ -5,10 +5,11 @@ import toast from "react-hot-toast";
 import thesisProposalsApi from "../../api/thesisProposalsApi";
 import moment from "moment";
 import { DataLecturersByField } from "../../fetch";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const FormThesisProposalEdit = ({ data }) => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [registerDate, setRegisterDate] = useState(data.seminar.register_date);
   const [examiner1, setExaminer1] = useState(data.seminar.examiners[0].id);
   const [examiner2, setExaminer2] = useState(data.seminar.examiners[1].id);
@@ -34,11 +35,11 @@ const FormThesisProposalEdit = ({ data }) => {
   const handleClearForm = () => {
     setErrors({});
   };
-  const handleSubmit = (e, id) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const toastUpdateData = toast.loading("Loading...");
     const formData = new FormData(e.target);
-    const updateData = async (id, formData) => {
+    const updateData = async () => {
       try {
         const response = await sistatisApi.post(
           `${thesisProposalsApi}/${id}`,
@@ -49,6 +50,7 @@ const FormThesisProposalEdit = ({ data }) => {
         toast.success(`Successfully saved!`, {
           id: toastUpdateData,
         });
+        return navigate(-1);
       } catch (error) {
         if (error.response) {
           if (error.response.status === 422) {
@@ -66,7 +68,7 @@ const FormThesisProposalEdit = ({ data }) => {
       }
     };
 
-    updateData(id, formData);
+    updateData();
   };
 
   return (
@@ -135,7 +137,7 @@ const FormThesisProposalEdit = ({ data }) => {
       </div>
       <div className="row">
         <div className="col-sm-12 mt-sm-0 mt-3">
-          <form onSubmit={(e) => handleSubmit(e, id)}>
+          <form onSubmit={handleSubmit}>
             <input type="hidden" name="_method" value="put" />
             <input type="hidden" name="thesis_id" value={data.thesis.id} />
             <h2 className="lead">

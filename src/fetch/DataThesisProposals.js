@@ -73,7 +73,7 @@ function DataThesisProposals() {
     return <DataError colSpan="5" />;
   }
 
-  return thesisProposals ? (
+  return thesisProposals.length > 0 ? (
     thesisProposals.map((thesisProposal, index) => {
       return (
         <tr key={thesisProposal.id}>

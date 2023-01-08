@@ -67,6 +67,7 @@ const FormThesisProposalRegister = () => {
     setSemester(e.target.value);
   };
   const handleClearForm = () => {
+    setThesis(null);
     setErrors({});
     setRegisterDate("");
     setExaminer1("");
@@ -78,11 +79,10 @@ const FormThesisProposalRegister = () => {
     e.preventDefault();
     const toastAddData = toast.loading("Loading...");
     const formData = new FormData(e.target);
-    const addData = async (formData) => {
+    const addData = async () => {
       try {
         const response = await sistatisApi.post(thesisProposalsApi, formData);
         const data = response.data;
-        setThesis(null);
         handleClearForm();
         toast.success(`Successfully registered!`, {
           id: toastAddData,
@@ -104,7 +104,7 @@ const FormThesisProposalRegister = () => {
       }
     };
 
-    addData(formData);
+    addData();
   };
 
   return (
