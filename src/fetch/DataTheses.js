@@ -19,15 +19,7 @@ function DataTheses() {
     isError,
     refetch,
     data: theses,
-  } = useQuery("theses", getTheses);
-
-  if (isLoading) {
-    return <DataLoading colSpan="7" />;
-  }
-
-  if (isError) {
-    return <DataError colSpan="7" />;
-  }
+  } = useQuery("theses", getTheses, { retry: false });
 
   const handleDelete = (id) => {
     swal({
@@ -38,36 +30,44 @@ function DataTheses() {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        const toastDeleteThesis = toast.loading("Loading...");
-        const deleteThesis = async (id) => {
+        const toastDeleteData = toast.loading("Loading...");
+        const deleteData = async (id) => {
           try {
             const response = await sistatisApi.delete(`${thesesApi}/${id}`);
             const data = response.data;
             refetch();
             toast.success(`Successfully deleted!`, {
-              id: toastDeleteThesis,
+              id: toastDeleteData,
             });
           } catch (error) {
             if (error.response) {
               if (error.response) {
                 toast.error("Something when wrong...", {
-                  id: toastDeleteThesis,
+                  id: toastDeleteData,
                 });
               }
             } else {
               toast.error(error.message, {
-                id: toastDeleteThesis,
+                id: toastDeleteData,
               });
             }
           }
         };
 
-        deleteThesis(id);
+        deleteData(id);
       } else {
         swal("Your data is safe!");
       }
     });
   };
+
+  if (isLoading) {
+    return <DataLoading colSpan="7" />;
+  }
+
+  if (isError) {
+    return <DataError colSpan="7" />;
+  }
 
   return theses ? (
     theses.map((theses, index) => {
@@ -83,17 +83,19 @@ function DataTheses() {
             <div className="d-flex align-items-center justify-content-center">
               <ButtonIcon
                 title="Lihat"
-                icon={<FaEye className="text-primary" />}
-                url={"show/" + theses.id}
+                type="btn-outline-success mr-1"
+                icon={<FaEye />}
+                url={`show/${theses.id}`}
               />
               <ButtonIcon
                 title="Edit"
-                icon={<FaPen className="text-warning" />}
-                url={"edit/" + theses.id}
+                type="btn-outline-warning mx-1"
+                icon={<FaPen />}
+                url={`edit/${theses.id}`}
               />
               <FormButtonDelete
                 title="Hapus"
-                icon={<FaTrashAlt className="text-danger" />}
+                icon={<FaTrashAlt />}
                 onClick={() => handleDelete(theses.id)}
               />
             </div>

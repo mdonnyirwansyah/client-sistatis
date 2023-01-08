@@ -69,10 +69,11 @@ const FormThesisEdit = ({ data }) => {
               id: toastUpdateData,
             });
           }
+        } else {
+          toast.error(error.message, {
+            id: toastUpdateData,
+          });
         }
-        toast.error(error.message, {
-          id: toastUpdateData,
-        });
       }
     };
 

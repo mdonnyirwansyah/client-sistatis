@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { getFields } from "../api/fieldsApi";
 
 const DataFields = ({ data }) => {
-  const { isLoading, isError, data: fields } = useQuery("fields", getFields);
+  const { isLoading, isError, data: fields } = useQuery("fields", getFields, { retry: false });
 
   if (isLoading) {
     return (

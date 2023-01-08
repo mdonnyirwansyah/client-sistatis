@@ -14,7 +14,7 @@ function DataThesisProposalSchedules() {
     isLoading,
     isError,
     data: thesisProposalSchedules,
-  } = useQuery("thesisProposalSchedules", getThesisProposalSchedules);
+  } = useQuery("thesisProposalSchedules", getThesisProposalSchedules, { retry: false });
 
   if (isLoading) {
     return <DataLoading colSpan="5" />;

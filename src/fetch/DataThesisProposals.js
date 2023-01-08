@@ -1,20 +1,69 @@
 import React from "react";
 import { FaEye, FaPen, FaTrashAlt } from "react-icons/fa";
 import { useQuery } from "react-query";
-import { getThesisProposals } from "../api/thesisProposalsApi";
+import thesisProposalsApi, {
+  getThesisProposals,
+} from "../api/thesisProposalsApi";
 import {
   ButtonIcon,
   DataError,
   DataLoading,
   DataNotFound,
+  FormButtonDelete,
 } from "../components";
+import swal from "sweetalert";
+import toast from "react-hot-toast";
+import sistatisApi from "../api";
 
 function DataThesisProposals() {
   const {
     isLoading,
     isError,
+    refetch,
     data: thesisProposals,
-  } = useQuery("thesisProposals", getThesisProposals);
+  } = useQuery("thesisProposals", getThesisProposals, { retry: false });
+
+  const handleDelete = (id) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this data!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        const toastDeleteData = toast.loading("Loading...");
+        const deleteData = async (id) => {
+          try {
+            const response = await sistatisApi.delete(
+              `${thesisProposalsApi}/${id}`
+            );
+            const data = response.data;
+            refetch();
+            toast.success(`Successfully deleted!`, {
+              id: toastDeleteData,
+            });
+          } catch (error) {
+            if (error.response) {
+              if (error.response) {
+                toast.error("Something when wrong...", {
+                  id: toastDeleteData,
+                });
+              }
+            } else {
+              toast.error(error.message, {
+                id: toastDeleteData,
+              });
+            }
+          }
+        };
+
+        deleteData(id);
+      } else {
+        swal("Your data is safe!");
+      }
+    });
+  };
 
   if (isLoading) {
     return <DataLoading colSpan="5" />;
@@ -44,17 +93,20 @@ function DataThesisProposals() {
             <div className="d-flex align-items-center justify-content-center">
               <ButtonIcon
                 title="Lihat"
-                icon={<FaEye className="text-primary" />}
-                url={"show/" + thesisProposal.id}
+                type="btn-outline-success mr-1"
+                icon={<FaEye />}
+                url={`show/${thesisProposal.id}`}
               />
               <ButtonIcon
                 title="Edit"
-                icon={<FaPen className="text-warning" />}
-                url={"edit/" + thesisProposal.id}
+                type="btn-outline-warning mx-1"
+                icon={<FaPen />}
+                url={`edit/${thesisProposal.id}`}
               />
-              <ButtonIcon
+              <FormButtonDelete
                 title="Hapus"
-                icon={<FaTrashAlt className="text-danger" />}
+                icon={<FaTrashAlt />}
+                onClick={() => handleDelete(thesisProposal.id)}
               />
             </div>
           </td>

@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { FormInput, FormSelect, FormButton } from "../../components";
 import { DataLocations } from "../../fetch";
+import toast from "react-hot-toast";
+import sistatisApi from "../../api";
+import thesisProposalSchedulesApi from "../../api/thesisProposalSchedulesApi";
+import { useParams } from "react-router-dom";
 
 const FormThesisProposalSchedule = () => {
+  const { id } = useParams();
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [location, setLocation] = useState("");
 
-  const [errorDate, setErrorDate] = useState([]);
-  const [errorTime, setErrorTime] = useState([]);
-  const [errorLocation, setErrorLocation] = useState([]);
+  const [errors, setErrors] = useState([]);
 
   const handleDate = (e) => {
     setDate(e.target.value);
@@ -20,13 +23,46 @@ const FormThesisProposalSchedule = () => {
   const handleLocation = (e) => {
     setLocation(e.target.value);
   };
-  const handleSubmit = async (e) => {
+  const handleClearForm = () => {
+    setErrors({});
+  };
+  const handleSubmit = (e, id) => {
     e.preventDefault();
-    const data = new FormData(e.target);
+    const toastUpdateData = toast.loading("Loading...");
+    const formData = new FormData(e.target);
+    const updateData = async (formData) => {
+      try {
+        const response = await sistatisApi.post(
+          `${thesisProposalSchedulesApi}/${id}`,
+          formData
+        );
+        const data = response.data;
+        handleClearForm();
+        toast.success(`Successfully saved!`, {
+          id: toastUpdateData,
+        });
+      } catch (error) {
+        if (error.response) {
+          if (error.response.status === 422) {
+            const data = error.response.data;
+            toast.error(data.status, {
+              id: toastUpdateData,
+            });
+            setErrors(data.data);
+          }
+        }
+        toast.error(error.message, {
+          id: toastUpdateData,
+        });
+      }
+    };
+
+    updateData(id, formData);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={(e) => handleSubmit(e, id)}>
+      <input type="hidden" name="_method" value="put" />
       <h2 className="lead">
         <strong>Jadwal</strong>
       </h2>
@@ -38,7 +74,7 @@ const FormThesisProposalSchedule = () => {
         type="date"
         onChange={handleDate}
         value={date}
-        errors={errorDate}
+        errors={errors && errors.date}
       />
       <FormInput
         label="Jam"
@@ -47,7 +83,7 @@ const FormThesisProposalSchedule = () => {
         type="time"
         onChange={handleTime}
         value={time}
-        errors={errorTime}
+        errors={errors && errors.time}
       />
       <FormSelect
         label="Lokasi"
@@ -55,7 +91,7 @@ const FormThesisProposalSchedule = () => {
         id="location"
         onChange={handleLocation}
         value={location}
-        errors={errorLocation}
+        errors={errors && errors.location}
       >
         <DataLocations />
       </FormSelect>

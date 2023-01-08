@@ -14,7 +14,9 @@ function DataThesisProposalValidates() {
     isLoading,
     isError,
     data: thesisProposalValidates,
-  } = useQuery("thesisProposalValidates", getThesisProposalValidates);
+  } = useQuery("thesisProposalValidates", getThesisProposalValidates, {
+    retry: false,
+  });
 
   if (isLoading) {
     return <DataLoading colSpan="5" />;

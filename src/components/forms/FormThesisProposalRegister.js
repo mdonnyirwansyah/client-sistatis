@@ -10,7 +10,6 @@ import { DataLecturersByField } from "../../fetch";
 
 const FormThesisProposalRegister = () => {
   const [thesis, setThesis] = useState(null);
-  const [thesisId, setThesisId] = useState("");
   const [registerDate, setRegisterDate] = useState("");
   const [examiner1, setExaminer1] = useState("");
   const [examiner2, setExaminer2] = useState("");
@@ -29,11 +28,12 @@ const FormThesisProposalRegister = () => {
         });
         const data = response.data.data;
         setThesis(data);
-        setThesisId(data.id);
         toast.success(`Got it!`, {
           id: toastGetThesis,
         });
       } catch (error) {
+        setThesis(null);
+
         if (error.response) {
           if (error.response) {
             const data = error.response.data;
@@ -76,33 +76,35 @@ const FormThesisProposalRegister = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const toastAddThesisProposal = toast.loading("Loading...");
+    const toastAddData = toast.loading("Loading...");
     const formData = new FormData(e.target);
-    const addSeminarProposal = async (formData) => {
+    const addData = async (formData) => {
       try {
         const response = await sistatisApi.post(thesisProposalsApi, formData);
         const data = response.data;
+        setThesis(null);
         handleClearForm();
         toast.success(`Successfully registered!`, {
-          id: toastAddThesisProposal,
+          id: toastAddData,
         });
       } catch (error) {
         if (error.response) {
           if (error.response.status === 422) {
             const data = error.response.data;
             toast.error(data.status, {
-              id: toastAddThesisProposal,
+              id: toastAddData,
             });
             setErrors(data.data);
           }
+        } else {
+          toast.error(error.message, {
+            id: toastAddData,
+          });
         }
-        toast.error(error.message, {
-          id: toastAddThesisProposal,
-        });
       }
     };
 
-    addSeminarProposal(formData);
+    addData(formData);
   };
 
   return (
@@ -192,108 +194,123 @@ const FormThesisProposalRegister = () => {
           </div>
         </div>
       ) : null}
-      <form
-        className={
-          thesis && thesis.student.status !== "Tugas Akhir" ? "d-none" : null
-        }
-        onSubmit={handleSubmit}
-      >
-        <input type="hidden" name="thesis_id" value={thesisId} />
-        <h2 className="lead">
-          <strong>Seminar</strong>
-        </h2>
-        <hr />
-        <FormInput
-          label="Tanggal Daftar"
-          name="register_date"
-          id="register_date"
-          type="date"
-          onChange={handleRegisterDate}
-          value={registerDate}
-          errors={errors && errors.register_date}
-          disabled={!thesis && true}
-        />
-        <FormSelect
-          label="Penguji 1"
-          name="examiner_1"
-          id="examiner1"
-          onChange={handleExaminer1}
-          value={examiner1}
-          errors={errors && errors.examiner_1}
-          disabled={!thesis && true}
-        >
-          <DataLecturersByField
-            fieldId={thesis && thesis.thesis.field_id}
-            data={thesis && thesis.thesis.supervisors}
-            disabled={examiner2}
-            disabledOther={examiner3}
-          />
-        </FormSelect>
-        {examiner1 ? (
-          <input
-            type="hidden"
-            name={"examiners[" + examiner1 + "]"}
-            value="Penguji 1"
-          />
-        ) : null}
-        <FormSelect
-          label="Penguji 2"
-          name="examiner_2"
-          id="examiner2"
-          onChange={handleExaminer2}
-          value={examiner2}
-          errors={errors && errors.examiner_2}
-          disabled={!thesis && true}
-        >
-          <DataLecturersByField
-            fieldId={thesis && thesis.thesis.field_id}
-            data={thesis && thesis.thesis.supervisors}
-            disabled={examiner1}
-            disabledOther={examiner3}
-          />
-        </FormSelect>
-        {examiner2 ? (
-          <input
-            type="hidden"
-            name={"examiners[" + examiner2 + "]"}
-            value="Penguji 2"
-          />
-        ) : null}
-        <FormSelect
-          label="Penguji 3"
-          name="examiner_3"
-          id="examiner3"
-          onChange={handleExaminer3}
-          value={examiner3}
-          errors={errors && errors.examiner_3}
-          disabled={!thesis && true}
-        >
-          <DataLecturersByField
-            fieldId={thesis && thesis.thesis.field_id}
-            data={thesis && thesis.thesis.supervisors}
-            disabled={examiner1}
-            disabledOther={examiner2}
-          />
-        </FormSelect>
-        {examiner3 ? (
-          <input
-            type="hidden"
-            name={"examiners[" + examiner3 + "]"}
-            value="Penguji 3"
-          />
-        ) : null}
-        <FormInput
-          label="Semester"
-          name="semester"
-          id="semester"
-          type="text"
-          onChange={handleSemester}
-          value={semester}
-          errors={errors && errors.semester}
-          disabled={!thesis && true}
-        />
-        <FormButton label="Submit" type="submit" disabled={!thesis && true} />
-      </form>
+
+      <div className="row">
+        <div className="col-sm-12 mt-sm-0 mt-3">
+          <form
+            className={
+              thesis && thesis.student.status !== "Tugas Akhir"
+                ? "d-none"
+                : null
+            }
+            onSubmit={handleSubmit}
+          >
+            <input
+              type="hidden"
+              name="thesis_id"
+              value={thesis ? thesis.id : ""}
+            />
+            <h2 className="lead">
+              <strong>Seminar</strong>
+            </h2>
+            <hr />
+            <FormInput
+              label="Tanggal Daftar"
+              name="register_date"
+              id="register_date"
+              type="date"
+              onChange={handleRegisterDate}
+              value={registerDate}
+              errors={errors && errors.register_date}
+              disabled={!thesis && true}
+            />
+            <FormSelect
+              label="Penguji 1"
+              name="examiner_1"
+              id="examiner1"
+              onChange={handleExaminer1}
+              value={examiner1}
+              errors={errors && errors.examiner_1}
+              disabled={!thesis && true}
+            >
+              <DataLecturersByField
+                fieldId={thesis && thesis.thesis.field_id}
+                data={thesis && thesis.thesis.supervisors}
+                disabled={examiner2}
+                disabledOther={examiner3}
+              />
+            </FormSelect>
+            {examiner1 ? (
+              <input
+                type="hidden"
+                name={"examiners[" + examiner1 + "]"}
+                value="Penguji 1"
+              />
+            ) : null}
+            <FormSelect
+              label="Penguji 2"
+              name="examiner_2"
+              id="examiner2"
+              onChange={handleExaminer2}
+              value={examiner2}
+              errors={errors && errors.examiner_2}
+              disabled={!thesis && true}
+            >
+              <DataLecturersByField
+                fieldId={thesis && thesis.thesis.field_id}
+                data={thesis && thesis.thesis.supervisors}
+                disabled={examiner1}
+                disabledOther={examiner3}
+              />
+            </FormSelect>
+            {examiner2 ? (
+              <input
+                type="hidden"
+                name={"examiners[" + examiner2 + "]"}
+                value="Penguji 2"
+              />
+            ) : null}
+            <FormSelect
+              label="Penguji 3"
+              name="examiner_3"
+              id="examiner3"
+              onChange={handleExaminer3}
+              value={examiner3}
+              errors={errors && errors.examiner_3}
+              disabled={!thesis && true}
+            >
+              <DataLecturersByField
+                fieldId={thesis && thesis.thesis.field_id}
+                data={thesis && thesis.thesis.supervisors}
+                disabled={examiner1}
+                disabledOther={examiner2}
+              />
+            </FormSelect>
+            {examiner3 ? (
+              <input
+                type="hidden"
+                name={"examiners[" + examiner3 + "]"}
+                value="Penguji 3"
+              />
+            ) : null}
+            <FormInput
+              label="Semester"
+              name="semester"
+              id="semester"
+              type="text"
+              onChange={handleSemester}
+              value={semester}
+              errors={errors && errors.semester}
+              disabled={!thesis && true}
+            />
+            <FormButton
+              label="Submit"
+              type="submit"
+              disabled={!thesis && true}
+            />
+          </form>
+        </div>
+      </div>
     </>
   );
 };

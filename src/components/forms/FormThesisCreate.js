@@ -54,33 +54,34 @@ const FormThesisCreate = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const toastAddThesis = toast.loading("Loading...");
+    const toastAddData = toast.loading("Loading...");
     const formData = new FormData(e.target);
-    const addThesis = async (formData) => {
+    const addData = async (formData) => {
       try {
         const response = await sistatisApi.post(thesesApi, formData);
         const data = response.data;
         handleClearForm();
         toast.success(`Successfully created!`, {
-          id: toastAddThesis,
+          id: toastAddData,
         });
       } catch (error) {
         if (error.response) {
           if (error.response.status === 422) {
             const data = error.response.data;
             toast.error(data.status, {
-              id: toastAddThesis,
+              id: toastAddData,
             });
             setErrors(data.data);
           }
+        } else {
+          toast.error(error.message, {
+            id: toastAddData,
+          });
         }
-        toast.error(error.message, {
-          id: toastAddThesis,
-        });
       }
     };
 
-    addThesis(formData);
+    addData(formData);
   };
 
   return (

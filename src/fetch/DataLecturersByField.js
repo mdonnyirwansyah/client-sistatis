@@ -6,7 +6,9 @@ const DataLecturersByField = ({ fieldId, disabled, disabledOther, data }) => {
     isLoading,
     isError,
     data: lecturers,
-  } = useQuery(["lecturers", fieldId], () => getLecturersByField(fieldId));
+  } = useQuery(["lecturers", fieldId], () => getLecturersByField(fieldId), {
+    retry: false,
+  });
 
   let filter;
   if (lecturers && data) {

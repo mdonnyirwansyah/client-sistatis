@@ -13,7 +13,7 @@ function DataThesis() {
     isLoading,
     isError,
     data: thesis,
-  } = useQuery("thesis", () => getThesis(id));
+  } = useQuery("thesis", () => getThesis(id), { retry: false });
 
   if (isLoading) {
     return "Loading...";

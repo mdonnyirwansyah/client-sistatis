@@ -6,7 +6,7 @@ const DataLocations = () => {
     isLoading,
     isError,
     data: locations,
-  } = useQuery("locations", getLocations);
+  } = useQuery("locations", getLocations, { retry: false });
 
   if (isLoading) {
     return (

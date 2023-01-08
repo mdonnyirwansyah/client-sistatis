@@ -10,7 +10,7 @@ function DataThesisProposalSchedule() {
     isLoading,
     isError,
     data: thesisProposalSchedule,
-  } = useQuery("thesisProposalSchedule", () => getThesisProposalSchedule(id));
+  } = useQuery("thesisProposalSchedule", () => getThesisProposalSchedule(id), { retry: false });
 
   if (isLoading) {
     return "Loading...";

@@ -1,6 +1,6 @@
 import React from "react";
 import { Main, Card } from "../../../components";
-import DataThesis from "../../../fetch/DataThesis";
+import { DataThesis } from "../../../fetch";
 
 function ThesisEdit() {
   return (

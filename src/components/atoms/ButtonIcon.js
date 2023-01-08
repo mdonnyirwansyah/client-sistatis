@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
-const ButtonIcon = ({ title, icon, url }) => {
+const ButtonIcon = ({ title, type, icon, url }) => {
   const navigate = useNavigate();
   return (
     <button
-      className="btn btn-icon btn-sm"
+      className={`btn btn-xs ${type}`}
       data-container="body"
       title={title}
       onClick={() => navigate(url)}

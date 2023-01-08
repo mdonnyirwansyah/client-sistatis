@@ -86,6 +86,20 @@ const FormThesisDetail = ({ data }) => {
                   <div className="col-sm-6">
                     <div className="row mb-sm-0 mb-3">
                       <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
+                        Tanggal Daftar:
+                      </label>
+                      <div className="col-sm-9">
+                        {moment(seminar.register_date).format(
+                          "dddd, D MMMM YYYY"
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-sm-6">
+                    <div className="row mb-sm-0 mb-3">
+                      <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
                         Tanggal:
                       </label>
                       <div className="col-sm-9">
