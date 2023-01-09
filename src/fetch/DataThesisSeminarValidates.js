@@ -5,7 +5,7 @@ import { getThesisProposalValidate } from "../api/thesisProposalValidatesApi";
 import { FormThesisProposalValidate } from "../components";
 import moment from "moment";
 
-function DataThesisProposalValidate() {
+function DataThesisSeminarValidates() {
   const { id } = useParams();
 
   const {
@@ -24,7 +24,7 @@ function DataThesisProposalValidate() {
     return "Something when wrong...";
   }
 
-  return thesisProposalValidate ? (
+  return (
     <>
       <div className="row">
         <div className="col-sm-6">
@@ -157,9 +157,7 @@ function DataThesisProposalValidate() {
       </div>
       <FormThesisProposalValidate />
     </>
-  ) : (
-    "Data Not Found."
   );
 }
 
-export default DataThesisProposalValidate;
+export default DataThesisSeminarValidates;

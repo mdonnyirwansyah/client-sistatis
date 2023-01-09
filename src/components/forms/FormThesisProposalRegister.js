@@ -28,7 +28,7 @@ const FormThesisProposalRegister = () => {
         });
         const data = response.data.data;
         setThesis(data);
-        toast.success(`Got it!`, {
+        toast.success("Got it!", {
           id: toastGetThesis,
         });
       } catch (error) {

@@ -1,12 +1,12 @@
 import React from "react";
 import { Card, Main } from "../../../components";
-import { DataThesisProposalValidate } from "../../../fetch";
+import { DataThesisSeminarValidates } from "../../../fetch";
 
 function ThesisProposalValidateDetail() {
   return (
     <Main title="Lihat Validasi Seminar Proposal TA">
       <Card>
-        <DataThesisProposalValidate />
+        <DataThesisSeminarValidates />
       </Card>
     </Main>
   );

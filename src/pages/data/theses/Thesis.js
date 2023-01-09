@@ -1,12 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Card,
-  Main,
-  AllStudent,
-  FilterStudentSupervisor,
-  FilterStudent,
-} from "../../../components";
+import { Card, Main, AllStudent } from "../../../components";
+import { DataThesesFilter } from "../../../fetch";
 
 function Thesis() {
   return (
@@ -40,19 +35,6 @@ function Thesis() {
             <li className="nav-item">
               <a
                 className="nav-link"
-                id="cari-mahasiswa-bimbingan-tab"
-                data-toggle="pill"
-                href="#cari-mahasiswa-bimbingan"
-                role="tab"
-                aria-controls="cari-mahasiswa-bimbingan"
-                aria-selected="false"
-              >
-                Cari Mahasiswa Bimbingan
-              </a>
-            </li>
-            <li className="nav-item">
-              <a
-                className="nav-link"
                 id="cari-mahasiswa-tab"
                 data-toggle="pill"
                 href="#cari-mahasiswa"
@@ -78,19 +60,11 @@ function Thesis() {
             </div>
             <div
               className="tab-pane fade"
-              id="cari-mahasiswa-bimbingan"
-              role="tabpanel"
-              aria-labelledby="cari-mahasiswa-bimbingan-tab"
-            >
-              <FilterStudentSupervisor />
-            </div>
-            <div
-              className="tab-pane fade"
               id="cari-mahasiswa"
               role="tabpanel"
               aria-labelledby="cari-mahasiswa-tab"
             >
-              <FilterStudent />
+              <DataThesesFilter />
             </div>
           </div>
         </div>

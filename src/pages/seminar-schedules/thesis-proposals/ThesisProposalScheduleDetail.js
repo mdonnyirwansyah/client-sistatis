@@ -1,12 +1,12 @@
 import React from "react";
 import { Card, Main } from "../../../components";
-import { DataThesisProposalSchedule } from "../../../fetch";
+import { DataThesisSeminarSchedules } from "../../../fetch";
 
 function ThesisProposalScheduleDetail() {
   return (
     <Main title="Lihat Penjadwalan Seminar Proposal TA">
       <Card>
-        <DataThesisProposalSchedule />
+        <DataThesisSeminarSchedules />
       </Card>
     </Main>
   );

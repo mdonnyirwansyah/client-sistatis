@@ -1,8 +1,20 @@
 import React from "react";
-import { Card, Main } from "../../../components";
+import { Card, Main, Pagination } from "../../../components";
 import { DataThesisProposalValidates } from "../../../fetch";
 
 function ThesisProposalValidate() {
+  const pageLinks = [
+    {
+      title: "Prev",
+    },
+    {
+      title: "1",
+    },
+    {
+      title: "Next",
+    },
+  ];
+
   return (
     <Main title="Validasi Seminar Proposal TA">
       <Card>
@@ -22,6 +34,7 @@ function ThesisProposalValidate() {
             </tbody>
           </table>
         </div>
+        <Pagination pageLinks={pageLinks} />
       </Card>
     </Main>
   );

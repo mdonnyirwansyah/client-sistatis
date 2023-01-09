@@ -1,12 +1,12 @@
 import React from "react";
 import { Card, Main } from "../../../components";
-import { DataThesisProposal } from "../../../fetch";
+import { DataThesisSeminars } from "../../../fetch";
 
 function ThesisProposalEdit() {
   return (
     <Main title="Edit Seminar Proposal TA">
       <Card>
-        <DataThesisProposal />
+        <DataThesisSeminars />
       </Card>
     </Main>
   );

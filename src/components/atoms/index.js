@@ -1,4 +1,5 @@
 import ButtonIcon from "./ButtonIcon";
+import ButtonPrint from "./ButtonPrint";
 import FormInput from "./FormInput";
 import FormSelect from "./FormSelect";
 import FormButton from "./FormButton";
@@ -14,6 +15,7 @@ import PageLink from "./PageLink";
 
 export {
   ButtonIcon,
+  ButtonPrint,
   FormInput,
   FormSelect,
   FormButton,

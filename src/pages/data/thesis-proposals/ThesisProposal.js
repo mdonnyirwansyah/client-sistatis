@@ -1,8 +1,20 @@
 import React from "react";
-import { Main } from "../../../components";
+import { Main, Pagination } from "../../../components";
 import { DataThesisProposals } from "../../../fetch";
 
 function ThesisProposal() {
+  const pageLinks = [
+    {
+      title: "Prev",
+    },
+    {
+      title: "1",
+    },
+    {
+      title: "Next",
+    },
+  ];
+
   return (
     <Main title="Data Seminar Proposal TA">
       <div className="card">
@@ -23,6 +35,7 @@ function ThesisProposal() {
               </tbody>
             </table>
           </div>
+          <Pagination pageLinks={pageLinks} />
         </div>
       </div>
     </Main>

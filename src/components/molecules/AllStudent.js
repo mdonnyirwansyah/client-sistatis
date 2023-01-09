@@ -1,6 +1,19 @@
 import { DataTheses } from "../../fetch";
+import { Pagination } from "../../components";
 
 function AllStudent() {
+  const pageLinks = [
+    {
+      title: "Prev",
+    },
+    {
+      title: "1",
+    },
+    {
+      title: "Next",
+    },
+  ];
+
   return (
     <div className="mt-3">
       <div className="table-responsive">
@@ -21,6 +34,7 @@ function AllStudent() {
           </tbody>
         </table>
       </div>
+      <Pagination pageLinks={pageLinks} />
     </div>
   );
 }
