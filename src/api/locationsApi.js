@@ -9,6 +9,13 @@ export const getLocations = () =>
       localStorage.setItem("locations", JSON.stringify(response.data.data));
       return response.data.data;
     })
-    .catch(() => JSON.parse(localStorage.getItem("locations")));
+    .catch((error) => {
+      var locations = JSON.parse(localStorage.getItem("locations"));
+      if (locations) {
+        return locations;
+      }
+
+      throw error.message;
+    });
 
 export default locationsApi;

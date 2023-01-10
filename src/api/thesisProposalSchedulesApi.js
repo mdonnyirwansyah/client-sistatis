@@ -15,7 +15,16 @@ export const getThesisProposalSchedules = () =>
       );
       return response.data.data;
     })
-    .catch(() => JSON.parse(localStorage.getItem("thesisProposalSchedules")));
+    .catch((error) => {
+      var thesisProposalSchedules = JSON.parse(
+        localStorage.getItem("thesisProposalScheduleschedules")
+      );
+      if (thesisProposalSchedules) {
+        return thesisProposalSchedules;
+      }
+
+      throw error.message;
+    });
 
 export const getThesisProposalSchedule = (id) =>
   sistatisApi

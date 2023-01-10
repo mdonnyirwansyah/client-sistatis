@@ -6,9 +6,12 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import moment from "moment";
 import "moment/locale/id";
 import { Toaster } from "react-hot-toast";
-// import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import { store } from "./app/store";
+import { Provider } from "react-redux";
+import axios from "axios";
 // import swDev from "./swDev";
 
+axios.defaults.withCredentials = true;
 const container = document.getElementById("root");
 const root = createRoot(container);
 const queryClient = new QueryClient();
@@ -16,13 +19,14 @@ moment.locale("id");
 
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <App />
-        <Toaster />
-      </BrowserRouter>
-    </QueryClientProvider>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <App />
+          <Toaster />
+        </BrowserRouter>
+      </QueryClientProvider>
+    </Provider>
   </React.StrictMode>
 );
-// serviceWorkerRegistration.unregister();
 // swDev();

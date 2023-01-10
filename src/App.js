@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import { ProtectedAuth, ProtectedRoutes } from "./components";
 import {
   Login,
   Dashboard,
@@ -24,42 +25,154 @@ function App() {
   return (
     <Routes>
       <Route path="/">
-        <Route index element={<Dashboard />} />
+        <Route
+          index
+          element={
+            <ProtectedRoutes>
+              <Dashboard />
+            </ProtectedRoutes>
+          }
+        />
         <Route path="data">
           <Route path="thesis">
-            <Route index element={<Thesis />} />
-            <Route path="create" element={<ThesisCreate />} />
-            <Route path="show/:id" element={<ThesisDetail />} />
-            <Route path="edit/:id" element={<ThesisEdit />} />
+            <Route
+              index
+              element={
+                <ProtectedRoutes>
+                  <Thesis />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="create"
+              element={
+                <ProtectedRoutes>
+                  <ThesisCreate />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="show/:id"
+              element={
+                <ProtectedRoutes>
+                  <ThesisDetail />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="edit/:id"
+              element={
+                <ProtectedRoutes>
+                  <ThesisEdit />
+                </ProtectedRoutes>
+              }
+            />
           </Route>
           <Route path="seminar">
             <Route path="thesis-proposal">
-              <Route index element={<ThesisProposal />} />
-              <Route path="show/:id" element={<ThesisProposalDetail />} />
-              <Route path="edit/:id" element={<ThesisProposalEdit />} />
+              <Route
+                index
+                element={
+                  <ProtectedRoutes>
+                    <ThesisProposal />
+                  </ProtectedRoutes>
+                }
+              />
+              <Route
+                path="show/:id"
+                element={
+                  <ProtectedRoutes>
+                    <ThesisProposalDetail />
+                  </ProtectedRoutes>
+                }
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <ProtectedRoutes>
+                    <ThesisProposalEdit />
+                  </ProtectedRoutes>
+                }
+              />
             </Route>
           </Route>
         </Route>
         <Route path="seminar-register">
-          <Route path="thesis-proposal" element={<ThesisProposalRegister />} />
+          <Route
+            path="thesis-proposal"
+            element={
+              <ProtectedRoutes>
+                <ThesisProposalRegister />
+              </ProtectedRoutes>
+            }
+          />
         </Route>
         <Route path="seminar-schedule">
           <Route path="thesis-proposal">
-            <Route index element={<ThesisProposalSchedule />} />
-            <Route path="show/:id" element={<ThesisProposalScheduleDetail />} />
+            <Route
+              index
+              element={
+                <ProtectedRoutes>
+                  <ThesisProposalSchedule />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="show/:id"
+              element={
+                <ProtectedRoutes>
+                  <ThesisProposalScheduleDetail />
+                </ProtectedRoutes>
+              }
+            />
           </Route>
         </Route>
         <Route path="seminar-validate">
           <Route path="thesis-proposal">
-            <Route index element={<ThesisProposalValidate />} />
-            <Route path="show/:id" element={<ThesisProposalValidateDetail />} />
+            <Route
+              index
+              element={
+                <ProtectedRoutes>
+                  <ThesisProposalValidate />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="show/:id"
+              element={
+                <ProtectedRoutes>
+                  <ThesisProposalValidateDetail />
+                </ProtectedRoutes>
+              }
+            />
           </Route>
         </Route>
         <Route path="account">
-          <Route path="profile" element={<Profile />} />
-          <Route path="update-password" element={<UpdatePassword />} />
+          <Route
+            path="profile"
+            element={
+              <ProtectedRoutes>
+                <Profile />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="update-password"
+            element={
+              <ProtectedRoutes>
+                <UpdatePassword />
+              </ProtectedRoutes>
+            }
+          />
         </Route>
-        <Route path="login" element={<Login />} />
+        <Route
+          path="/login"
+          element={
+            <ProtectedAuth>
+              <Login />
+            </ProtectedAuth>
+          }
+        />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

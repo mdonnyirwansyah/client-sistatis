@@ -9,6 +9,13 @@ export const getFields = () =>
       localStorage.setItem("fields", JSON.stringify(response.data.data));
       return response.data.data;
     })
-    .catch(() => JSON.parse(localStorage.getItem("fields")));
+    .catch((error) => {
+      var fileds = JSON.parse(localStorage.getItem("fields"));
+      if (fileds) {
+        return fileds;
+      }
+
+      throw error.message;
+    });
 
 export default fieldsApi;

@@ -14,7 +14,14 @@ export const getThesisProposals = () =>
       );
       return response.data.data;
     })
-    .catch(() => JSON.parse(localStorage.getItem("thesisProposals")));
+    .catch((error) => {
+      var thesisProposals = JSON.parse(localStorage.getItem("thesisProposals"));
+      if (thesisProposals) {
+        return thesisProposals;
+      }
+
+      throw error.message;
+    });
 
 export const getThesisProposal = (id) =>
   sistatisApi

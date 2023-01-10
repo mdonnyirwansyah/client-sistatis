@@ -9,7 +9,14 @@ export const getTheses = () =>
       localStorage.setItem("theses", JSON.stringify(response.data.data));
       return response.data.data;
     })
-    .catch(() => JSON.parse(localStorage.getItem("theses")));
+    .catch((error) => {
+      var theses = JSON.parse(localStorage.getItem("theses"));
+      if (theses) {
+        return theses;
+      }
+
+      throw error.message;
+    });
 
 export const getThesis = (id) =>
   sistatisApi.get(`${thesesApi}/${id}`).then((response) => response.data.data);

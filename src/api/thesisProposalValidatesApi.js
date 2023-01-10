@@ -15,7 +15,14 @@ export const getThesisProposalValidates = () =>
       );
       return response.data.data;
     })
-    .catch(() => JSON.parse(localStorage.getItem("thesisProposalValidates")));
+    .catch((error) => {
+      var thesisProposalValidates = JSON.parse(localStorage.getItem("thesisProposalValidates"));
+      if (thesisProposalValidates) {
+        return thesisProposalValidates;
+      }
+
+      throw error.message;
+    });
 
 export const getThesisProposalValidate = (id) =>
   sistatisApi

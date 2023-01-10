@@ -7,8 +7,20 @@ import {
   FaUserCircle,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout, reset } from "../../features/authSlice";
 
 function Header() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+    navigate("/login");
+  };
+
   return (
     <nav className="main-header navbar navbar-expand navbar-white navbar-light">
       <ul className="navbar-nav">
@@ -32,9 +44,12 @@ function Header() {
               <FaLock className="mr-2" /> Update Password
             </Link>
             <div className="dropdown-divider" />
-            <a href="#" className="dropdown-item text-danger">
+            <button
+              className="dropdown-item text-danger"
+              onClick={handleLogout}
+            >
               <FaSignOutAlt className="mr-2" /> Logout
-            </a>
+            </button>
           </div>
         </li>
       </ul>
