@@ -1,13 +1,14 @@
 import React from "react";
-import { Main, Card, FormInput, FormButton } from "../../components";
+import { Main, Card, FormProfile } from "../../components";
+import { useSelector } from "react-redux";
 
 function Profile() {
+  const { user } = useSelector((state) => state.auth);
+
   return (
     <Main title="Profil">
       <Card>
-        <FormInput label="Email" name="email" id="email" type="email" />
-        <FormInput label="Nama" name="name" id="name" type="text" />
-        <FormButton label="Simpan Perubahan" type="submit" />
+        <FormProfile data={user} />
       </Card>
     </Main>
   );

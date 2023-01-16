@@ -7,6 +7,7 @@ import FormThesisProposalEdit from "./FormThesisProposalEdit";
 import FormThesisProposalDetail from "./FormThesisProposalDetail";
 import FormThesisProposalSchedule from "./FormThesisProposalSchedule";
 import FormThesisProposalValidate from "./FormThesisProposalValidate";
+import FormProfile from "./FormProfile";
 
 export {
   FormThesisCreate,
@@ -18,4 +19,5 @@ export {
   FormThesisProposalDetail,
   FormThesisProposalSchedule,
   FormThesisProposalValidate,
+  FormProfile
 };

@@ -14,7 +14,7 @@ const ProtectedRoutes = ({ children }) => {
 
   useEffect(() => {
     if (isError) {
-      navigate("/login");
+      navigate("login");
     }
   }, [isError, navigate]);
 
