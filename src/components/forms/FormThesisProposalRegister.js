@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FormInput, FormSelect, FormButton } from "../../components";
 import sistatisApi from "../../api";
 import toast from "react-hot-toast";
-import thesisProposalsApi from "../../api/thesisProposalsApi";
+import seminarsApi from "../../api/seminarsApi";
 import thesesApi from "../../api/thesesApi";
 import { FaSearch } from "react-icons/fa";
 import moment from "moment";
@@ -35,12 +35,9 @@ const FormThesisProposalRegister = () => {
         setThesis(null);
 
         if (error.response) {
-          if (error.response) {
-            const data = error.response.data;
-            toast.error(data.status, {
-              id: toastGetThesis,
-            });
-          }
+          toast.error(error.response.statusText, {
+            id: toastGetThesis,
+          });
         } else {
           toast.error(error.message, {
             id: toastGetThesis,
@@ -81,7 +78,7 @@ const FormThesisProposalRegister = () => {
     const formData = new FormData(e.target);
     const addData = async () => {
       try {
-        const response = await sistatisApi.post(thesisProposalsApi, formData);
+        const response = await sistatisApi.post(seminarsApi, formData);
         const data = response.data;
         handleClearForm();
         toast.success(`Successfully registered!`, {
@@ -96,6 +93,10 @@ const FormThesisProposalRegister = () => {
             });
             setErrors(data.data);
           }
+
+          toast.error(error.response.statusText, {
+            id: toastAddData,
+          });
         } else {
           toast.error(error.message, {
             id: toastAddData,
@@ -205,11 +206,7 @@ const FormThesisProposalRegister = () => {
             }
             onSubmit={handleSubmit}
           >
-            <input
-              type="hidden"
-              name="thesis_id"
-              value={thesis ? thesis.id : ""}
-            />
+            <input type="hidden" name="thesis_id" value={thesis?.id} />
             <h2 className="lead">
               <strong>Seminar</strong>
             </h2>
@@ -221,7 +218,7 @@ const FormThesisProposalRegister = () => {
               type="date"
               onChange={handleRegisterDate}
               value={registerDate}
-              errors={errors && errors.register_date}
+              errors={errors?.register_date}
               disabled={!thesis && true}
             />
             <FormSelect
@@ -230,69 +227,48 @@ const FormThesisProposalRegister = () => {
               id="examiner1"
               onChange={handleExaminer1}
               value={examiner1}
-              errors={errors && errors.examiner_1}
+              errors={errors?.examiner_1}
               disabled={!thesis && true}
             >
               <DataLecturersByField
-                fieldId={thesis && thesis.thesis.field_id}
-                data={thesis && thesis.thesis.supervisors}
+                fieldId={thesis?.thesis.field_id}
+                data={thesis?.thesis.supervisors}
                 disabled={examiner2}
                 disabledOther={examiner3}
               />
             </FormSelect>
-            {examiner1 ? (
-              <input
-                type="hidden"
-                name={"examiners[" + examiner1 + "]"}
-                value="Penguji 1"
-              />
-            ) : null}
             <FormSelect
               label="Penguji 2"
               name="examiner_2"
               id="examiner2"
               onChange={handleExaminer2}
               value={examiner2}
-              errors={errors && errors.examiner_2}
+              errors={errors?.examiner_2}
               disabled={!thesis && true}
             >
               <DataLecturersByField
-                fieldId={thesis && thesis.thesis.field_id}
-                data={thesis && thesis.thesis.supervisors}
+                fieldId={thesis?.thesis.field_id}
+                data={thesis?.thesis.supervisors}
                 disabled={examiner1}
                 disabledOther={examiner3}
               />
             </FormSelect>
-            {examiner2 ? (
-              <input
-                type="hidden"
-                name={"examiners[" + examiner2 + "]"}
-                value="Penguji 2"
-              />
-            ) : null}
             <FormSelect
               label="Penguji 3"
               name="examiner_3"
               id="examiner3"
               onChange={handleExaminer3}
               value={examiner3}
-              errors={errors && errors.examiner_3}
+              errors={errors?.examiner_3}
               disabled={!thesis && true}
             >
               <DataLecturersByField
-                fieldId={thesis && thesis.thesis.field_id}
-                data={thesis && thesis.thesis.supervisors}
+                fieldId={thesis?.thesis.field_id}
+                data={thesis?.thesis.supervisors}
                 disabled={examiner1}
                 disabledOther={examiner2}
               />
             </FormSelect>
-            {examiner3 ? (
-              <input
-                type="hidden"
-                name={"examiners[" + examiner3 + "]"}
-                value="Penguji 3"
-              />
-            ) : null}
             <FormInput
               label="Semester"
               name="semester"
@@ -300,7 +276,7 @@ const FormThesisProposalRegister = () => {
               type="text"
               onChange={handleSemester}
               value={semester}
-              errors={errors && errors.semester}
+              errors={errors?.semester}
               disabled={!thesis && true}
             />
             <FormButton

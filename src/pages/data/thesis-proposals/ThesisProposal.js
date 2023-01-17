@@ -27,7 +27,7 @@ function ThesisProposal() {
                   <th>Tanggal Seminar</th>
                   <th>Nama</th>
                   <th>Judul</th>
-                  <th>Aksi</th>
+                  <th style={{ width: 90 }}>Aksi</th>
                 </tr>
               </thead>
               <tbody>

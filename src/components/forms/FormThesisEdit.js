@@ -66,11 +66,11 @@ const FormThesisEdit = ({ data }) => {
               id: toastUpdateData,
             });
             setErrors(data.data);
-          } else {
-            toast.error("Something when wrong...", {
-              id: toastUpdateData,
-            });
           }
+
+          toast.error(error.response.statusText, {
+            id: toastUpdateData,
+          });
         } else {
           toast.error(error.message, {
             id: toastUpdateData,
@@ -96,7 +96,7 @@ const FormThesisEdit = ({ data }) => {
         type="text"
         onChange={handleName}
         value={name}
-        errors={errors && errors.name}
+        errors={errors?.name}
       />
       <FormInput
         label="Nim"
@@ -105,7 +105,7 @@ const FormThesisEdit = ({ data }) => {
         type="text"
         onChange={handleNim}
         value={nim}
-        errors={errors && errors.nim}
+        errors={errors?.nim}
       />
       <FormInput
         label="No. HP"
@@ -114,7 +114,7 @@ const FormThesisEdit = ({ data }) => {
         type="text"
         onChange={handlePhone}
         value={phone}
-        errors={errors && errors.phone}
+        errors={errors?.phone}
       />
       <h2 className="lead">
         <strong>Tugas Akhir</strong>
@@ -127,7 +127,7 @@ const FormThesisEdit = ({ data }) => {
         type="date"
         onChange={handleRegisterDate}
         value={registerDate}
-        errors={errors && errors.register_date}
+        errors={errors?.register_date}
       />
       <FormInput
         label="Judul"
@@ -136,7 +136,7 @@ const FormThesisEdit = ({ data }) => {
         type="text"
         onChange={handleTitle}
         value={title}
-        errors={errors && errors.title}
+        errors={errors?.title}
       />
       <FormSelect
         label="KBK"
@@ -144,7 +144,7 @@ const FormThesisEdit = ({ data }) => {
         id="field"
         onChange={handleField}
         value={field}
-        errors={errors && errors.field}
+        errors={errors?.field}
       >
         <DataFields data={field} />
       </FormSelect>
@@ -154,34 +154,20 @@ const FormThesisEdit = ({ data }) => {
         id="supervisor_1"
         onChange={handleSupervisor1}
         value={supervisor1}
-        errors={errors && errors.supervisor_1}
+        errors={errors?.supervisor_1}
       >
         <DataLecturersByField fieldId={field} disabled={supervisor2} />
       </FormSelect>
-      {supervisor1 ? (
-        <input
-          type="hidden"
-          name={"supervisors[" + supervisor1 + "]"}
-          value="Pembimbing 1"
-        />
-      ) : null}
       <FormSelect
         label="Pembimbing 2"
         name="supervisor_2"
         id="supervisor_2"
         onChange={handleSupervisor2}
         value={supervisor2}
-        errors={errors && errors.supervisor_2}
+        errors={errors?.supervisor_2}
       >
         <DataLecturersByField fieldId={field} disabled={supervisor1} />
       </FormSelect>
-      {supervisor2 ? (
-        <input
-          type="hidden"
-          name={"supervisors[" + supervisor2 + "]"}
-          value="Pembimbing 2"
-        />
-      ) : null}
       <FormButton label="Simpan Perubahan" type="submit" />
     </form>
   );

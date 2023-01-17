@@ -1,7 +1,7 @@
 import React from "react";
 import { FaEye } from "react-icons/fa";
 import { useQuery } from "react-query";
-import { getThesisProposalSchedules } from "../api/thesisProposalSchedulesApi";
+import { getThesisProposalSchedules } from "../api/seminarsApi";
 import {
   ButtonIcon,
   DataError,
@@ -35,12 +35,14 @@ function DataThesisProposalSchedules() {
           <td>{thesisProposalSchedule.name}</td>
           <td>{thesisProposalSchedule.title}</td>
           <td>
-            <ButtonIcon
-              title="Lihat"
-              type="btn-outline-success"
-              icon={<FaEye />}
-              url={`show/${thesisProposalSchedule.id}`}
-            />
+            <div className="d-flex align-items-center justify-content-center">
+              <ButtonIcon
+                title="Lihat"
+                type="btn-outline-success"
+                icon={<FaEye />}
+                url={`show/${thesisProposalSchedule.id}`}
+              />
+            </div>
           </td>
         </tr>
       );

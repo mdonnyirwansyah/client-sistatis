@@ -26,7 +26,7 @@ function ThesisProposalValidate() {
                 <th>Tanggal Seminar</th>
                 <th>Nama</th>
                 <th>Judul</th>
-                <th>Aksi</th>
+                <th style={{ width: 30 }}>Aksi</th>
               </tr>
             </thead>
             <tbody>

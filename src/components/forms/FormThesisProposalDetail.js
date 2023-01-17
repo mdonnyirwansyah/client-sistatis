@@ -1,5 +1,5 @@
 import sistatisApi from "../../api";
-import thesisProposalsApi from "../../api/thesisProposalsApi";
+import seminarsApi from "../../api/seminarsApi";
 import { ButtonPrint } from "../../components";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
@@ -11,7 +11,7 @@ const FormThesisProposalDetail = ({ data }) => {
     const printUndangan = async () => {
       try {
         const response = await sistatisApi.get(
-          `${thesisProposalsApi}/undangan/${id}`,
+          `${seminarsApi}/undangan/${id}`,
           {
             responseType: "blob",
           }

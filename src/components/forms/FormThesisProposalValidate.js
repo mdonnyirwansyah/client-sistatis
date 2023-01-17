@@ -1,5 +1,5 @@
 import sistatisApi from "../../api";
-import thesisProposalValidatesApi from "../../api/thesisProposalValidatesApi";
+import seminarsApi from "../../api/seminarsApi";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -13,7 +13,7 @@ const FormThesisProposalValidate = () => {
     const updateData = async () => {
       try {
         const response = await sistatisApi.post(
-          `${thesisProposalValidatesApi}/${id}`,
+          `${seminarsApi}/validate/${id}`,
           formData
         );
         const data = response.data;
@@ -29,6 +29,10 @@ const FormThesisProposalValidate = () => {
               id: toastUpdateData,
             });
           }
+
+          toast.error(error.response.statusText, {
+            id: toastUpdateData,
+          });
         } else {
           toast.error(error.message, {
             id: toastUpdateData,

@@ -12,6 +12,7 @@ import {
 import swal from "sweetalert";
 import sistatisApi from "../api";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
 
 function DataTheses() {
   const {
@@ -20,6 +21,7 @@ function DataTheses() {
     refetch,
     data: theses,
   } = useQuery("theses", getTheses, { retry: false });
+  const { user } = useSelector((state) => state.auth);
 
   const handleDelete = (id) => {
     swal({
@@ -83,21 +85,27 @@ function DataTheses() {
             <div className="d-flex align-items-center justify-content-center">
               <ButtonIcon
                 title="Lihat"
-                type="btn-outline-success mr-1"
+                type={`btn-outline-success ${
+                  user?.role === "Coordinator" ? "mr-1" : null
+                }`}
                 icon={<FaEye />}
                 url={`show/${theses.id}`}
               />
-              <ButtonIcon
-                title="Edit"
-                type="btn-outline-warning mx-1"
-                icon={<FaPen />}
-                url={`edit/${theses.id}`}
-              />
-              <FormButtonDelete
-                title="Hapus"
-                icon={<FaTrashAlt />}
-                onClick={() => handleDelete(theses.id)}
-              />
+              {user?.role === "Coordinator" ? (
+                <>
+                  <ButtonIcon
+                    title="Edit"
+                    type="btn-outline-warning mx-1"
+                    icon={<FaPen />}
+                    url={`edit/${theses.id}`}
+                  />
+                  <FormButtonDelete
+                    title="Hapus"
+                    icon={<FaTrashAlt />}
+                    onClick={() => handleDelete(theses.id)}
+                  />
+                </>
+              ) : null}
             </div>
           </td>
         </tr>

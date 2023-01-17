@@ -1,9 +1,7 @@
 import React from "react";
 import { FaEye, FaPen, FaTrashAlt } from "react-icons/fa";
 import { useQuery } from "react-query";
-import thesisProposalsApi, {
-  getThesisProposals,
-} from "../api/thesisProposalsApi";
+import seminarsApi, { getThesisProposals } from "../api/seminarsApi";
 import {
   ButtonIcon,
   DataError,
@@ -14,6 +12,7 @@ import {
 import swal from "sweetalert";
 import toast from "react-hot-toast";
 import sistatisApi from "../api";
+import { useSelector } from "react-redux";
 
 function DataThesisProposals() {
   const {
@@ -22,6 +21,7 @@ function DataThesisProposals() {
     refetch,
     data: thesisProposals,
   } = useQuery("thesisProposals", getThesisProposals, { retry: false });
+  const { user } = useSelector((state) => state.auth);
 
   const handleDelete = (id) => {
     swal({
@@ -35,9 +35,7 @@ function DataThesisProposals() {
         const toastDeleteData = toast.loading("Loading...");
         const deleteData = async (id) => {
           try {
-            const response = await sistatisApi.delete(
-              `${thesisProposalsApi}/${id}`
-            );
+            const response = await sistatisApi.delete(`${seminarsApi}/${id}`);
             const data = response.data;
             refetch();
             toast.success(`Successfully deleted!`, {
@@ -91,23 +89,32 @@ function DataThesisProposals() {
           <td>{thesisProposal.title}</td>
           <td>
             <div className="d-flex align-items-center justify-content-center">
-              <ButtonIcon
-                title="Lihat"
-                type="btn-outline-success mr-1"
-                icon={<FaEye />}
-                url={`show/${thesisProposal.id}`}
-              />
-              <ButtonIcon
-                title="Edit"
-                type="btn-outline-warning mx-1"
-                icon={<FaPen />}
-                url={`edit/${thesisProposal.id}`}
-              />
-              <FormButtonDelete
-                title="Hapus"
-                icon={<FaTrashAlt />}
-                onClick={() => handleDelete(thesisProposal.id)}
-              />
+              {user?.role === "Administrator" ? (
+                <ButtonIcon
+                  title="Lihat"
+                  type="btn-outline-success mr-1"
+                  icon={<FaEye />}
+                  url={`show/${thesisProposal.id}`}
+                />
+              ) : null}
+
+              {user?.role === "Coordinator" ? (
+                <>
+                  <ButtonIcon
+                    title="Edit"
+                    type={`btn-outline-warning ${
+                      user?.role === "Administrator" ? "mx-1" : "mr-1"
+                    }`}
+                    icon={<FaPen />}
+                    url={`edit/${thesisProposal.id}`}
+                  />
+                  <FormButtonDelete
+                    title="Hapus"
+                    icon={<FaTrashAlt />}
+                    onClick={() => handleDelete(thesisProposal.id)}
+                  />
+                </>
+              ) : null}
             </div>
           </td>
         </tr>

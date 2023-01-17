@@ -76,6 +76,9 @@ const FormThesisCreate = () => {
             });
             setErrors(data.data);
           }
+          toast.error(error.response.statusText, {
+            id: toastAddData,
+          });
         } else {
           toast.error(error.message, {
             id: toastAddData,
@@ -100,7 +103,7 @@ const FormThesisCreate = () => {
         type="text"
         onChange={handleName}
         value={name}
-        errors={errors && errors.name}
+        errors={errors?.name}
       />
       <FormInput
         label="Nim"
@@ -109,7 +112,7 @@ const FormThesisCreate = () => {
         type="text"
         onChange={handleNim}
         value={nim}
-        errors={errors && errors.nim}
+        errors={errors?.nim}
       />
       <FormInput
         label="No. HP"
@@ -118,7 +121,7 @@ const FormThesisCreate = () => {
         type="text"
         onChange={handlePhone}
         value={phone}
-        errors={errors && errors.phone}
+        errors={errors?.phone}
       />
       <h2 className="lead">
         <strong>Tugas Akhir</strong>
@@ -131,7 +134,7 @@ const FormThesisCreate = () => {
         type="date"
         onChange={handleRegisterDate}
         value={registerDate}
-        errors={errors && errors.register_date}
+        errors={errors?.register_date}
       />
       <FormInput
         label="Judul"
@@ -140,7 +143,7 @@ const FormThesisCreate = () => {
         type="text"
         onChange={handleTitle}
         value={title}
-        errors={errors && errors.title}
+        errors={errors?.title}
       />
       <FormSelect
         label="KBK"
@@ -148,7 +151,7 @@ const FormThesisCreate = () => {
         id="field"
         onChange={handleField}
         value={field}
-        errors={errors && errors.field}
+        errors={errors?.field}
       >
         <DataFields />
       </FormSelect>
@@ -158,34 +161,20 @@ const FormThesisCreate = () => {
         id="supervisor_1"
         onChange={handleSupervisor1}
         value={supervisor1}
-        errors={errors && errors.supervisor_1}
+        errors={errors?.supervisor_1}
       >
         <DataLecturersByField fieldId={field} disabled={supervisor2} />
       </FormSelect>
-      {supervisor1 ? (
-        <input
-          type="hidden"
-          name={"supervisors[" + supervisor1 + "]"}
-          value="Pembimbing 1"
-        />
-      ) : null}
       <FormSelect
         label="Pembimbing 2"
         name="supervisor_2"
         id="supervisor_2"
         onChange={handleSupervisor2}
         value={supervisor2}
-        errors={errors && errors.supervisor_2}
+        errors={errors?.supervisor_2}
       >
         <DataLecturersByField fieldId={field} disabled={supervisor1} />
       </FormSelect>
-      {supervisor2 ? (
-        <input
-          type="hidden"
-          name={"supervisors[" + supervisor2 + "]"}
-          value="Pembimbing 2"
-        />
-      ) : null}
       <FormButton label="Submit" type="submit" />
     </form>
   );

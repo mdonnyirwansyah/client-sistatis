@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { getThesisProposalValidate } from "../api/thesisProposalValidatesApi";
+import { getThesisProposalValidate } from "../api/seminarsApi";
 import { FormThesisProposalValidate } from "../components";
 import moment from "moment";
 

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMe } from "../../features/authSlice";
@@ -7,9 +7,14 @@ const ProtectedAuth = ({ children }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isSuccess } = useSelector((state) => state.auth);
+  const effect = useRef(false);
 
   useEffect(() => {
-    dispatch(getMe());
+    if (effect.current === false) {
+      dispatch(getMe());
+
+      return () => (effect.current = true);
+    }
   }, [dispatch]);
 
   useEffect(() => {

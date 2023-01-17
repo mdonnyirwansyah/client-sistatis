@@ -39,10 +39,8 @@ export const getMe = createAsyncThunk("auth/getMe", async (_, thunkApi) => {
   } catch (error) {
     var user = JSON.parse(localStorage.getItem("user"));
     if (error.message === "Network Error" && user) {
-      console.log("offline mode");
       return user;
     }
-    console.log("cache user not found! || online mode!");
     if (!error.response) {
       throw thunkApi.rejectWithValue(error.message);
     }

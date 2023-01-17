@@ -3,7 +3,7 @@ import { FormInput, FormSelect, FormButton } from "../../components";
 import { DataLocations } from "../../fetch";
 import toast from "react-hot-toast";
 import sistatisApi from "../../api";
-import thesisProposalSchedulesApi from "../../api/thesisProposalSchedulesApi";
+import seminarsApi from "../../api/seminarsApi";
 import { useNavigate, useParams } from "react-router-dom";
 
 const FormThesisProposalSchedule = ({ data }) => {
@@ -34,7 +34,7 @@ const FormThesisProposalSchedule = ({ data }) => {
     const updateData = async () => {
       try {
         const response = await sistatisApi.post(
-          `${thesisProposalSchedulesApi}/${id}`,
+          `${seminarsApi}/schedule/${id}`,
           formData
         );
         const data = response.data;
@@ -52,6 +52,10 @@ const FormThesisProposalSchedule = ({ data }) => {
             });
             setErrors(data.data);
           }
+
+          toast.error(error.response.statusText, {
+            id: toastUpdateData,
+          });
         } else {
           toast.error(error.message, {
             id: toastUpdateData,
@@ -77,7 +81,7 @@ const FormThesisProposalSchedule = ({ data }) => {
         type="date"
         onChange={handleDate}
         value={date}
-        errors={errors && errors.date}
+        errors={errors?.date}
       />
       <FormInput
         label="Jam"
@@ -86,7 +90,7 @@ const FormThesisProposalSchedule = ({ data }) => {
         type="time"
         onChange={handleTime}
         value={time}
-        errors={errors && errors.time}
+        errors={errors?.time}
       />
       <FormSelect
         label="Lokasi"
@@ -94,7 +98,7 @@ const FormThesisProposalSchedule = ({ data }) => {
         id="location"
         onChange={handleLocation}
         value={location}
-        errors={errors && errors.location}
+        errors={errors?.location}
       >
         <DataLocations />
       </FormSelect>

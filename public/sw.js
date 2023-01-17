@@ -49,20 +49,22 @@ this.addEventListener("activate", function (e) {
 
 this.addEventListener("fetch", function (e) {
   console.log("[demoPWA - ServiceWorker] Fetch event fired.", e.request.url);
-  e.respondWith(
-    caches.match(e.request).then(function (response) {
-      if (response) {
-        console.log("[demoPWA - ServiceWorker] Retrieving from cache...");
-        return response;
-      }
-      console.log("[demoPWA - ServiceWorker] Retrieving from URL...");
-      return fetch(e.request).catch(function (e) {
-        //you might want to do more error checking here too,
-        //eg, check what e is returning..
-        console.log(
-          "You appear to be offline, please try again when back online"
-        );
-      });
-    })
-  );
+  if (!navigator.onLine) {
+    e.respondWith(
+      caches.match(e.request).then(function (response) {
+        if (response) {
+          console.log("[demoPWA - ServiceWorker] Retrieving from cache...");
+          return response;
+        }
+        console.log("[demoPWA - ServiceWorker] Retrieving from URL...");
+        return fetch(e.request).catch(function (e) {
+          //you might want to do more error checking here too,
+          //eg, check what e is returning..
+          console.log(
+            "You appear to be offline, please try again when back online"
+          );
+        });
+      })
+    );
+  }
 });

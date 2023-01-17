@@ -26,7 +26,7 @@ function ThesisProposalSchedule() {
                 <th>Tanggal Daftar</th>
                 <th>Nama</th>
                 <th>Judul</th>
-                <th>Aksi</th>
+                <th style={{ width: 30 }}>Aksi</th>
               </tr>
             </thead>
             <tbody>
@@ -34,7 +34,7 @@ function ThesisProposalSchedule() {
             </tbody>
           </table>
         </div>
-          <Pagination pageLinks={pageLinks} />
+        <Pagination pageLinks={pageLinks} />
       </Card>
     </Main>
   );

@@ -42,7 +42,7 @@ function Sidebar() {
               url="/data/thesis"
               icon={<FaRegCircle className="nav-icon" />}
             />
-            {user?.role === "Administrator" ? (
+            {user?.role === "Administrator" || user?.role === "Coordinator" ? (
               <NavTreeview
                 title="Seminar"
                 icon={<FaRegCircle className="nav-icon" />}
