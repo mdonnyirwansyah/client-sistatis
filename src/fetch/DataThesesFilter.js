@@ -85,11 +85,11 @@ function DataThesesFilter() {
                   return (
                     <tr key={theses.id}>
                       <td>{index + 1}</td>
-                      <td>{theses.register_date}</td>
-                      <td>{theses.nim}</td>
-                      <td>{theses.name}</td>
-                      <td>{theses.title}</td>
-                      <td>{theses.status}</td>
+                      <td>{theses.thesis.register_date}</td>
+                      <td>{theses.student.nim}</td>
+                      <td>{theses.student.name}</td>
+                      <td>{theses.thesis.title}</td>
+                      <td>{theses.thesis.status}</td>
                       <td>
                         <div className="d-flex align-items-center justify-content-center">
                           <ButtonIcon

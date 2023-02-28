@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FormInput, FormSelect, FormButton } from "../../components";
-import { DataFields, DataLecturersByField } from "../../fetch";
+import { DataFields, DataLecturers } from "../../fetch";
 import thesesApi from "../../api/thesesApi";
 import sistatisApi from "../../api";
 import toast from "react-hot-toast";
@@ -63,7 +63,7 @@ const FormThesisCreate = () => {
         const response = await sistatisApi.post(thesesApi, formData);
         const data = response.data;
         handleClearForm();
-        toast.success(`Successfully created!`, {
+        toast.success(data.message, {
           id: toastAddData,
         });
         return navigate(-1);
@@ -163,7 +163,7 @@ const FormThesisCreate = () => {
         value={supervisor1}
         errors={errors?.supervisor_1}
       >
-        <DataLecturersByField fieldId={field} disabled={supervisor2} />
+        <DataLecturers disabled={supervisor2} />
       </FormSelect>
       <FormSelect
         label="Pembimbing 2"
@@ -173,7 +173,7 @@ const FormThesisCreate = () => {
         value={supervisor2}
         errors={errors?.supervisor_2}
       >
-        <DataLecturersByField fieldId={field} disabled={supervisor1} />
+        <DataLecturers disabled={supervisor1} />
       </FormSelect>
       <FormButton label="Submit" type="submit" />
     </form>

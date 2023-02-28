@@ -1,5 +1,5 @@
 import DataFields from "./DataFields";
-import DataLecturersByField from "./DataLecturersByField";
+import DataLecturers from "./DataLecturers";
 import DataLocations from "./DataLocations";
 import DataTheses from "./DataTheses";
 import DataThesesFilter from "./DataThesesFilter";
@@ -13,7 +13,7 @@ import DataThesisSeminarSchedules from "./DataThesisSeminarSchedules";
 
 export {
   DataFields,
-  DataLecturersByField,
+  DataLecturers,
   DataLocations,
   DataTheses,
   DataThesesFilter,

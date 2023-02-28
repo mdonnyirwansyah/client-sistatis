@@ -7,7 +7,6 @@ function DataThesis() {
   const { id } = useParams();
   const location = useLocation();
   const isFormEdit = location.pathname.includes("/edit");
-  const isFormDetail = location.pathname.includes("/show");
 
   const {
     isLoading,
@@ -27,9 +26,7 @@ function DataThesis() {
     return <FormThesisEdit data={thesis} />;
   }
 
-  if (isFormDetail) {
-    return <FormThesisDetail data={thesis} />;
-  }
+  return <FormThesisDetail data={thesis} />;
 }
 
 export default DataThesis;

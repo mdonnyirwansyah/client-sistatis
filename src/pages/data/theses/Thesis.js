@@ -11,7 +11,7 @@ function Thesis() {
     <Main title="Data Tugas Akhir">
       <Card>
         <div>
-        {user?.role === "Coordinator" ? (
+        {user?.role === "Administrator" || user?.role === "Coordinator" ? (
           <Link to="/data/thesis/create" className="btn btn-primary">
             Tambah
           </Link>

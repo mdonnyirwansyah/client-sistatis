@@ -51,7 +51,7 @@ const FormThesisDetail = ({ data }) => {
           </div>
           <div className="row mb-sm-0 mb-3">
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">KBK:</label>
-            <div className="col-sm-9">{data.thesis.field}</div>
+            <div className="col-sm-9">{data.thesis.field.name}</div>
           </div>
           {data.thesis.supervisors.map((supervisor, index) => {
             return (
@@ -65,8 +65,8 @@ const FormThesisDetail = ({ data }) => {
           })}
         </div>
       </div>
-      {data.seminars
-        ? data.seminars.map((seminar, index) => {
+      {data.thesis.seminars
+        ? data.thesis.seminars.map((seminar, index) => {
             return (
               <div key={index}>
                 <div className="row mt-sm-0 mt-3">

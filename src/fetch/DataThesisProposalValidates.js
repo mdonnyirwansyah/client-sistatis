@@ -31,9 +31,9 @@ function DataThesisProposalValidates() {
       return (
         <tr key={thesisProposalValidate.id}>
           <td>{index + 1}</td>
-          <td>{thesisProposalValidate.date}</td>
-          <td>{thesisProposalValidate.name}</td>
-          <td>{thesisProposalValidate.title}</td>
+          <td>{thesisProposalValidate.seminar.date}</td>
+          <td>{thesisProposalValidate.thesis.student.name}</td>
+          <td>{thesisProposalValidate.thesis.title}</td>
           <td>
             <div className="d-flex align-items-center justify-content-center">
               <ButtonIcon

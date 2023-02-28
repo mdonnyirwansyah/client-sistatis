@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FormInput, FormSelect, FormButton } from "../../components";
-import { DataFields, DataLecturersByField } from "../../fetch";
+import { DataFields, DataLecturers } from "../../fetch";
 import toast from "react-hot-toast";
 import sistatisApi from "../../api";
 import thesesApi from "../../api/thesesApi";
@@ -54,7 +54,7 @@ const FormThesisEdit = ({ data }) => {
         const response = await sistatisApi.post(`${thesesApi}/${id}`, formData);
         const data = response.data;
         handleClearForm();
-        toast.success(`Successfully saved!`, {
+        toast.success(data.message, {
           id: toastUpdateData,
         });
         return navigate(-1);
@@ -156,7 +156,7 @@ const FormThesisEdit = ({ data }) => {
         value={supervisor1}
         errors={errors?.supervisor_1}
       >
-        <DataLecturersByField fieldId={field} disabled={supervisor2} />
+        <DataLecturers disabled={supervisor2} />
       </FormSelect>
       <FormSelect
         label="Pembimbing 2"
@@ -166,7 +166,7 @@ const FormThesisEdit = ({ data }) => {
         value={supervisor2}
         errors={errors?.supervisor_2}
       >
-        <DataLecturersByField fieldId={field} disabled={supervisor1} />
+        <DataLecturers disabled={supervisor1} />
       </FormSelect>
       <FormButton label="Simpan Perubahan" type="submit" />
     </form>

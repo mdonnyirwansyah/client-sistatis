@@ -38,23 +38,27 @@ function DataThesisSeminars() {
           <hr />
           <div className="row mb-sm-0 mb-3">
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">Nama:</label>
-            <div className="col-sm-9">{thesisProposal.student.name}</div>
+            <div className="col-sm-9">{thesisProposal.thesis.student.name}</div>
           </div>
           <div className="row mb-sm-0 mb-3">
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">NIM:</label>
-            <div className="col-sm-9">{thesisProposal.student.nim}</div>
+            <div className="col-sm-9">{thesisProposal.thesis.student.nim}</div>
           </div>
           <div className="row mb-sm-0 mb-3">
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
               No. HP:
             </label>
-            <div className="col-sm-9">{thesisProposal.student.phone}</div>
+            <div className="col-sm-9">
+              {thesisProposal.thesis.student.phone}
+            </div>
           </div>
           <div className="row mb-sm-0 mb-3">
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
               Status:
             </label>
-            <div className="col-sm-9">{thesisProposal.student.status}</div>
+            <div className="col-sm-9">
+              {thesisProposal.thesis.student.status}
+            </div>
           </div>
         </div>
         <div className="col-sm-6 mt-sm-0 mt-3">
@@ -78,7 +82,7 @@ function DataThesisSeminars() {
           </div>
           <div className="row mb-sm-0 mb-3">
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">KBK:</label>
-            <div className="col-sm-9">{thesisProposal.thesis.field}</div>
+            <div className="col-sm-9">{thesisProposal.thesis.field.name}</div>
           </div>
           {thesisProposal.thesis.supervisors.map((supervisor, index) => {
             return (
@@ -161,7 +165,7 @@ function DataThesisSeminars() {
                 </label>
                 <div className="col-sm-9">
                   {thesisProposal.seminar.location ? (
-                    thesisProposal.seminar.location
+                    thesisProposal.seminar.location.name
                   ) : (
                     <span className="badge badge-warning text-white">
                       Lokasi Belum Ditentukan

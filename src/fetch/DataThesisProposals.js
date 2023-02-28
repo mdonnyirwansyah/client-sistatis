@@ -38,7 +38,7 @@ function DataThesisProposals() {
             const response = await sistatisApi.delete(`${seminarsApi}/${id}`);
             const data = response.data;
             refetch();
-            toast.success(`Successfully deleted!`, {
+            toast.success(data.message, {
               id: toastDeleteData,
             });
           } catch (error) {
@@ -77,19 +77,21 @@ function DataThesisProposals() {
         <tr key={thesisProposal.id}>
           <td>{index + 1}</td>
           <td>
-            {thesisProposal.date ? (
-              thesisProposal.date
+            {thesisProposal.seminar.date ? (
+              thesisProposal.seminar.date
             ) : (
               <span className="badge badge-warning text-white">
                 Belum Ditentukan
               </span>
             )}
           </td>
-          <td>{thesisProposal.name}</td>
-          <td>{thesisProposal.title}</td>
+          <td>{thesisProposal.thesis.student.name}</td>
+          <td>{thesisProposal.thesis.title}</td>
           <td>
             <div className="d-flex align-items-center justify-content-center">
-              {user?.role === "Administrator" ? (
+              {user?.role === "Administrator" ||
+              user?.role === "Coordinator" ||
+              user?.role === "Head of Department" ? (
                 <ButtonIcon
                   title="Lihat"
                   type="btn-outline-success mr-1"
@@ -98,7 +100,8 @@ function DataThesisProposals() {
                 />
               ) : null}
 
-              {user?.role === "Coordinator" ? (
+              {user?.role === "Administrator" ||
+              user?.role === "Coordinator" ? (
                 <>
                   <ButtonIcon
                     title="Edit"

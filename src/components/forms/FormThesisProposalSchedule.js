@@ -39,7 +39,7 @@ const FormThesisProposalSchedule = ({ data }) => {
         );
         const data = response.data;
         handleClearForm();
-        toast.success(`Successfully saved!`, {
+        toast.success(data.message, {
           id: toastUpdateData,
         });
         return navigate(-1);

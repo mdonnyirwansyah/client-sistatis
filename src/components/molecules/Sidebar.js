@@ -76,7 +76,8 @@ function Sidebar() {
                 location.pathname.includes("/seminar-register") ? true : false
               }
             >
-              {user?.role === "Coordinator" ? (
+              {user?.role === "Administrator" ||
+              user?.role === "Coordinator" ? (
                 <NavItem
                   title="Proposal TA"
                   url="/seminar-register/thesis-proposal"
@@ -90,7 +91,8 @@ function Sidebar() {
                   icon={<FaRegCircle className="nav-icon" />}
                 />
               ) : null}
-              {user?.role === "Coordinator" ? (
+              {user?.role === "Administrator" ||
+              user?.role === "Coordinator" ? (
                 <NavItem
                   title="Sidang TA"
                   url="/seminar-register/thesis-defence"
@@ -100,7 +102,7 @@ function Sidebar() {
             </NavTreeview>
           ) : null}
 
-          {user?.role === "Administrator" ? (
+          {user?.role === "Administrator" || user?.role === "Coordinator" ? (
             <NavTreeview
               title="Penjadwalan Seminar"
               icon={<FaCalendar className="nav-icon" />}
@@ -125,7 +127,8 @@ function Sidebar() {
               />
             </NavTreeview>
           ) : null}
-          {user?.role === "Head of Department" ? (
+          {user?.role === "Administrator" ||
+          user?.role === "Head of Department" ? (
             <NavTreeview
               title="Validasi Seminar"
               icon={<FaFileSignature className="nav-icon" />}

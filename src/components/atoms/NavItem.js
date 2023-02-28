@@ -7,11 +7,12 @@ function NavItem({ title, url, icon }) {
       <NavLink
         to={url}
         className={({ isActive }) =>
-          isActive ? "nav-link active" : "nav-link"
+          isActive ? "nav-link active" : "nav-link text-white"
         }
       >
         <div className="d-flex align-items-center">
-          {icon}<p>{title}</p>
+          {icon}
+          <p>{title}</p>
         </div>
       </NavLink>
     </li>

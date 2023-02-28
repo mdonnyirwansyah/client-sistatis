@@ -17,7 +17,7 @@ const FormThesisProposalValidate = () => {
           formData
         );
         const data = response.data;
-        toast.success(`Successfully saved!`, {
+        toast.success(data.message, {
           id: toastUpdateData,
         });
         return navigate(-1);

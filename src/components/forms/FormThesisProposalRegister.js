@@ -6,7 +6,7 @@ import seminarsApi from "../../api/seminarsApi";
 import thesesApi from "../../api/thesesApi";
 import { FaSearch } from "react-icons/fa";
 import moment from "moment";
-import { DataLecturersByField } from "../../fetch";
+import { DataLecturers } from "../../fetch";
 
 const FormThesisProposalRegister = () => {
   const [thesis, setThesis] = useState(null);
@@ -48,6 +48,7 @@ const FormThesisProposalRegister = () => {
 
     getThesis(formData.get("nim"));
   };
+  
   const handleRegisterDate = (e) => {
     setRegisterDate(e.target.value);
   };
@@ -81,7 +82,7 @@ const FormThesisProposalRegister = () => {
         const response = await sistatisApi.post(seminarsApi, formData);
         const data = response.data;
         handleClearForm();
-        toast.success(`Successfully registered!`, {
+        toast.success(data.message, {
           id: toastAddData,
         });
       } catch (error) {
@@ -180,7 +181,7 @@ const FormThesisProposalRegister = () => {
               <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
                 KBK:
               </label>
-              <div className="col-sm-9">{thesis.thesis.field}</div>
+              <div className="col-sm-9">{thesis.thesis.field.name}</div>
             </div>
             {thesis.thesis.supervisors.map((supervisor, index) => {
               return (
@@ -200,7 +201,7 @@ const FormThesisProposalRegister = () => {
         <div className="col-sm-12 mt-sm-0 mt-3">
           <form
             className={
-              thesis && thesis.student.status !== "Tugas Akhir"
+              thesis && thesis.student.status !== "Pendaftaran Tugas Akhir"
                 ? "d-none"
                 : null
             }
@@ -230,8 +231,7 @@ const FormThesisProposalRegister = () => {
               errors={errors?.examiner_1}
               disabled={!thesis && true}
             >
-              <DataLecturersByField
-                fieldId={thesis?.thesis.field_id}
+              <DataLecturers
                 data={thesis?.thesis.supervisors}
                 disabled={examiner2}
                 disabledOther={examiner3}
@@ -246,8 +246,7 @@ const FormThesisProposalRegister = () => {
               errors={errors?.examiner_2}
               disabled={!thesis && true}
             >
-              <DataLecturersByField
-                fieldId={thesis?.thesis.field_id}
+              <DataLecturers
                 data={thesis?.thesis.supervisors}
                 disabled={examiner1}
                 disabledOther={examiner3}
@@ -262,8 +261,7 @@ const FormThesisProposalRegister = () => {
               errors={errors?.examiner_3}
               disabled={!thesis && true}
             >
-              <DataLecturersByField
-                fieldId={thesis?.thesis.field_id}
+              <DataLecturers
                 data={thesis?.thesis.supervisors}
                 disabled={examiner1}
                 disabledOther={examiner2}

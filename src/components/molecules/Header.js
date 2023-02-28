@@ -25,16 +25,16 @@ function Header() {
     <nav className="main-header navbar navbar-expand navbar-white navbar-light">
       <ul className="navbar-nav">
         <li className="nav-item">
-          <a className="nav-link" data-widget="pushmenu" href="#" role="button">
+          <div className="nav-link" data-widget="pushmenu" role="button">
             <FaBars />
-          </a>
+          </div>
         </li>
       </ul>
       <ul className="navbar-nav ml-auto">
         <li className="nav-item dropdown">
-          <a className="nav-link" data-toggle="dropdown" href="#">
+          <div className="nav-link" data-toggle="dropdown" style={{ cursor: `pointer` }}>
             <FaUserCircle />
-          </a>
+          </div>
           <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <Link to="/account/profile" className="dropdown-item">
               <FaUser className="mr-2" /> Profil

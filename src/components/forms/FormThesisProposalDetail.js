@@ -19,7 +19,7 @@ const FormThesisProposalDetail = ({ data }) => {
         const url = window.URL.createObjectURL(new Blob([response.data]));
         const link = document.createElement("a");
         link.href = url;
-        link.setAttribute("download", `undangan-${data.student.nim}.pdf`);
+        link.setAttribute("download", `undangan-${data.thesis.student.nim}.pdf`);
         document.body.appendChild(link);
         link.click();
         toast.success(`Successfully download!`, {
@@ -43,6 +43,7 @@ const FormThesisProposalDetail = ({ data }) => {
 
     printUndangan();
   };
+
   return (
     <>
       <div className="row mt-sm-0 mt-3">

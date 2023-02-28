@@ -3,7 +3,7 @@ import { FormInput, FormSelect, FormButton } from "..";
 import sistatisApi from "../../api";
 import toast from "react-hot-toast";
 import seminarsApi from "../../api/seminarsApi";
-import { DataLecturersByField } from "../../fetch";
+import { DataLecturers } from "../../fetch";
 import { useNavigate, useParams } from "react-router-dom";
 
 const FormThesisProposalEdit = ({ data }) => {
@@ -46,7 +46,7 @@ const FormThesisProposalEdit = ({ data }) => {
         );
         const data = response.data;
         handleClearForm();
-        toast.success(`Successfully saved!`, {
+        toast.success(data.message, {
           id: toastUpdateData,
         });
         return navigate(-1);
@@ -99,8 +99,7 @@ const FormThesisProposalEdit = ({ data }) => {
         value={examiner1}
         errors={errors?.examiner_1}
       >
-        <DataLecturersByField
-          fieldId={data.thesis.field_id}
+        <DataLecturers
           data={data.thesis.supervisors}
           disabled={examiner2}
           disabledOther={examiner3}
@@ -114,8 +113,7 @@ const FormThesisProposalEdit = ({ data }) => {
         value={examiner2}
         errors={errors?.examiner_2}
       >
-        <DataLecturersByField
-          fieldId={data.thesis.field_id}
+        <DataLecturers
           data={data.thesis.supervisors}
           disabled={examiner1}
           disabledOther={examiner3}
@@ -129,8 +127,7 @@ const FormThesisProposalEdit = ({ data }) => {
         value={examiner3}
         errors={errors?.examiner_3}
       >
-        <DataLecturersByField
-          fieldId={data.thesis.field_id}
+        <DataLecturers
           data={data.thesis.supervisors}
           disabled={examiner1}
           disabledOther={examiner2}

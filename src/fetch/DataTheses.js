@@ -12,7 +12,6 @@ import {
 import swal from "sweetalert";
 import sistatisApi from "../api";
 import toast from "react-hot-toast";
-import { useSelector } from "react-redux";
 
 function DataTheses() {
   const {
@@ -21,8 +20,7 @@ function DataTheses() {
     refetch,
     data: theses,
   } = useQuery("theses", getTheses, { retry: false });
-  const { user } = useSelector((state) => state.auth);
-
+  
   const handleDelete = (id) => {
     swal({
       title: "Are you sure?",
@@ -38,7 +36,7 @@ function DataTheses() {
             const response = await sistatisApi.delete(`${thesesApi}/${id}`);
             const data = response.data;
             refetch();
-            toast.success(`Successfully deleted!`, {
+            toast.success(data.message, {
               id: toastDeleteData,
             });
           } catch (error) {
@@ -76,36 +74,30 @@ function DataTheses() {
       return (
         <tr key={theses.id}>
           <td>{index + 1}</td>
-          <td>{theses.register_date}</td>
-          <td>{theses.nim}</td>
-          <td>{theses.name}</td>
-          <td>{theses.title}</td>
-          <td>{theses.status}</td>
+          <td>{theses.thesis.register_date}</td>
+          <td>{theses.student.nim}</td>
+          <td>{theses.student.name}</td>
+          <td>{theses.thesis.title}</td>
+          <td>{theses.student.status}</td>
           <td>
             <div className="d-flex align-items-center justify-content-center">
               <ButtonIcon
                 title="Lihat"
-                type={`btn-outline-success ${
-                  user?.role === "Coordinator" ? "mr-1" : null
-                }`}
+                type={"btn-outline-success mr-1"}
                 icon={<FaEye />}
                 url={`show/${theses.id}`}
               />
-              {user?.role === "Coordinator" ? (
-                <>
-                  <ButtonIcon
-                    title="Edit"
-                    type="btn-outline-warning mx-1"
-                    icon={<FaPen />}
-                    url={`edit/${theses.id}`}
-                  />
-                  <FormButtonDelete
-                    title="Hapus"
-                    icon={<FaTrashAlt />}
-                    onClick={() => handleDelete(theses.id)}
-                  />
-                </>
-              ) : null}
+              <ButtonIcon
+                title="Edit"
+                type="btn-outline-warning mx-1"
+                icon={<FaPen />}
+                url={`edit/${theses.id}`}
+              />
+              <FormButtonDelete
+                title="Hapus"
+                icon={<FaTrashAlt />}
+                onClick={() => handleDelete(theses.id)}
+              />
             </div>
           </td>
         </tr>

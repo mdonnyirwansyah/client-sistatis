@@ -35,19 +35,19 @@ function DataThesisSeminarValidates() {
           <div className="row mb-sm-0 mb-3">
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">Nama:</label>
             <div className="col-sm-9">
-              {thesisProposalValidate.student.name}
+              {thesisProposalValidate.thesis.student.name}
             </div>
           </div>
           <div className="row mb-sm-0 mb-3">
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">NIM:</label>
-            <div className="col-sm-9">{thesisProposalValidate.student.nim}</div>
+            <div className="col-sm-9">{thesisProposalValidate.thesis.student.nim}</div>
           </div>
           <div className="row mb-sm-0 mb-3">
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
               No. HP:
             </label>
             <div className="col-sm-9">
-              {thesisProposalValidate.student.phone}
+              {thesisProposalValidate.thesis.student.phone}
             </div>
           </div>
           <div className="row mb-sm-0 mb-3">
@@ -55,7 +55,7 @@ function DataThesisSeminarValidates() {
               Status:
             </label>
             <div className="col-sm-9">
-              {thesisProposalValidate.student.status}
+              {thesisProposalValidate.thesis.student.status}
             </div>
           </div>
         </div>
@@ -83,7 +83,7 @@ function DataThesisSeminarValidates() {
           <div className="row mb-sm-0 mb-3">
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">KBK:</label>
             <div className="col-sm-9">
-              {thesisProposalValidate.thesis.field}
+              {thesisProposalValidate.thesis.field.name}
             </div>
           </div>
           {thesisProposalValidate.thesis.supervisors.map(
@@ -138,7 +138,7 @@ function DataThesisSeminarValidates() {
               Lokasi:
             </label>
             <div className="col-sm-9">
-              {thesisProposalValidate.seminar.location}
+              {thesisProposalValidate.seminar.location.name}
             </div>
           </div>
         </div>

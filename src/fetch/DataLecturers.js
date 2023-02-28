@@ -1,12 +1,12 @@
 import { useQuery } from "react-query";
-import { getLecturersByField } from "../api/lecturersApi";
+import { getLecturers } from "../api/lecturersApi";
 
-const DataLecturersByField = ({ fieldId, disabled, disabledOther, data }) => {
+const DataLecturers = ({ disabled, disabledOther, data }) => {
   const {
     isLoading,
     isError,
     data: lecturers,
-  } = useQuery(["lecturers", fieldId], () => getLecturersByField(fieldId), {
+  } = useQuery("lecturers", getLecturers, {
     retry: false,
   });
 
@@ -70,4 +70,4 @@ const DataLecturersByField = ({ fieldId, disabled, disabledOther, data }) => {
   );
 };
 
-export default DataLecturersByField;
+export default DataLecturers;
