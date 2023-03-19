@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { getLecturers } from "../api/lecturersApi";
 
-const DataLecturers = ({ disabled, disabledOther, data }) => {
+const DataLecturers = ({ disabled, disabledOther, disabledOther2, data }) => {
   const {
     isLoading,
     isError,
@@ -42,7 +42,7 @@ const DataLecturers = ({ disabled, disabledOther, data }) => {
                 key={index}
                 value={lecturer.id}
                 disabled={
-                  disabled == lecturer.id || disabledOther == lecturer.id
+                  disabled == lecturer.id || disabledOther == lecturer.id || disabledOther2 == lecturer.id
                     ? true
                     : false
                 }
@@ -57,7 +57,7 @@ const DataLecturers = ({ disabled, disabledOther, data }) => {
                 key={index}
                 value={lecturer.id}
                 disabled={
-                  disabled == lecturer.id || disabledOther == lecturer.id
+                  disabled == lecturer.id || disabledOther == lecturer.id || disabledOther2 == lecturer.id
                     ? true
                     : false
                 }

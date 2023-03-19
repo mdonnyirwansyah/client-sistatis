@@ -12,6 +12,20 @@ import ThesisProposalSchedule from "./seminar-schedules/thesis-proposals/ThesisP
 import ThesisProposalScheduleDetail from "./seminar-schedules/thesis-proposals/ThesisProposalScheduleDetail";
 import ThesisProposalValidate from "./seminar-validates/thesis-proposals/ThesisProposalValidate";
 import ThesisProposalValidateDetail from "./seminar-validates/thesis-proposals/ThesisProposalValidateDetail";
+import ThesisResult from "./data/thesis-results/ThesisResult";
+import ThesisResultDetail from "./data/thesis-results/ThesisResultDetail";
+import ThesisResultEdit from "./data/thesis-results/ThesisResultEdit";
+import ThesisResultRegister from "./seminar-registers/ThesisResultRegister";
+import ThesisResultSchedule from "./seminar-schedules/thesis-results/ThesisResultSchedule";
+import ThesisResultScheduleDetail from "./seminar-schedules/thesis-results/ThesisResultScheduleDetail";
+import ThesisResultValidate from "./seminar-validates/thesis-results/ThesisResultValidate";
+import ThesisResultValidateDetail from "./seminar-validates/thesis-results/ThesisResultValidateDetail";
+import ThesisDefence from "./data/thesis-defences/ThesisDefence";
+import ThesisDefenceDetail from "./data/thesis-defences/ThesisDefenceDetail";
+import ThesisDefenceEdit from "./data/thesis-defences/ThesisDefenceEdit";
+import ThesisDefenceRegister from "./seminar-registers/ThesisDefenceRegister";
+import ThesisDefenceSchedule from "./seminar-schedules/thesis-defences/ThesisDefenceSchedule";
+import ThesisDefenceScheduleDetail from "./seminar-schedules/thesis-defences/ThesisDefenceScheduleDetail";
 import Profile from "./account/Profile";
 import UpdatePassword from "./account/UpdatePassword";
 import NotFound from "./NotFound";
@@ -31,6 +45,20 @@ export {
   ThesisProposalScheduleDetail,
   ThesisProposalValidate,
   ThesisProposalValidateDetail,
+  ThesisResult,
+  ThesisResultDetail,
+  ThesisResultEdit,
+  ThesisResultRegister,
+  ThesisResultSchedule,
+  ThesisResultScheduleDetail,
+  ThesisResultValidate,
+  ThesisResultValidateDetail,
+  ThesisDefence,
+  ThesisDefenceDetail,
+  ThesisDefenceEdit,
+  ThesisDefenceRegister,
+  ThesisDefenceSchedule,
+  ThesisDefenceScheduleDetail,
   Profile,
   UpdatePassword,
   NotFound,

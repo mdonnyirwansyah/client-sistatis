@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FormInput, FormSelect, FormButton } from "../../components";
+import { FormInput, FormSelect, FormButton } from "..";
 import sistatisApi from "../../api";
 import toast from "react-hot-toast";
 import seminarsApi from "../../api/seminarsApi";
@@ -8,7 +8,7 @@ import { FaSearch } from "react-icons/fa";
 import moment from "moment";
 import { DataLecturers } from "../../fetch";
 
-const FormThesisProposalRegister = () => {
+const FormThesisResultRegister = () => {
   const [thesis, setThesis] = useState(null);
   const [registerDate, setRegisterDate] = useState("");
   const [examiner1, setExaminer1] = useState("");
@@ -92,12 +92,15 @@ const FormThesisProposalRegister = () => {
             toast.error(data.message, {
               id: toastAddData,
             });
-            setErrors(data.data);
+            console.log(data.data);
+            if (data.data.length > 0) {
+              setErrors(data.data[0]);
+            }
+          } else if (error.response.status !== 422) {
+            toast.error(error.response.statusText, {
+              id: toastAddData,
+            });
           }
-
-          toast.error(error.response.statusText, {
-            id: toastAddData,
-          });
         } else {
           toast.error(error.message, {
             id: toastAddData,
@@ -201,7 +204,7 @@ const FormThesisProposalRegister = () => {
         <div className="col-sm-12 mt-sm-0 mt-3">
           <form
             className={
-              thesis && thesis.student.status !== "Pendaftaran Tugas Akhir"
+              thesis && thesis.student.status !== "Seminar Proposal Tugas Akhir"
                 ? "d-none"
                 : null
             }
@@ -211,7 +214,7 @@ const FormThesisProposalRegister = () => {
             <input
               type="hidden"
               name="name"
-              value="Seminar Proposal Tugas Akhir"
+              value="Seminar Hasil Tugas Akhir"
             />
             <h2 className="lead">
               <strong>Seminar</strong>
@@ -294,4 +297,4 @@ const FormThesisProposalRegister = () => {
   );
 };
 
-export default FormThesisProposalRegister;
+export default FormThesisResultRegister;

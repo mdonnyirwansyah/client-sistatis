@@ -17,6 +17,20 @@ import {
   ThesisProposalScheduleDetail,
   ThesisProposalValidate,
   ThesisProposalValidateDetail,
+  ThesisResult,
+  ThesisResultDetail,
+  ThesisResultEdit,
+  ThesisResultRegister,
+  ThesisResultSchedule,
+  ThesisResultScheduleDetail,
+  ThesisResultValidate,
+  ThesisResultValidateDetail,
+  ThesisDefence,
+  ThesisDefenceDetail,
+  ThesisDefenceEdit,
+  ThesisDefenceRegister,
+  ThesisDefenceSchedule,
+  ThesisDefenceScheduleDetail,
   NotFound,
   ThesisDetail,
 } from "./pages";
@@ -95,6 +109,58 @@ function App() {
                 }
               />
             </Route>
+            <Route path="thesis-result">
+              <Route
+                index
+                element={
+                  <ProtectedRoutes>
+                    <ThesisResult />
+                  </ProtectedRoutes>
+                }
+              />
+              <Route
+                path="show/:id"
+                element={
+                  <ProtectedRoutes>
+                    <ThesisResultDetail />
+                  </ProtectedRoutes>
+                }
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <ProtectedRoutes>
+                    <ThesisResultEdit />
+                  </ProtectedRoutes>
+                }
+              />
+            </Route>
+            <Route path="thesis-defence">
+              <Route
+                index
+                element={
+                  <ProtectedRoutes>
+                    <ThesisDefence />
+                  </ProtectedRoutes>
+                }
+              />
+              <Route
+                path="show/:id"
+                element={
+                  <ProtectedRoutes>
+                    <ThesisDefenceDetail />
+                  </ProtectedRoutes>
+                }
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <ProtectedRoutes>
+                    <ThesisDefenceEdit />
+                  </ProtectedRoutes>
+                }
+              />
+            </Route>
           </Route>
         </Route>
         <Route path="seminar-register">
@@ -103,6 +169,22 @@ function App() {
             element={
               <ProtectedRoutes>
                 <ThesisProposalRegister />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="thesis-result"
+            element={
+              <ProtectedRoutes>
+                <ThesisResultRegister />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="thesis-defence"
+            element={
+              <ProtectedRoutes>
+                <ThesisDefenceRegister />
               </ProtectedRoutes>
             }
           />
@@ -126,6 +208,42 @@ function App() {
               }
             />
           </Route>
+          <Route path="thesis-result">
+            <Route
+              index
+              element={
+                <ProtectedRoutes>
+                  <ThesisResultSchedule />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="show/:id"
+              element={
+                <ProtectedRoutes>
+                  <ThesisResultScheduleDetail />
+                </ProtectedRoutes>
+              }
+            />
+          </Route>
+          <Route path="thesis-defence">
+            <Route
+              index
+              element={
+                <ProtectedRoutes>
+                  <ThesisDefenceSchedule />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="show/:id"
+              element={
+                <ProtectedRoutes>
+                  <ThesisDefenceScheduleDetail />
+                </ProtectedRoutes>
+              }
+            />
+          </Route>
         </Route>
         <Route path="seminar-validate">
           <Route path="thesis-proposal">
@@ -142,6 +260,24 @@ function App() {
               element={
                 <ProtectedRoutes>
                   <ThesisProposalValidateDetail />
+                </ProtectedRoutes>
+              }
+            />
+          </Route>
+          <Route path="thesis-result">
+            <Route
+              index
+              element={
+                <ProtectedRoutes>
+                  <ThesisResultValidate />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="show/:id"
+              element={
+                <ProtectedRoutes>
+                  <ThesisResultValidateDetail />
                 </ProtectedRoutes>
               }
             />

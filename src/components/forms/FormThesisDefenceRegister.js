@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FormInput, FormSelect, FormButton } from "../../components";
+import { FormInput, FormSelect, FormButton } from "..";
 import sistatisApi from "../../api";
 import toast from "react-hot-toast";
 import seminarsApi from "../../api/seminarsApi";
@@ -8,12 +8,13 @@ import { FaSearch } from "react-icons/fa";
 import moment from "moment";
 import { DataLecturers } from "../../fetch";
 
-const FormThesisProposalRegister = () => {
+const FormThesisDefenceRegister = () => {
   const [thesis, setThesis] = useState(null);
   const [registerDate, setRegisterDate] = useState("");
   const [examiner1, setExaminer1] = useState("");
   const [examiner2, setExaminer2] = useState("");
   const [examiner3, setExaminer3] = useState("");
+  const [chiefOfExaminer, setChiefOfExaminer] = useState("");
   const [semester, setSemester] = useState("");
   const [errors, setErrors] = useState([]);
 
@@ -61,6 +62,9 @@ const FormThesisProposalRegister = () => {
   const handleExaminer3 = (e) => {
     setExaminer3(e.target.value);
   };
+  const handleChiefOfExaminer = (e) => {
+    setChiefOfExaminer(e.target.value);
+  };
   const handleSemester = (e) => {
     setSemester(e.target.value);
   };
@@ -71,6 +75,7 @@ const FormThesisProposalRegister = () => {
     setExaminer1("");
     setExaminer2("");
     setExaminer3("");
+    setChiefOfExaminer("");
     setSemester("");
   };
   const handleSubmit = (e) => {
@@ -89,7 +94,7 @@ const FormThesisProposalRegister = () => {
         if (error.response) {
           if (error.response.status === 422) {
             const data = error.response.data;
-            toast.error(data.message, {
+            toast.error(data.status, {
               id: toastAddData,
             });
             setErrors(data.data);
@@ -201,18 +206,14 @@ const FormThesisProposalRegister = () => {
         <div className="col-sm-12 mt-sm-0 mt-3">
           <form
             className={
-              thesis && thesis.student.status !== "Pendaftaran Tugas Akhir"
+              thesis && thesis.student.status !== "Seminar Hasil Tugas Akhir"
                 ? "d-none"
                 : null
             }
             onSubmit={handleSubmit}
           >
             <input type="hidden" name="thesis_id" value={thesis?.id} />
-            <input
-              type="hidden"
-              name="name"
-              value="Seminar Proposal Tugas Akhir"
-            />
+            <input type="hidden" name="name" value="Sidang Tugas Akhir" />
             <h2 className="lead">
               <strong>Seminar</strong>
             </h2>
@@ -272,6 +273,21 @@ const FormThesisProposalRegister = () => {
                 disabledOther={examiner2}
               />
             </FormSelect>
+            <FormSelect
+              label="Ketua Sidang"
+              name="chief_of_examiner"
+              id="examiner3"
+              onChange={handleChiefOfExaminer}
+              value={chiefOfExaminer}
+              errors={errors?.chief_of_examiner}
+              disabled={!thesis && true}
+            >
+              <DataLecturers
+                data={thesis?.thesis.supervisors}
+                disabled={examiner1}
+                disabledOther={examiner2}
+              />
+            </FormSelect>
             <FormInput
               label="Semester"
               name="semester"
@@ -294,4 +310,4 @@ const FormThesisProposalRegister = () => {
   );
 };
 
-export default FormThesisProposalRegister;
+export default FormThesisDefenceRegister;
