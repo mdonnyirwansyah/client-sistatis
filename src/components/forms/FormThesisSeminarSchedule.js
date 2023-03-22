@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { FormInput, FormSelect, FormButton } from "../../components";
+import { FormInput, FormSelect, FormButton } from "..";
 import { DataLocations } from "../../fetch";
 import toast from "react-hot-toast";
 import sistatisApi from "../../api";
 import seminarsApi from "../../api/seminarsApi";
 import { useNavigate, useParams } from "react-router-dom";
 
-const FormThesisProposalSchedule = ({ data }) => {
+const FormThesisSeminarSchedule = ({ data }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [date, setDate] = useState("");
@@ -107,4 +107,4 @@ const FormThesisProposalSchedule = ({ data }) => {
   );
 };
 
-export default FormThesisProposalSchedule;
+export default FormThesisSeminarSchedule;

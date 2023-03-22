@@ -40,7 +40,9 @@ function DataThesisSeminarValidates() {
           </div>
           <div className="row mb-sm-0 mb-3">
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">NIM:</label>
-            <div className="col-sm-9">{thesisProposalValidate.thesis.student.nim}</div>
+            <div className="col-sm-9">
+              {thesisProposalValidate.thesis.student.nim}
+            </div>
           </div>
           <div className="row mb-sm-0 mb-3">
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
@@ -143,6 +145,16 @@ function DataThesisSeminarValidates() {
           </div>
         </div>
         <div className="col-sm-6">
+          {thesisProposalValidate.seminar.chief_of_examiner ? (
+            <div className="row mb-sm-0 mb-3">
+              <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
+                Ketua Sidang:
+              </label>
+              <div className="col-sm-9">
+                {thesisProposalValidate.seminar.chief_of_examiner.name}
+              </div>
+            </div>
+          ) : null}
           {thesisProposalValidate.seminar.examiners.map((examiner, index) => {
             return (
               <div className="row mb-sm-0 mb-3" key={index}>

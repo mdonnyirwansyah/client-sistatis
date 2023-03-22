@@ -1,24 +1,21 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { useLocation, useParams } from "react-router-dom";
-import { getThesisProposal } from "../api/seminarsApi";
-import {
-  FormThesisProposalDetail,
-  FormThesisProposalEdit,
-} from "../components";
+import { getThesisSeminar } from "../api/seminarsApi";
+import { FormThesisSeminarDetail, FormThesisSeminarEdit } from "../components";
 import moment from "moment";
 
 function DataThesisSeminars() {
   const { id } = useParams();
   const location = useLocation();
-  const isFormThesisProposalEdit = location.pathname.includes("/edit");
-  const isFormThesisProposalDetail = location.pathname.includes("/show");
+  const isFormThesisSeminarEdit = location.pathname.includes("/edit");
+  const isFormThesisSeminarDetail = location.pathname.includes("/show");
 
   const {
     isLoading,
     isError,
-    data: thesisProposal,
-  } = useQuery("thesisProposal", () => getThesisProposal(id), { retry: false });
+    data: thesisSeminar,
+  } = useQuery("thesisSeminar", () => getThesisSeminar(id), { retry: false });
 
   if (isLoading) {
     return "Loading...";
@@ -38,26 +35,24 @@ function DataThesisSeminars() {
           <hr />
           <div className="row mb-sm-0 mb-3">
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">Nama:</label>
-            <div className="col-sm-9">{thesisProposal.thesis.student.name}</div>
+            <div className="col-sm-9">{thesisSeminar.thesis.student.name}</div>
           </div>
           <div className="row mb-sm-0 mb-3">
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">NIM:</label>
-            <div className="col-sm-9">{thesisProposal.thesis.student.nim}</div>
+            <div className="col-sm-9">{thesisSeminar.thesis.student.nim}</div>
           </div>
           <div className="row mb-sm-0 mb-3">
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
               No. HP:
             </label>
-            <div className="col-sm-9">
-              {thesisProposal.thesis.student.phone}
-            </div>
+            <div className="col-sm-9">{thesisSeminar.thesis.student.phone}</div>
           </div>
           <div className="row mb-sm-0 mb-3">
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
               Status:
             </label>
             <div className="col-sm-9">
-              {thesisProposal.thesis.student.status}
+              {thesisSeminar.thesis.student.status}
             </div>
           </div>
         </div>
@@ -71,20 +66,20 @@ function DataThesisSeminars() {
               Tanggal Daftar:
             </label>
             <div className="col-sm-9">
-              {moment(thesisProposal.thesis.register_date).format("LL")}
+              {moment(thesisSeminar.thesis.register_date).format("LL")}
             </div>
           </div>
           <div className="row mb-sm-0 mb-3">
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
               Judul:
             </label>
-            <div className="col-sm-9">{thesisProposal.thesis.title}</div>
+            <div className="col-sm-9">{thesisSeminar.thesis.title}</div>
           </div>
           <div className="row mb-sm-0 mb-3">
             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">KBK:</label>
-            <div className="col-sm-9">{thesisProposal.thesis.field.name}</div>
+            <div className="col-sm-9">{thesisSeminar.thesis.field.name}</div>
           </div>
-          {thesisProposal.thesis.supervisors.map((supervisor, index) => {
+          {thesisSeminar.thesis.supervisors.map((supervisor, index) => {
             return (
               <div className="row mb-sm-0 mb-3" key={index}>
                 <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
@@ -96,17 +91,17 @@ function DataThesisSeminars() {
           })}
         </div>
       </div>
-      {isFormThesisProposalDetail ? (
+      {isFormThesisSeminarDetail ? (
         <>
           <div className="row mt-sm-0 mt-3">
             <div className="col-sm-6">
               <h2 className="lead">
-                <strong>{thesisProposal.seminar.name}</strong>
+                <strong>{thesisSeminar.seminar.name}</strong>
               </h2>
             </div>
             <div className="col-sm-6">
               <h2 className="lead text-sm-right mb-sm-2 mb-0">
-                <strong>Semester: {thesisProposal.seminar.semester}</strong>
+                <strong>Semester: {thesisSeminar.seminar.semester}</strong>
               </h2>
             </div>
           </div>
@@ -118,22 +113,18 @@ function DataThesisSeminars() {
                   Tanggal Daftar:
                 </label>
                 <div className="col-sm-9">
-                  {moment(thesisProposal.seminar.register_date).format(
+                  {moment(thesisSeminar.seminar.register_date).format(
                     "dddd, D MMMM YYYY"
                   )}
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-sm-6">
               <div className="row mb-sm-0 mb-3">
                 <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
                   Tanggal:
                 </label>
                 <div className="col-sm-9">
-                  {thesisProposal.seminar.date ? (
-                    moment(thesisProposal.seminar.date).format(
+                  {thesisSeminar.seminar.date ? (
+                    moment(thesisSeminar.seminar.date).format(
                       "dddd, D MMMM YYYY"
                     )
                   ) : (
@@ -148,8 +139,8 @@ function DataThesisSeminars() {
                   Jam:
                 </label>
                 <div className="col-sm-9">
-                  {thesisProposal.seminar.time ? (
-                    moment(thesisProposal.seminar.time, "HH:mm:ss").format(
+                  {thesisSeminar.seminar.time ? (
+                    moment(thesisSeminar.seminar.time, "HH:mm:ss").format(
                       "LT [WIB]"
                     )
                   ) : (
@@ -164,8 +155,8 @@ function DataThesisSeminars() {
                   Lokasi:
                 </label>
                 <div className="col-sm-9">
-                  {thesisProposal.seminar.location ? (
-                    thesisProposal.seminar.location.name
+                  {thesisSeminar.seminar.location ? (
+                    thesisSeminar.seminar.location.name
                   ) : (
                     <span className="badge badge-warning text-white">
                       Lokasi Belum Ditentukan
@@ -175,7 +166,17 @@ function DataThesisSeminars() {
               </div>
             </div>
             <div className="col-sm-6">
-              {thesisProposal.seminar.examiners.map((examiner, index) => {
+              {thesisSeminar.seminar.chief_of_examiner ? (
+                <div className="row mb-sm-0 mb-3">
+                  <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
+                    Ketua Sidang:
+                  </label>
+                  <div className="col-sm-9">
+                    {thesisSeminar.seminar.chief_of_examiner.name}
+                  </div>
+                </div>
+              ) : null}
+              {thesisSeminar.seminar.examiners.map((examiner, index) => {
                 return (
                   <div className="row mb-sm-0 mb-3" key={index}>
                     <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
@@ -187,10 +188,10 @@ function DataThesisSeminars() {
               })}
             </div>
           </div>
-          <FormThesisProposalDetail data={thesisProposal} />
+          <FormThesisSeminarDetail data={thesisSeminar} />
         </>
-      ) : isFormThesisProposalEdit ? (
-        <FormThesisProposalEdit data={thesisProposal} />
+      ) : isFormThesisSeminarEdit ? (
+        <FormThesisSeminarEdit data={thesisSeminar} />
       ) : null}
     </>
   );

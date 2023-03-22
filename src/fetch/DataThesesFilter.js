@@ -89,7 +89,7 @@ function DataThesesFilter() {
                       <td>{theses.student.nim}</td>
                       <td>{theses.student.name}</td>
                       <td>{theses.thesis.title}</td>
-                      <td>{theses.thesis.status}</td>
+                      <td>{theses.student.status}</td>
                       <td>
                         <div className="d-flex align-items-center justify-content-center">
                           <ButtonIcon

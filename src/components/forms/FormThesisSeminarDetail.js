@@ -1,10 +1,10 @@
 import sistatisApi from "../../api";
 import seminarsApi from "../../api/seminarsApi";
-import { ButtonPrint } from "../../components";
+import { ButtonPrint } from "..";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 
-const FormThesisProposalDetail = ({ data }) => {
+const FormThesisSeminarDetail = ({ data }) => {
   const { id } = useParams();
   const handlePrintUndangan = () => {
     const toastPrintUndangan = toast.loading("Loading...");
@@ -19,7 +19,10 @@ const FormThesisProposalDetail = ({ data }) => {
         const url = window.URL.createObjectURL(new Blob([response.data]));
         const link = document.createElement("a");
         link.href = url;
-        link.setAttribute("download", `undangan-${data.thesis.student.nim}.pdf`);
+        link.setAttribute(
+          "download",
+          `undangan-${data.thesis.student.nim}.pdf`
+        );
         document.body.appendChild(link);
         link.click();
         toast.success(`Successfully download!`, {
@@ -67,4 +70,4 @@ const FormThesisProposalDetail = ({ data }) => {
   );
 };
 
-export default FormThesisProposalDetail;
+export default FormThesisSeminarDetail;

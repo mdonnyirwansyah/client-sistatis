@@ -26,6 +26,8 @@ import ThesisDefenceEdit from "./data/thesis-defences/ThesisDefenceEdit";
 import ThesisDefenceRegister from "./seminar-registers/ThesisDefenceRegister";
 import ThesisDefenceSchedule from "./seminar-schedules/thesis-defences/ThesisDefenceSchedule";
 import ThesisDefenceScheduleDetail from "./seminar-schedules/thesis-defences/ThesisDefenceScheduleDetail";
+import ThesisDefenceValidate from "./seminar-validates/thesis-defences/ThesisDefenceValidate";
+import ThesisDefenceValidateDetail from "./seminar-validates/thesis-defences/ThesisDefenceValidateDetail";
 import Profile from "./account/Profile";
 import UpdatePassword from "./account/UpdatePassword";
 import NotFound from "./NotFound";
@@ -59,6 +61,8 @@ export {
   ThesisDefenceRegister,
   ThesisDefenceSchedule,
   ThesisDefenceScheduleDetail,
+  ThesisDefenceValidate,
+  ThesisDefenceValidateDetail,
   Profile,
   UpdatePassword,
   NotFound,

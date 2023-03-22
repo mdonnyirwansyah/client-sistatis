@@ -9,7 +9,9 @@ const FormThesisFilter = ({ onSubmit }) => {
           <DataFields />
         </FormSelect>
         <FormSelect label="Status" type="no-label" name="status" id="status">
-          <option value="Tugas Akhir">Tugas Akhir</option>
+          <option value="Pendaftaran Tugas Akhir">
+            Pendaftaran Tugas Akhir
+          </option>
           <option value="Seminar Proposal Tugas Akhir">
             Seminar Proposal Tugas Akhir
           </option>

@@ -12,6 +12,7 @@ import DataThesisResultSchedules from "./DataThesisResultSchedules";
 import DataThesisResultValidates from "./DataThesisResultValidates";
 import DataThesisDefences from "./DataThesisDefences";
 import DataThesisDefenceSchedules from "./DataThesisDefenceSchedules";
+import DataThesisDefenceValidates from "./DataThesisDefenceValidates";
 import DataThesisSeminars from "./DataThesisSeminars";
 import DataThesisSeminarValidates from "./DataThesisSeminarValidates";
 import DataThesisSeminarSchedules from "./DataThesisSeminarSchedules";
@@ -31,6 +32,7 @@ export {
   DataThesisResultValidates,
   DataThesisDefences,
   DataThesisDefenceSchedules,
+  DataThesisDefenceValidates,
   DataThesisSeminars,
   DataThesisSeminarValidates,
   DataThesisSeminarSchedules,

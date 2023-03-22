@@ -23,10 +23,15 @@ export const getThesisProposals = () =>
       throw error.message;
     });
 
-export const getThesisProposal = (id) =>
+export const getThesisSeminar = (id) =>
   sistatisApi
     .get(`${seminarsApi}/${id}`)
     .then((response) => response.data.data);
+
+    export const getThesisSeminarSchedule = (id) =>
+      sistatisApi
+        .get(`${seminarsApi}/${id}`)
+        .then((response) => response.data.data);
 
 export const getThesisProposalSchedules = () =>
   sistatisApi
@@ -50,11 +55,6 @@ export const getThesisProposalSchedules = () =>
 
       throw error.message;
     });
-
-export const getThesisProposalSchedule = (id) =>
-  sistatisApi
-    .get(`${seminarsApi}/${id}`)
-    .then((response) => response.data.data);
 
 export const getThesisProposalValidates = () =>
   sistatisApi

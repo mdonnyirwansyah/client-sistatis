@@ -33,6 +33,8 @@ import {
   ThesisDefenceScheduleDetail,
   NotFound,
   ThesisDetail,
+  ThesisDefenceValidate,
+  ThesisDefenceValidateDetail,
 } from "./pages";
 
 function App() {
@@ -278,6 +280,24 @@ function App() {
               element={
                 <ProtectedRoutes>
                   <ThesisResultValidateDetail />
+                </ProtectedRoutes>
+              }
+            />
+          </Route>
+          <Route path="thesis-defence">
+            <Route
+              index
+              element={
+                <ProtectedRoutes>
+                  <ThesisDefenceValidate />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="show/:id"
+              element={
+                <ProtectedRoutes>
+                  <ThesisDefenceValidateDetail />
                 </ProtectedRoutes>
               }
             />

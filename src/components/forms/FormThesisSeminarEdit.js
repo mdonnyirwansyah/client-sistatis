@@ -6,7 +6,7 @@ import seminarsApi from "../../api/seminarsApi";
 import { DataLecturers } from "../../fetch";
 import { useNavigate, useParams } from "react-router-dom";
 
-const FormThesisProposalEdit = ({ data }) => {
+const FormThesisSeminarEdit = ({ data }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [registerDate, setRegisterDate] = useState(data.seminar.register_date);
@@ -147,4 +147,4 @@ const FormThesisProposalEdit = ({ data }) => {
   );
 };
 
-export default FormThesisProposalEdit;
+export default FormThesisSeminarEdit;
