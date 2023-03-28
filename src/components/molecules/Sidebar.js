@@ -38,6 +38,11 @@ function Sidebar() {
             active={location.pathname.includes("/data") ? true : false}
           >
             <NavItem
+              title="Dosen"
+              url="/data/lecturer"
+              icon={<FaRegCircle className="nav-icon" />}
+            />
+            <NavItem
               title="Tugas Akhir"
               url="/data/thesis"
               icon={<FaRegCircle className="nav-icon" />}

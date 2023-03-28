@@ -10,9 +10,9 @@ export const getFields = () =>
       return response.data.data;
     })
     .catch((error) => {
-      var fileds = JSON.parse(localStorage.getItem("fields"));
-      if (fileds) {
-        return fileds;
+      var fields = JSON.parse(localStorage.getItem("fields"));
+      if (fields) {
+        return fields;
       }
 
       throw error.message;

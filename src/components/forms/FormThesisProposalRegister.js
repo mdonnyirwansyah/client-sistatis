@@ -272,26 +272,16 @@ const FormThesisProposalRegister = () => {
                 disabledOther={examiner2}
               />
             </FormSelect>
-            <FormSelect
+            <FormInput
               label="Semester"
               name="semester"
               id="semester"
+              type="text"
               onChange={handleSemester}
               value={semester}
               errors={errors?.semester}
               disabled={!thesis && true}
-            >
-              <option value="V">V</option>
-              <option value="VI">VI</option>
-              <option value="VII">VII</option>
-              <option value="VIII">VIII</option>
-              <option value="IX">IX</option>
-              <option value="X">X</option>
-              <option value="XI">XI</option>
-              <option value="XII">XII</option>
-              <option value="XIII">XIII</option>
-              <option value="XIV">XIV</option>
-            </FormSelect>
+            />
             <FormButton
               label="Submit"
               type="submit"

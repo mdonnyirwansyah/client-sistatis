@@ -16,6 +16,7 @@ const FormThesisCreate = () => {
   const [field, setField] = useState("");
   const [supervisor1, setSupervisor1] = useState("");
   const [supervisor2, setSupervisor2] = useState("");
+  const [semester, setSemester] = useState("");
 
   const [errors, setErrors] = useState({});
 
@@ -43,6 +44,9 @@ const FormThesisCreate = () => {
   const handleSupervisor2 = (e) => {
     setSupervisor2(e.target.value);
   };
+  const handleSemester = (e) => {
+    setSemester(e.target.value);
+  };
   const handleClearForm = () => {
     setErrors({});
     setName("");
@@ -53,6 +57,7 @@ const FormThesisCreate = () => {
     setField("");
     setSupervisor1("");
     setSupervisor2("");
+    setSemester("");
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -175,6 +180,15 @@ const FormThesisCreate = () => {
       >
         <DataLecturers disabled={supervisor1} />
       </FormSelect>
+      <FormInput
+        label="Semester"
+        name="semester"
+        id="semester"
+        type="text"
+        onChange={handleSemester}
+        value={semester}
+        errors={errors?.semester}
+      />
       <FormButton label="Submit" type="submit" />
     </form>
   );

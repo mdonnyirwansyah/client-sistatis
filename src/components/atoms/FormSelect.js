@@ -14,20 +14,18 @@ function FormSelect({
   return (
     <>
       {type === "no-label" ? (
-        <div className="col-sm-6">
-          <div className="form-group">
-            <select
-              className="custom-select"
-              id={id}
-              name={name}
-              onChange={onChange}
-              value={value}
-              disabled={disabled}
-            >
-              <option value="">Pilih {label}</option>
-              {children}
-            </select>
-          </div>
+        <div className="form-group">
+          <select
+            className="custom-select"
+            id={id}
+            name={name}
+            onChange={onChange}
+            value={value}
+            disabled={disabled}
+          >
+            <option value="">Pilih {label}</option>
+            {children}
+          </select>
         </div>
       ) : (
         <div className="form-group row">

@@ -1,5 +1,6 @@
 import Login from "./Login";
 import Dashboard from "./Dashboard";
+import LecturerClassification from "./data/lecturers/LecturerClassification";
 import Thesis from "./data/theses/Thesis";
 import ThesisCreate from "./data/theses/ThesisCreate";
 import ThesisDetail from "./data/theses/ThesisDetail";
@@ -35,6 +36,7 @@ import NotFound from "./NotFound";
 export {
   Login,
   Dashboard,
+  LecturerClassification,
   Thesis,
   ThesisDetail,
   ThesisCreate,

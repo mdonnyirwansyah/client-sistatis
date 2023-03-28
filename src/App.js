@@ -6,6 +6,7 @@ import {
   Dashboard,
   Profile,
   UpdatePassword,
+  LecturerClassification,
   Thesis,
   ThesisCreate,
   ThesisEdit,
@@ -31,10 +32,10 @@ import {
   ThesisDefenceRegister,
   ThesisDefenceSchedule,
   ThesisDefenceScheduleDetail,
-  NotFound,
   ThesisDetail,
   ThesisDefenceValidate,
   ThesisDefenceValidateDetail,
+  NotFound,
 } from "./pages";
 
 function App() {
@@ -50,6 +51,16 @@ function App() {
           }
         />
         <Route path="data">
+          <Route path="Lecturer">
+            <Route
+              index
+              element={
+                <ProtectedRoutes>
+                  <LecturerClassification />
+                </ProtectedRoutes>
+              }
+            />
+          </Route>
           <Route path="thesis">
             <Route
               index
