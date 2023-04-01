@@ -1,200 +1,187 @@
-import React from "react";
-import { useQuery } from "react-query";
-import { useLocation, useParams } from "react-router-dom";
-import { getThesisSeminar } from "../api/seminarsApi";
-import { FormThesisSeminarDetail, FormThesisSeminarEdit } from "../components";
-import moment from "moment";
+import React, { useState } from 'react';
+import { FaEye, FaPen, FaTrashAlt } from 'react-icons/fa';
+import { useQuery } from 'react-query';
+import seminarsApi, { getThesisSeminars } from '../api/seminarsApi';
+import {
+    ButtonIcon,
+    DataError,
+    DataLoading,
+    DataNotFound,
+    FormButtonDelete,
+    Pagination,
+} from '../components';
+import swal from 'sweetalert';
+import toast from 'react-hot-toast';
+import sistatisApi from '../api';
+import { useSelector } from 'react-redux';
 
-function DataThesisSeminars() {
-  const { id } = useParams();
-  const location = useLocation();
-  const isFormThesisSeminarEdit = location.pathname.includes("/edit");
-  const isFormThesisSeminarDetail = location.pathname.includes("/show");
+function DataThesisSeminars({ name }) {
+    const [params, setParams] = useState({
+        name: name,
+        page: '',
+    });
 
-  const {
-    isLoading,
-    isError,
-    data: thesisSeminar,
-  } = useQuery("thesisSeminar", () => getThesisSeminar(id), { retry: false });
+    const {
+        isLoading,
+        isError,
+        refetch,
+        data: thesisSeminars,
+    } = useQuery(['thesisSeminars', params], () => getThesisSeminars(params), {
+        retry: false,
+    });
+    const { user } = useSelector((state) => state.auth);
 
-  if (isLoading) {
-    return "Loading...";
-  }
+    const handlePage = (e) => {
+        const page = e.target.getAttribute('data-value');
 
-  if (isError) {
-    return "Something when wrong...";
-  }
+        setParams((params) => ({
+            ...params,
+            page: page,
+        }));
+    };
 
-  return (
-    <>
-      <div className="row">
-        <div className="col-sm-6">
-          <h2 className="lead">
-            <strong>Mahasiswa</strong>
-          </h2>
-          <hr />
-          <div className="row mb-sm-0 mb-3">
-            <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">Nama:</label>
-            <div className="col-sm-9">{thesisSeminar.thesis.student.name}</div>
-          </div>
-          <div className="row mb-sm-0 mb-3">
-            <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">NIM:</label>
-            <div className="col-sm-9">{thesisSeminar.thesis.student.nim}</div>
-          </div>
-          <div className="row mb-sm-0 mb-3">
-            <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
-              No. HP:
-            </label>
-            <div className="col-sm-9">{thesisSeminar.thesis.student.phone}</div>
-          </div>
-          <div className="row mb-sm-0 mb-3">
-            <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
-              Status:
-            </label>
-            <div className="col-sm-9">
-              {thesisSeminar.thesis.student.status}
-            </div>
-          </div>
-        </div>
-        <div className="col-sm-6 mt-sm-0 mt-3">
-          <h2 className="lead">
-            <strong>Tugas Akhir</strong>
-          </h2>
-          <hr />
-          <div className="row mb-sm-0 mb-3">
-            <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
-              Tanggal Daftar:
-            </label>
-            <div className="col-sm-9">
-              {moment(thesisSeminar.thesis.register_date).format("LL")}
-            </div>
-          </div>
-          <div className="row mb-sm-0 mb-3">
-            <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
-              Judul:
-            </label>
-            <div className="col-sm-9">{thesisSeminar.thesis.title}</div>
-          </div>
-          <div className="row mb-sm-0 mb-3">
-            <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">KBK:</label>
-            <div className="col-sm-9">{thesisSeminar.thesis.field.name}</div>
-          </div>
-          {thesisSeminar.thesis.supervisors.map((supervisor, index) => {
-            return (
-              <div className="row mb-sm-0 mb-3" key={index}>
-                <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
-                  {supervisor.status}:
-                </label>
-                <div className="col-sm-9">{supervisor.name}</div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      {isFormThesisSeminarDetail ? (
+    const handleDelete = (id) => {
+        swal({
+            title: 'Are you sure?',
+            text: 'Once deleted, you will not be able to recover this data!',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                const toastDeleteData = toast.loading('Loading...');
+                const deleteData = async (id) => {
+                    try {
+                        const response = await sistatisApi.delete(
+                            `${seminarsApi}/${id}`
+                        );
+                        const data = response.data;
+                        refetch();
+                        toast.success(data.message, {
+                            id: toastDeleteData,
+                        });
+                    } catch (error) {
+                        if (error.response) {
+                            if (error.response) {
+                                toast.error('Something when wrong...', {
+                                    id: toastDeleteData,
+                                });
+                            }
+                        } else {
+                            toast.error(error.message, {
+                                id: toastDeleteData,
+                            });
+                        }
+                    }
+                };
+
+                deleteData(id);
+            } else {
+                swal('Your data is safe!');
+            }
+        });
+    };
+
+    return (
         <>
-          <div className="row mt-sm-0 mt-3">
-            <div className="col-sm-6">
-              <h2 className="lead">
-                <strong>{thesisSeminar.seminar.name}</strong>
-              </h2>
+            <div className="table-responsive">
+                <table className="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Tanggal Daftar</th>
+                            <th>Tanggal Seminar</th>
+                            <th>NIM</th>
+                            <th>Nama</th>
+                            <th>Judul</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {isLoading ? (
+                            <DataLoading colSpan="7" />
+                        ) : isError ? (
+                            <DataError colSpan="7" />
+                        ) : thesisSeminars.data.length > 0 ? (
+                            thesisSeminars.data.map((item, index) => {
+                                return (
+                                    <tr key={item.id}>
+                                        <td>{thesisSeminars.meta.from + index}</td>
+                                        <td>{item.seminar.register_date}</td>
+                                        <td>
+                                            {item.seminar.date ? (
+                                                item.seminar.date
+                                            ) : (
+                                                <span className="badge badge-warning text-white">
+                                                    Belum Ditentukan
+                                                </span>
+                                            )}
+                                        </td>
+                                        <td>{item.thesis.student.nim}</td>
+                                        <td>{item.thesis.student.name}</td>
+                                        <td>{item.thesis.title}</td>
+                                        <td>
+                                            <div className="d-flex align-items-center justify-content-center">
+                                                {user?.role ===
+                                                    'Administrator' ||
+                                                user?.role === 'Coordinator' ||
+                                                user?.role ===
+                                                    'Head of Department' ? (
+                                                    <ButtonIcon
+                                                        title="Lihat"
+                                                        type="btn-outline-success mr-1"
+                                                        icon={<FaEye />}
+                                                        url={`show/${item.id}`}
+                                                    />
+                                                ) : null}
+
+                                                {user?.role ===
+                                                    'Administrator' ||
+                                                user?.role === 'Coordinator' ? (
+                                                    <>
+                                                        <ButtonIcon
+                                                            title="Edit"
+                                                            type={`btn-outline-warning ${
+                                                                user?.role ===
+                                                                'Administrator'
+                                                                    ? 'mx-1'
+                                                                    : 'mr-1'
+                                                            }`}
+                                                            icon={<FaPen />}
+                                                            url={`edit/${item.id}`}
+                                                        />
+                                                        <FormButtonDelete
+                                                            title="Hapus"
+                                                            icon={
+                                                                <FaTrashAlt />
+                                                            }
+                                                            onClick={() =>
+                                                                handleDelete(
+                                                                    item.id
+                                                                )
+                                                            }
+                                                        />
+                                                    </>
+                                                ) : null}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                );
+                            })
+                        ) : (
+                            <DataNotFound colSpan="7" />
+                        )}
+                    </tbody>
+                </table>
             </div>
-            <div className="col-sm-6">
-              <h2 className="lead text-sm-right mb-sm-2 mb-0">
-                <strong>Semester: {thesisSeminar.seminar.semester}</strong>
-              </h2>
-            </div>
-          </div>
-          <hr />
-          <div className="row">
-            <div className="col-sm-6">
-              <div className="row mb-sm-0 mb-3">
-                <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
-                  Tanggal Daftar:
-                </label>
-                <div className="col-sm-9">
-                  {moment(thesisSeminar.seminar.register_date).format(
-                    "dddd, D MMMM YYYY"
-                  )}
-                </div>
-              </div>
-              <div className="row mb-sm-0 mb-3">
-                <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
-                  Tanggal:
-                </label>
-                <div className="col-sm-9">
-                  {thesisSeminar.seminar.date ? (
-                    moment(thesisSeminar.seminar.date).format(
-                      "dddd, D MMMM YYYY"
-                    )
-                  ) : (
-                    <span className="badge badge-warning text-white">
-                      Tanggal Belum Ditentukan
-                    </span>
-                  )}
-                </div>
-              </div>
-              <div className="row mb-sm-0 mb-3">
-                <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
-                  Jam:
-                </label>
-                <div className="col-sm-9">
-                  {thesisSeminar.seminar.time ? (
-                    moment(thesisSeminar.seminar.time, "HH:mm:ss").format(
-                      "LT [WIB]"
-                    )
-                  ) : (
-                    <span className="badge badge-warning text-white">
-                      Jam Belum Ditentukan
-                    </span>
-                  )}
-                </div>
-              </div>
-              <div className="row mb-sm-0 mb-3">
-                <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
-                  Lokasi:
-                </label>
-                <div className="col-sm-9">
-                  {thesisSeminar.seminar.location ? (
-                    thesisSeminar.seminar.location.name
-                  ) : (
-                    <span className="badge badge-warning text-white">
-                      Lokasi Belum Ditentukan
-                    </span>
-                  )}
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-6">
-              {thesisSeminar.seminar.chief_of_examiner ? (
-                <div className="row mb-sm-0 mb-3">
-                  <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
-                    Ketua Sidang:
-                  </label>
-                  <div className="col-sm-9">
-                    {thesisSeminar.seminar.chief_of_examiner.name}
-                  </div>
-                </div>
-              ) : null}
-              {thesisSeminar.seminar.examiners.map((examiner, index) => {
-                return (
-                  <div className="row mb-sm-0 mb-3" key={index}>
-                    <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
-                      {examiner.status}:
-                    </label>
-                    <div className="col-sm-9">{examiner.name}</div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          <FormThesisSeminarDetail data={thesisSeminar} />
+            {thesisSeminars ? (
+                <Pagination
+                    data={thesisSeminars.meta}
+                    onClick={(e) => handlePage(e)}
+                />
+            ) : null}
         </>
-      ) : isFormThesisSeminarEdit ? (
-        <FormThesisSeminarEdit data={thesisSeminar} />
-      ) : null}
-    </>
-  );
+    );
 }
 
 export default DataThesisSeminars;

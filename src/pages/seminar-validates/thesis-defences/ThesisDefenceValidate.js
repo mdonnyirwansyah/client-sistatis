@@ -1,43 +1,20 @@
-import React from "react";
-import { Card, Main, Pagination } from "../../../components";
-import { DataThesisDefenceValidates } from "../../../fetch";
+import React from 'react';
+import { Card, Main, Pagination } from '../../../components';
+import { DataThesisSeminarsValidate } from '../../../fetch';
 
 function ThesisDefenceValidate() {
-  const pageLinks = [
-    {
-      title: "Prev",
-    },
-    {
-      title: "1",
-    },
-    {
-      title: "Next",
-    },
-  ];
+    const data = {
+        name: 'Sidang Tugas Akhir',
+        status: 'Penjadwalan',
+    };
 
-  return (
-    <Main title="Validasi Sidang TA">
-      <Card>
-        <div className="table-responsive">
-          <table className="table table-bordered">
-            <thead>
-              <tr>
-                <th style={{ width: 10 }}>No</th>
-                <th>Tanggal Seminar</th>
-                <th>Nama</th>
-                <th>Judul</th>
-                <th style={{ width: 30 }}>Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <DataThesisDefenceValidates />
-            </tbody>
-          </table>
-        </div>
-        <Pagination pageLinks={pageLinks} />
-      </Card>
-    </Main>
-  );
+    return (
+        <Main title={`Validasi ${data.name}`}>
+            <Card>
+                <DataThesisSeminarsValidate data={data} />
+            </Card>
+        </Main>
+    );
 }
 
 export default ThesisDefenceValidate;

@@ -1,33 +1,41 @@
-import sistatisApi from "./index";
+import sistatisApi from './index';
 
-const thesesApi = "/thesis";
+const thesesApi = '/thesis';
 
-export const getTheses = () =>
-  sistatisApi
-    .get(thesesApi)
-    .then((response) => {
-      localStorage.setItem("theses", JSON.stringify(response.data.data));
-      return response.data.data;
-    })
-    .catch((error) => {
-      var theses = JSON.parse(localStorage.getItem("theses"));
-      if (theses) {
-        return theses;
-      }
+export const getTheses = (params) =>
+    sistatisApi
+        .get(thesesApi, {
+            params: {
+                field: params.field,
+                status: params.status,
+                page: params.page,
+            },
+        })
+        .then((response) => {
+            localStorage.setItem('theses', JSON.stringify(response.data));
+            return response.data;
+        })
+        .catch((error) => {
+            var theses = JSON.parse(localStorage.getItem('theses'));
+            if (theses) {
+                return theses;
+            }
 
-      throw error.message;
-    });
+            throw error.message;
+        });
 
 export const getThesis = (id) =>
-  sistatisApi.get(`${thesesApi}/${id}`).then((response) => response.data.data);
+    sistatisApi
+        .get(`${thesesApi}/${id}`)
+        .then((response) => response.data.data);
 
 export const getThesisByNim = (nim) =>
-  sistatisApi
-    .get(`${thesesApi}/show`, {
-      params: { nim: nim },
-    })
-    .then((response) => {
-      return response.data.data;
-    });
+    sistatisApi
+        .get(`${thesesApi}/show`, {
+            params: { nim: nim },
+        })
+        .then((response) => {
+            return response.data.data;
+        });
 
 export default thesesApi;

@@ -1,43 +1,20 @@
-import React from "react";
-import { Card, Main, Pagination } from "../../../components";
-import { DataThesisResultSchedules } from "../../../fetch";
+import React from 'react';
+import { Card, Main } from '../../../components';
+import { DataThesisSeminarsSchedule } from '../../../fetch';
 
 function ThesisResultSchedule() {
-  const pageLinks = [
-    {
-      title: "Prev",
-    },
-    {
-      title: "1",
-    },
-    {
-      title: "Next",
-    },
-  ];
+    const data = {
+        name: 'Seminar Hasil Tugas Akhir',
+        status: 'Pendaftaran',
+    };
 
-  return (
-    <Main title="Penjadwalan Seminar Hasil TA">
-      <Card>
-        <div className="table-responsive">
-          <table className="table table-bordered">
-            <thead>
-              <tr>
-                <th style={{ width: 10 }}>No</th>
-                <th>Tanggal Daftar</th>
-                <th>Nama</th>
-                <th>Judul</th>
-                <th style={{ width: 30 }}>Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <DataThesisResultSchedules />
-            </tbody>
-          </table>
-        </div>
-        <Pagination pageLinks={pageLinks} />
-      </Card>
-    </Main>
-  );
+    return (
+        <Main title={`Penjadwalan ${data.name}`}>
+            <Card>
+                <DataThesisSeminarsSchedule data={data} />
+            </Card>
+        </Main>
+    );
 }
 
 export default ThesisResultSchedule;

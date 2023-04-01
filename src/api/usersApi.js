@@ -1,5 +1,5 @@
-import sistatisApi from "./index";
+import sistatisApi from './index';
 
-const usersApi = "/user";
+const usersApi = '/user';
 
 export default usersApi;

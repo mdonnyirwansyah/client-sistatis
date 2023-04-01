@@ -1,66 +1,159 @@
-import React from "react";
-import { FaEye } from "react-icons/fa";
-import { useQuery } from "react-query";
-import { getLecturersClassification } from "../api/lecturersApi";
+import React, { useState } from 'react';
+import { FaEye } from 'react-icons/fa';
+import { useQuery } from 'react-query';
+import { getLecturersClassification } from '../api/lecturersApi';
 import {
-  ButtonIcon,
-  DataError,
-  DataLoading,
-  DataNotFound,
-} from "../components";
+    ButtonIcon,
+    DataError,
+    DataLoading,
+    DataNotFound,
+    FormSelect,
+    Pagination,
+} from '../components';
+import DataSemesters from './DataSemesters';
 
-function DatalecturersClassification({ semester }) {
-  const {
-    isLoading,
-    isError,
-    data: lecturersClassification,
-  } = useQuery(
-    ["lecturersClassification", semester],
-    () => getLecturersClassification(semester),
-    { retry: false }
-  );
+function DatalecturersClassification() {
+    const [params, setParams] = useState({
+        semester: '',
+        page: '',
+    });
 
-  if (isLoading) {
-    return <DataLoading colSpan="12" />;
-  }
+    const {
+        isLoading,
+        isError,
+        data: lecturersClassification,
+    } = useQuery(
+        ['lecturersClassification', params],
+        () => getLecturersClassification(params),
+        { retry: false }
+    );
 
-  if (isError) {
-    return <DataError colSpan="12" />;
-  }
+    const handleFilter = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const semester = formData.get('semester');
 
-  return lecturersClassification.length > 0 ? (
-    lecturersClassification.map((lecturersClassification, index) => {
-      return (
-        <tr key={lecturersClassification.id}>
-          <td>{index + 1}</td>
-          <td>{lecturersClassification.nip}</td>
-          <td>{lecturersClassification.name}</td>
-          <td>{lecturersClassification.supervisors_1_by_semester_count}</td>
-          <td>{lecturersClassification.supervisors_2_by_semester_count}</td>
-          <td>{lecturersClassification.examiners_by_semester_count}</td>
-          <td>
-            {lecturersClassification.chief_of_examiners_by_semester_count}
-          </td>
-          <td>{lecturersClassification.supervisors1_count}</td>
-          <td>{lecturersClassification.supervisors2_count}</td>
-          <td>{lecturersClassification.examiners_count}</td>
-          <td>{lecturersClassification.chief_of_examiners_count}</td>
-          <td>
-            <div className="d-flex align-items-center justify-content-center">
-              <ButtonIcon
-                title="Lihat"
-                type={"btn-outline-success"}
-                icon={<FaEye />}
-                url={`show/${lecturersClassification.id}`}
-              />
+        setParams((params) => ({
+            ...params,
+            semester: semester,
+        }));
+    };
+
+    const handlePage = (e) => {
+        const page = e.target.getAttribute('data-value');
+
+        setParams((params) => ({
+            ...params,
+            page: page,
+        }));
+    };
+
+    return (
+        <>
+            <form className="mt-3" onSubmit={handleFilter}>
+                <div className="row">
+                    <div className="col-sm-10">
+                        <FormSelect
+                            label="Semester"
+                            type="no-label"
+                            name="semester"
+                            id="semester"
+                        >
+                            <DataSemesters />
+                        </FormSelect>
+                    </div>
+                    <div className="col-sm-2">
+                        <button
+                            type="submit"
+                            className="btn btn-block btn-primary"
+                        >
+                            Cari
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div className="table-responsive">
+                <table className="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>NIP</th>
+                            <th>Nama</th>
+                            <th>P1</th>
+                            <th>P2</th>
+                            <th>P</th>
+                            <th>KS</th>
+                            <th>Total P1</th>
+                            <th>Total P2</th>
+                            <th>Total P</th>
+                            <th>Total KS</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {isLoading ? (
+                            <DataLoading colSpan="12" />
+                        ) : isError ? (
+                            <DataError colSpan="12" />
+                        ) : lecturersClassification.data.length > 0 ? (
+                            lecturersClassification.data.map((item, index) => {
+                                return (
+                                    <tr key={item.id}>
+                                        <td>
+                                            {lecturersClassification.meta.from +
+                                                index}
+                                        </td>
+                                        <td>{item.nip}</td>
+                                        <td>{item.name}</td>
+                                        <td>
+                                            {
+                                                item.supervisors_1_by_semester_count
+                                            }
+                                        </td>
+                                        <td>
+                                            {
+                                                item.supervisors_2_by_semester_count
+                                            }
+                                        </td>
+                                        <td>
+                                            {item.examiners_by_semester_count}
+                                        </td>
+                                        <td>
+                                            {
+                                                item.chief_of_examiners_by_semester_count
+                                            }
+                                        </td>
+                                        <td>{item.supervisors1_count}</td>
+                                        <td>{item.supervisors2_count}</td>
+                                        <td>{item.examiners_count}</td>
+                                        <td>{item.chief_of_examiners_count}</td>
+                                        <td>
+                                            <div className="d-flex align-items-center justify-content-center">
+                                                <ButtonIcon
+                                                    title="Lihat"
+                                                    type={'btn-outline-success'}
+                                                    icon={<FaEye />}
+                                                    url={`show/${item.id}`}
+                                                />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                );
+                            })
+                        ) : (
+                            <DataNotFound colSpan="12" />
+                        )}
+                    </tbody>
+                </table>
             </div>
-          </td>
-        </tr>
-      );
-    })
-  ) : (
-    <DataNotFound colSpan="7" />
-  );
+            {lecturersClassification ? (
+                <Pagination
+                    data={lecturersClassification.meta}
+                    onClick={(e) => handlePage(e)}
+                />
+            ) : null}
+        </>
+    );
 }
 
 export default DatalecturersClassification;

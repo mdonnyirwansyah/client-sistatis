@@ -1,14 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
 
-function PageLink({ title, url }) {
-  return (
-    <li className="page-item">
-      <Link className="page-link" to={url}>
-        {title}
-      </Link>
-    </li>
-  );
+function PageLink({ label, value, active, onClick }) {
+    return (
+        <li className={`page-item  ${active ? 'active' : ''}`}>
+            <button
+                onClick={onClick}
+                dangerouslySetInnerHTML={{ __html: label }}
+                className="page-link"
+                data-value={value}
+                disabled={value ? false : true}
+            ></button>
+        </li>
+    );
 }
 
 export default PageLink;
