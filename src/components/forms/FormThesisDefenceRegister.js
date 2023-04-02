@@ -221,8 +221,7 @@ const FormThesisDefenceRegister = () => {
                     <form
                         className={
                             thesis &&
-                            thesis.thesis.status !==
-                                'Seminar Hasil Tugas Akhir'
+                            thesis.thesis.status !== 'Seminar Hasil Tugas Akhir'
                                 ? 'd-none'
                                 : null
                         }

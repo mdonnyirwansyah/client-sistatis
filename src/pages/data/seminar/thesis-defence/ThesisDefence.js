@@ -1,9 +1,9 @@
 import React from 'react';
-import { Main } from '../../../components';
-import { DataThesisSeminars } from '../../../fetch';
+import { Main } from '../../../../components';
+import { DataThesisSeminars } from '../../../../fetch';
 
-function ThesisProposal() {
-    const name = 'Seminar Proposal Tugas Akhir';
+function ThesisDefence() {
+    const name = 'Sidang Tugas Akhir';
 
     return (
         <Main title={`Data ${name}`}>
@@ -16,4 +16,4 @@ function ThesisProposal() {
     );
 }
 
-export default ThesisProposal;
+export default ThesisDefence;

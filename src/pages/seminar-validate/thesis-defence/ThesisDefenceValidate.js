@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Main, Pagination } from '../../../components';
+import { Card, Main } from '../../../components';
 import { DataThesisSeminarsValidate } from '../../../fetch';
 
 function ThesisDefenceValidate() {

@@ -59,9 +59,12 @@ const FormThesisDetail = ({ data }) => {
                         </label>
                         <div className="col-sm-9">{data.thesis.field.name}</div>
                     </div>
-                    {data.thesis.supervisors.map((supervisor, index) => {
+                    {data.thesis.supervisors.map((supervisor) => {
                         return (
-                            <div className="row mb-sm-0 mb-3" key={index}>
+                            <div
+                                className="row mb-sm-0 mb-3"
+                                key={supervisor.id}
+                            >
                                 <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
                                     {supervisor.status}:
                                 </label>
@@ -73,10 +76,10 @@ const FormThesisDetail = ({ data }) => {
                     })}
                 </div>
             </div>
-            {data.thesis.seminars
-                ? data.thesis.seminars.map((seminar, index) => {
+            {data.seminars
+                ? data.seminars.map((seminar) => {
                       return (
-                          <div key={index}>
+                          <div key={seminar.id}>
                               <div className="row mt-sm-0 mt-3">
                                   <div className="col-sm-6">
                                       <h2 className="lead">
@@ -110,7 +113,7 @@ const FormThesisDetail = ({ data }) => {
                                   <div className="col-sm-6">
                                       <div className="row mb-sm-0 mb-3">
                                           <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
-                                              Tanggal:
+                                              Tanggal Seminar:
                                           </label>
                                           <div className="col-sm-9">
                                               {seminar.date ? (
@@ -126,7 +129,7 @@ const FormThesisDetail = ({ data }) => {
                                       </div>
                                       <div className="row mb-sm-0 mb-3">
                                           <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
-                                              Jam:
+                                              Jam Seminar:
                                           </label>
                                           <div className="col-sm-9">
                                               {seminar.time ? (
@@ -146,8 +149,8 @@ const FormThesisDetail = ({ data }) => {
                                               Lokasi:
                                           </label>
                                           <div className="col-sm-9">
-                                              {seminar.location ? (
-                                                  seminar.location
+                                              {seminar.location.name ? (
+                                                  seminar.location.name
                                               ) : (
                                                   <span className="badge badge-warning text-white">
                                                       Lokasi Belum Ditentukan
@@ -157,40 +160,40 @@ const FormThesisDetail = ({ data }) => {
                                       </div>
                                   </div>
                                   <div className="col-sm-6">
-                                      {seminar.examiners.map(
-                                          (examiner, index) => {
-                                              return (
-                                                  <div
-                                                      className="row mb-sm-0 mb-3"
-                                                      key={index}
-                                                  >
-                                                      <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
-                                                          {examiner.status}:
-                                                      </label>
-                                                      <div className="col-sm-9">
-                                                          {examiner.name}
-                                                      </div>
+                                      {seminar.chief_of_examiner ? (
+                                          <div className="row mb-sm-0 mb-3">
+                                              <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
+                                                  Ketua Sidang:
+                                              </label>
+                                              <div className="col-sm-9">
+                                                  {
+                                                      seminar.chief_of_examiner
+                                                          .name
+                                                  }
+                                              </div>
+                                          </div>
+                                      ) : null}
+                                      {seminar.examiners.map((examiner) => {
+                                          return (
+                                              <div
+                                                  className="row mb-sm-0 mb-3"
+                                                  key={examiner.id}
+                                              >
+                                                  <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
+                                                      {examiner.status}:
+                                                  </label>
+                                                  <div className="col-sm-9">
+                                                      {examiner.name}
                                                   </div>
-                                              );
-                                          }
-                                      )}
+                                              </div>
+                                          );
+                                      })}
                                   </div>
                               </div>
                           </div>
                       );
                   })
                 : null}
-            {data.chief_of_examiner ? (
-                <div className="row mt-sm-0 mt-3">
-                    <div className="col-sm-12">
-                        <h2 className="lead">
-                            <strong>
-                                Ketua Penguji: {data.chief_of_examiner}
-                            </strong>
-                        </h2>
-                    </div>
-                </div>
-            ) : null}
         </>
     );
 };

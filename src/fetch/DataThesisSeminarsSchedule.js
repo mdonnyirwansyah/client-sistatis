@@ -62,7 +62,10 @@ function DataThesisSeminarsSchedule({ data }) {
                             thesisSeminarsSchedule.data.map((item, index) => {
                                 return (
                                     <tr key={item.id}>
-                                        <td>{thesisSeminarsSchedule.meta.from + index}</td>
+                                        <td>
+                                            {thesisSeminarsSchedule.meta.from +
+                                                index}
+                                        </td>
                                         <td>{item.seminar.register_date}</td>
                                         <td>
                                             {item.seminar.date ? (

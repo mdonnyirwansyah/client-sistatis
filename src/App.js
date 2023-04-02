@@ -7,7 +7,9 @@ import {
     Profile,
     UpdatePassword,
     LecturerClassification,
+    LecturerDetail,
     Thesis,
+    ThesisLecturerFilter,
     ThesisCreate,
     ThesisEdit,
     ThesisProposal,
@@ -60,6 +62,14 @@ function App() {
                                 </ProtectedRoutes>
                             }
                         />
+                        <Route
+                            path="show/:id"
+                            element={
+                                <ProtectedRoutes>
+                                    <LecturerDetail />
+                                </ProtectedRoutes>
+                            }
+                        />
                     </Route>
                     <Route path="thesis">
                         <Route
@@ -70,6 +80,24 @@ function App() {
                                 </ProtectedRoutes>
                             }
                         />
+                        <Route path="lecturer-filter">
+                            <Route
+                                index
+                                element={
+                                    <ProtectedRoutes>
+                                        <ThesisLecturerFilter />
+                                    </ProtectedRoutes>
+                                }
+                            />
+                            <Route
+                                path="show/:id"
+                                element={
+                                    <ProtectedRoutes>
+                                        <ThesisDetail />
+                                    </ProtectedRoutes>
+                                }
+                            />
+                        </Route>
                         <Route
                             path="create"
                             element={

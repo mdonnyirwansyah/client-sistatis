@@ -8,7 +8,7 @@ import {
     DataLoading,
     DataNotFound,
     FormButtonDelete,
-    FormThesisFilter,
+    FormThesesFilter,
     Pagination,
 } from '../components';
 import swal from 'sweetalert';
@@ -95,7 +95,7 @@ function DataTheses() {
 
     return (
         <>
-            <FormThesisFilter onSubmit={handleFilter} />
+            <FormThesesFilter onSubmit={handleFilter} />
             <div className="table-responsive">
                 <table className="table table-bordered">
                     <thead>

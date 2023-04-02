@@ -12,7 +12,7 @@ import {
 } from '../components';
 import DataSemesters from './DataSemesters';
 
-function DatalecturersClassification() {
+function DataLecturersClassification() {
     const [params, setParams] = useState({
         semester: '',
         page: '',
@@ -67,7 +67,7 @@ function DatalecturersClassification() {
                             type="submit"
                             className="btn btn-block btn-primary"
                         >
-                            Cari
+                            Filter
                         </button>
                     </div>
                 </div>
@@ -156,4 +156,4 @@ function DatalecturersClassification() {
     );
 }
 
-export default DatalecturersClassification;
+export default DataLecturersClassification;

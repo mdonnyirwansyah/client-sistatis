@@ -15,11 +15,17 @@ function Thesis() {
                     user?.role === 'Coordinator' ? (
                         <Link
                             to="/data/thesis/create"
-                            className="btn btn-primary"
+                            className="btn btn-primary mr-3"
                         >
                             Tambah
                         </Link>
                     ) : null}
+                    <Link
+                        to="/data/thesis/lecturer-filter"
+                        className="btn btn-info"
+                    >
+                        Filter Dosen
+                    </Link>
                 </div>
                 <hr />
                 <DataTheses />

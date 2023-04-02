@@ -1,6 +1,6 @@
 import React from 'react';
-import { Main } from '../../../components';
-import { DataThesisSeminars } from '../../../fetch';
+import { Main } from '../../../../components';
+import { DataThesisSeminars } from '../../../../fetch';
 
 function ThesisResult() {
     const name = 'Seminar Hasil Tugas Akhir';

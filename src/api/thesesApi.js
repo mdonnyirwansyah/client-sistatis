@@ -24,6 +24,34 @@ export const getTheses = (params) =>
             throw error.message;
         });
 
+export const getThesesLecturerFilter = (params) =>
+    sistatisApi
+        .get(`${thesesApi}/lecturer-filter`, {
+            params: {
+                lecturer_id: params.lecturer_id,
+                lecturer_status: params.lecturer_status,
+                student_status: params.student_status,
+                page: params.page,
+            },
+        })
+        .then((response) => {
+            localStorage.setItem(
+                'thesesLecturerFilter',
+                JSON.stringify(response.data)
+            );
+            return response.data;
+        })
+        .catch((error) => {
+            var thesesLecturerFilter = JSON.parse(
+                localStorage.getItem('thesesLecturerFilter')
+            );
+            if (thesesLecturerFilter) {
+                return thesesLecturerFilter;
+            }
+
+            throw error.message;
+        });
+
 export const getThesis = (id) =>
     sistatisApi
         .get(`${thesesApi}/${id}`)

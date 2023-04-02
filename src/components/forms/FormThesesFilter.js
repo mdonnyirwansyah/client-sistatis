@@ -1,7 +1,7 @@
 import { FormSelect } from '../../components';
 import { DataFields } from '../../fetch';
 
-const FormThesisFilter = ({ onSubmit }) => {
+const FormThesesFilter = ({ onSubmit }) => {
     return (
         <form onSubmit={onSubmit}>
             <div className="row">
@@ -38,7 +38,7 @@ const FormThesisFilter = ({ onSubmit }) => {
                 </div>
                 <div className="col-sm-2">
                     <button type="submit" className="btn btn-block btn-primary">
-                        Cari
+                        Filter
                     </button>
                 </div>
             </div>
@@ -46,4 +46,4 @@ const FormThesisFilter = ({ onSubmit }) => {
     );
 };
 
-export default FormThesisFilter;
+export default FormThesesFilter;

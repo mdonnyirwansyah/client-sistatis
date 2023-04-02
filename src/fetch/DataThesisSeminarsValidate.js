@@ -62,7 +62,10 @@ function DataThesiSeminarsValidate({ data }) {
                             thesisSeminarsValidate.data.map((item, index) => {
                                 return (
                                     <tr key={item.id}>
-                                        <td>{thesisSeminarsValidate.meta.from + index}</td>
+                                        <td>
+                                            {thesisSeminarsValidate.meta.from +
+                                                index}
+                                        </td>
                                         <td>{item.seminar.register_date}</td>
                                         <td>
                                             {item.seminar.date ? (

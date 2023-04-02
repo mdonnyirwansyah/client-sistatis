@@ -44,4 +44,9 @@ export const getLecturersClassification = (params) =>
             throw error.message;
         });
 
+export const getLecturer = (id) =>
+    sistatisApi
+        .get(`${lecturersApi}/${id}`)
+        .then((response) => response.data.data);
+
 export default lecturersApi;

@@ -106,7 +106,9 @@ function DataThesisSeminars({ name }) {
                             thesisSeminars.data.map((item, index) => {
                                 return (
                                     <tr key={item.id}>
-                                        <td>{thesisSeminars.meta.from + index}</td>
+                                        <td>
+                                            {thesisSeminars.meta.from + index}
+                                        </td>
                                         <td>{item.seminar.register_date}</td>
                                         <td>
                                             {item.seminar.date ? (
@@ -122,19 +124,12 @@ function DataThesisSeminars({ name }) {
                                         <td>{item.thesis.title}</td>
                                         <td>
                                             <div className="d-flex align-items-center justify-content-center">
-                                                {user?.role ===
-                                                    'Administrator' ||
-                                                user?.role === 'Coordinator' ||
-                                                user?.role ===
-                                                    'Head of Department' ? (
-                                                    <ButtonIcon
-                                                        title="Lihat"
-                                                        type="btn-outline-success mr-1"
-                                                        icon={<FaEye />}
-                                                        url={`show/${item.id}`}
-                                                    />
-                                                ) : null}
-
+                                                <ButtonIcon
+                                                    title="Lihat"
+                                                    type="btn-outline-success mr-1"
+                                                    icon={<FaEye />}
+                                                    url={`show/${item.id}`}
+                                                />
                                                 {user?.role ===
                                                     'Administrator' ||
                                                 user?.role === 'Coordinator' ? (
