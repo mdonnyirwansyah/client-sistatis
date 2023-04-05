@@ -7,25 +7,27 @@ import {
     DataError,
     DataLoading,
     DataNotFound,
-    FormSelect,
+    FormThesesLecturerFilter,
     Pagination,
 } from '../components';
-import DataLecturers from './DataLecturers';
 
 function DataThesesLecturerFilter() {
     const [params, setParams] = useState({
-        semester: '',
+        lecturer_id: '',
+        lecturer_status: '',
+        student_status: '',
         page: '',
     });
 
     const {
         isLoading,
         isError,
+        refetch,
         data: thesesLecturerFilter,
     } = useQuery(
         ['thesesLecturerFilter', params],
         () => getThesesLecturerFilter(params),
-        { retry: false }
+        { retry: false, enabled: false }
     );
 
     const handleFilter = (e) => {
@@ -41,6 +43,8 @@ function DataThesesLecturerFilter() {
             lecturer_status: lecturerStatus,
             student_status: studentStatus,
         }));
+
+        refetch();
     };
 
     const handlePage = (e) => {
@@ -54,51 +58,7 @@ function DataThesesLecturerFilter() {
 
     return (
         <>
-            <form className="mt-3" onSubmit={handleFilter}>
-                <div className="row">
-                    <div className="col-sm-3">
-                        <FormSelect
-                            label="Dosen"
-                            type="no-label"
-                            name="lecturer_id"
-                            id="lecturer_id"
-                        >
-                            <DataLecturers />
-                        </FormSelect>
-                    </div>
-                    <div className="col-sm-3">
-                        <FormSelect
-                            label="Status Dosen"
-                            type="no-label"
-                            name="lecturer_status"
-                            id="lecturer_status"
-                        >
-                            <option value="Pembimbing 1">Pembimbing 1</option>
-                            <option value="Pembimbing 2">Pembimbing 2</option>
-                            <option value="Penguji">Penguji</option>
-                        </FormSelect>
-                    </div>
-                    <div className="col-sm-3">
-                        <FormSelect
-                            label="Status Mahasiswa"
-                            type="no-label"
-                            name="student_status"
-                            id="student_status"
-                        >
-                            <option value="Belum Lulus">Belum Lulus</option>
-                            <option value="Lulus">Lulus</option>
-                        </FormSelect>
-                    </div>
-                    <div className="col-sm-3">
-                        <button
-                            type="submit"
-                            className="btn btn-block btn-primary"
-                        >
-                            Filter
-                        </button>
-                    </div>
-                </div>
-            </form>
+            <FormThesesLecturerFilter onSubmit={handleFilter} />
             <div className="table-responsive">
                 <table className="table table-bordered">
                     <thead>
@@ -108,6 +68,7 @@ function DataThesesLecturerFilter() {
                             <th>NIM</th>
                             <th>Nama</th>
                             <th>Judul</th>
+                            <th>KBK</th>
                             <th>Status</th>
                             <th>Lama TA</th>
                             <th>Tanggal Sidang</th>
@@ -119,7 +80,7 @@ function DataThesesLecturerFilter() {
                             <DataLoading colSpan="12" />
                         ) : isError ? (
                             <DataError colSpan="12" />
-                        ) : thesesLecturerFilter.data.length > 0 ? (
+                        ) : thesesLecturerFilter?.data.length > 0 ? (
                             thesesLecturerFilter.data.map((item, index) => {
                                 return (
                                     <tr key={item.id}>
@@ -131,6 +92,7 @@ function DataThesesLecturerFilter() {
                                         <td>{item.student.nim}</td>
                                         <td>{item.student.name}</td>
                                         <td>{item.thesis.title}</td>
+                                        <td>{item.thesis.field.name}</td>
                                         <td>{item.thesis.status}</td>
                                         <td>{item.thesis.duration}</td>
                                         <td>

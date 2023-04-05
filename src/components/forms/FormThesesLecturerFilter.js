@@ -1,42 +1,44 @@
 import { FormSelect } from '../../components';
-import { DataFields } from '../../fetch';
+import { DataLecturers } from '../../fetch';
 
-const FormThesesFilter = ({ onSubmit }) => {
+const FormThesesLecturerFilter = ({ onSubmit }) => {
     return (
         <form onSubmit={onSubmit}>
             <div className="row">
-                <div className="col-sm-5">
+                <div className="col-sm-3">
                     <FormSelect
-                        label="KBK"
+                        label="Dosen"
                         type="no-label"
-                        name="field"
-                        id="field"
+                        name="lecturer_id"
+                        id="lecturer_id"
                     >
-                        <DataFields />
+                        <DataLecturers />
                     </FormSelect>
                 </div>
-                <div className="col-sm-5">
+                <div className="col-sm-3">
                     <FormSelect
-                        label="Status"
+                        label="Status Dosen"
                         type="no-label"
-                        name="status"
-                        id="status"
+                        name="lecturer_status"
+                        id="lecturer_status"
                     >
-                        <option value="Pendaftaran Tugas Akhir">
-                            Pendaftaran Tugas Akhir
-                        </option>
-                        <option value="Seminar Proposal Tugas Akhir">
-                            Seminar Proposal Tugas Akhir
-                        </option>
-                        <option value="Seminar Hasil Tugas Akhir">
-                            Seminar Hasil Tugas Akhir
-                        </option>
-                        <option value="Sidang Tugas Akhir">
-                            Sidang Tugas Akhir
-                        </option>
+                        <option value="Pembimbing 1">Pembimbing 1</option>
+                        <option value="Pembimbing 2">Pembimbing 2</option>
+                        <option value="Penguji">Penguji</option>
                     </FormSelect>
                 </div>
-                <div className="col-sm-2">
+                <div className="col-sm-3">
+                    <FormSelect
+                        label="Status Mahasiswa"
+                        type="no-label"
+                        name="student_status"
+                        id="student_status"
+                    >
+                        <option value="Belum Lulus">Belum Lulus</option>
+                        <option value="Lulus">Lulus</option>
+                    </FormSelect>
+                </div>
+                <div className="col-sm-3">
                     <button type="submit" className="btn btn-block btn-primary">
                         Filter
                     </button>
@@ -46,4 +48,4 @@ const FormThesesFilter = ({ onSubmit }) => {
     );
 };
 
-export default FormThesesFilter;
+export default FormThesesLecturerFilter;

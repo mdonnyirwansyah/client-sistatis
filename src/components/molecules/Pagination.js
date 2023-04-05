@@ -3,8 +3,8 @@ import { PageLink } from '../../components';
 
 function Pagination({ data, onClick }) {
     return (
-        <div className="d-flex justify-content-between align-items-center">
-            <div>
+        <div className="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+            <div className="my-2 my-sm-0">
                 Showing {data.from ?? 0} to {data.to ?? 0} of {data.total}{' '}
                 entries
             </div>

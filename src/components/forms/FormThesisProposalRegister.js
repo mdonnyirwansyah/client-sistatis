@@ -143,7 +143,7 @@ const FormThesisProposalRegister = () => {
                         </div>
                         <div className="row mb-sm-0 mb-3">
                             <label className="col-sm-3 text-sm-right mb-sm-2 mb-0">
-                                Nim:
+                                NIM:
                             </label>
                             <div className="col-sm-9">{thesis.student.nim}</div>
                         </div>

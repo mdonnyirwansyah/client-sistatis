@@ -6,7 +6,7 @@ export const getTheses = (params) =>
     sistatisApi
         .get(thesesApi, {
             params: {
-                field: params.field,
+                field_id: params.field_id,
                 status: params.status,
                 page: params.page,
             },
@@ -19,6 +19,27 @@ export const getTheses = (params) =>
             var theses = JSON.parse(localStorage.getItem('theses'));
             if (theses) {
                 return theses;
+            }
+
+            throw error.message;
+        });
+
+export const getThesesClassification = () =>
+    sistatisApi
+        .get(`${thesesApi}/classification`)
+        .then((response) => {
+            localStorage.setItem(
+                'thesesClassification',
+                JSON.stringify(response.data.data)
+            );
+            return response.data.data;
+        })
+        .catch((error) => {
+            var thesesClassification = JSON.parse(
+                localStorage.getItem('thesesClassification')
+            );
+            if (thesesClassification) {
+                return thesesClassification;
             }
 
             throw error.message;
@@ -37,9 +58,9 @@ export const getThesesLecturerFilter = (params) =>
         .then((response) => {
             localStorage.setItem(
                 'thesesLecturerFilter',
-                JSON.stringify(response.data)
+                JSON.stringify(response.data.data)
             );
-            return response.data;
+            return response.data.data;
         })
         .catch((error) => {
             var thesesLecturerFilter = JSON.parse(

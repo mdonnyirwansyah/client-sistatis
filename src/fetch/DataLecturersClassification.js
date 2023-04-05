@@ -7,10 +7,9 @@ import {
     DataError,
     DataLoading,
     DataNotFound,
-    FormSelect,
+    FormLecturersClassificationFilter,
     Pagination,
 } from '../components';
-import DataSemesters from './DataSemesters';
 
 function DataLecturersClassification() {
     const [params, setParams] = useState({
@@ -50,28 +49,7 @@ function DataLecturersClassification() {
 
     return (
         <>
-            <form className="mt-3" onSubmit={handleFilter}>
-                <div className="row">
-                    <div className="col-sm-10">
-                        <FormSelect
-                            label="Semester"
-                            type="no-label"
-                            name="semester"
-                            id="semester"
-                        >
-                            <DataSemesters />
-                        </FormSelect>
-                    </div>
-                    <div className="col-sm-2">
-                        <button
-                            type="submit"
-                            className="btn btn-block btn-primary"
-                        >
-                            Filter
-                        </button>
-                    </div>
-                </div>
-            </form>
+            <FormLecturersClassificationFilter onSubmit={handleFilter} />
             <div className="table-responsive">
                 <table className="table table-bordered">
                     <thead>

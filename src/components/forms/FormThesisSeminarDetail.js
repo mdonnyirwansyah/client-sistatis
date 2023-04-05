@@ -49,6 +49,49 @@ const FormThesisSeminarDetail = ({ data }) => {
         printUndangan();
     };
 
+    const handlePrintBA = () => {
+        const toastPrintBA = toast.loading('Loading...');
+        const printBA = async () => {
+            try {
+                const response = await sistatisApi.get(
+                    `${seminarsApi}/berita-acara/${id}`,
+                    {
+                        responseType: 'blob',
+                    }
+                );
+                const url = window.URL.createObjectURL(
+                    new Blob([response.data])
+                );
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute(
+                    'download',
+                    `berita-acara-${data.thesis.student.nim}.pdf`
+                );
+                document.body.appendChild(link);
+                link.click();
+                toast.success(`Successfully download!`, {
+                    id: toastPrintBA,
+                });
+            } catch (error) {
+                if (error.response) {
+                    if (error.response.status === 422) {
+                        const data = error.response.data;
+                        toast.error(data.status, {
+                            id: toastPrintBA,
+                        });
+                    }
+                } else {
+                    toast.error(error.message, {
+                        id: toastPrintBA,
+                    });
+                }
+            }
+        };
+
+        printBA();
+    };
+
     return (
         <>
             <div className="row mt-sm-0 mt-3">
@@ -61,6 +104,13 @@ const FormThesisSeminarDetail = ({ data }) => {
             <hr />
             <div className="row">
                 <div className="col-sm-12 d-flex justify-content-end">
+                    <ButtonPrint
+                        label="Berita Acara"
+                        onClick={handlePrintBA}
+                        disabled={
+                            data.seminar.status !== 'Validasi' ? true : false
+                        }
+                    />
                     <ButtonPrint
                         label="Undangan"
                         onClick={handlePrintUndangan}

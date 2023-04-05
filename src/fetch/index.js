@@ -5,6 +5,7 @@ import DataLecturersClassification from './DataLecturersClassification';
 import DataLecturer from './DataLecturer';
 import DataLocations from './DataLocations';
 import DataTheses from './DataTheses';
+import DataThesesClassification from './DataThesesClassification';
 import DataThesesLecturerFilter from './DataThesesLecturerFilter';
 import DataThesis from './DataThesis';
 import DataThesisSeminar from './DataThesisSeminar';
@@ -22,6 +23,7 @@ export {
     DataLecturer,
     DataLocations,
     DataTheses,
+    DataThesesClassification,
     DataThesesLecturerFilter,
     DataThesis,
     DataThesisSeminar,

@@ -106,7 +106,7 @@ const FormThesisEdit = ({ data }) => {
                 errors={errors?.name}
             />
             <FormInput
-                label="Nim"
+                label="NIM"
                 name="nim"
                 id="nim"
                 type="text"

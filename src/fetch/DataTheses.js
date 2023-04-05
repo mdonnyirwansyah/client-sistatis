@@ -17,7 +17,7 @@ import toast from 'react-hot-toast';
 
 function DataTheses() {
     const [params, setParams] = useState({
-        field: '',
+        field_id: '',
         status: '',
         page: '',
     });
@@ -74,12 +74,12 @@ function DataTheses() {
     const handleFilter = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
-        const field = formData.get('field');
+        const fieldId = formData.get('field_id');
         const status = formData.get('status');
 
         setParams((params) => ({
             ...params,
-            field: field,
+            field_id: fieldId,
             status: status,
         }));
     };
@@ -105,6 +105,7 @@ function DataTheses() {
                             <th>NIM</th>
                             <th>Nama</th>
                             <th>Judul</th>
+                            <th>KBK</th>
                             <th>Status</th>
                             <th>Lama TA</th>
                             <th>Tanggal Sidang</th>
@@ -125,6 +126,7 @@ function DataTheses() {
                                         <td>{item.student.nim}</td>
                                         <td>{item.student.name}</td>
                                         <td>{item.thesis.title}</td>
+                                        <td>{item.thesis.field.name}</td>
                                         <td>{item.thesis.status}</td>
                                         <td>{item.thesis.duration}</td>
                                         <td>

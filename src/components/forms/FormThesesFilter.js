@@ -9,8 +9,8 @@ const FormThesesFilter = ({ onSubmit }) => {
                     <FormSelect
                         label="KBK"
                         type="no-label"
-                        name="field"
-                        id="field"
+                        name="field_id"
+                        id="field_id"
                     >
                         <DataFields />
                     </FormSelect>
