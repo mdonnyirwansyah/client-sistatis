@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const fetchClient = () => {
     const defaultOptions = {
-        baseURL: 'http://192.168.100.234:8000/api',
+        baseURL: 'https://api-sistatis.000webhostapp.com/api',
         headers: {
             'Content-Type': 'application/json',
         },
