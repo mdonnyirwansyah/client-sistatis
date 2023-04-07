@@ -1,7 +1,7 @@
 import { DataSemesters } from '../../fetch';
 import { FormSelect } from '../atoms';
 
-const FormLecturersClassificationFilter = ({ onSubmit }) => {
+const FormLecturerClassificationFilter = ({ onSubmit }) => {
     return (
         <form onSubmit={onSubmit}>
             <div className="row">
@@ -25,4 +25,4 @@ const FormLecturersClassificationFilter = ({ onSubmit }) => {
     );
 };
 
-export default FormLecturersClassificationFilter;
+export default FormLecturerClassificationFilter;

@@ -28,11 +28,72 @@ export const getThesesClassification = () =>
     sistatisApi
         .get(`${thesesApi}/classification`)
         .then((response) => {
+            let data = response.data.data;
+            let sums = [];
+
+            data?.forEach((student) => {
+                const index = sums.findIndex(
+                    (item) => item.generation === student.generation
+                );
+
+                if (index === -1) {
+                    sums.push({
+                        generation: student.generation,
+                        count: 1,
+                        gpa_sum: parseFloat(student.gpa),
+                        study_duration_sum: parseFloat(student.duration),
+                        thesis_duration_sum: parseFloat(
+                            student.thesis.duration
+                        ),
+                    });
+                } else {
+                    sums[index].count += 1;
+                    sums[index].gpa_sum += parseFloat(student.gpa);
+                    sums[index].study_duration_sum += parseFloat(
+                        student.duration
+                    );
+                    sums[index].thesis_duration_sum += parseFloat(
+                        student.thesis.duration
+                    );
+                }
+            });
+
+            const avgs = Object.keys(sums).map(function (result) {
+                const item = sums[result];
+
+                return {
+                    generation: item.generation,
+                    count: item.count,
+                    gpa_sum: item.gpa_sum,
+                    gpa_avg: item.gpa_sum / item.count,
+                    study_duration_sum: item.study_duration_sum,
+                    study_duration_avg: item.study_duration_sum / item.count,
+                    thesis_duration_sum: item.thesis_duration_sum,
+                    thesis_duration_avg: item.thesis_duration_sum / item.count,
+                };
+            });
+
+            const results = Object.keys(avgs).map(function (result) {
+                const item = avgs[result];
+
+                return {
+                    generation: item.generation,
+                    count: item.count,
+                    gpa_sum: item.gpa_sum.toFixed(2),
+                    gpa_avg: item.gpa_avg.toFixed(2),
+                    study_duration_sum: item.study_duration_sum.toFixed(2),
+                    study_duration_avg: item.study_duration_avg.toFixed(2),
+                    thesis_duration_sum: item.thesis_duration_sum.toFixed(2),
+                    thesis_duration_avg: item.thesis_duration_avg.toFixed(2),
+                };
+            });
+
             localStorage.setItem(
                 'thesesClassification',
-                JSON.stringify(response.data.data)
+                JSON.stringify(results)
             );
-            return response.data.data;
+
+            return results;
         })
         .catch((error) => {
             var thesesClassification = JSON.parse(

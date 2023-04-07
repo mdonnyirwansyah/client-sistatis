@@ -1,4 +1,4 @@
-import FormLecturersClassificationFilter from './FormLecturersClassificationFilter';
+import FormLecturerClassificationFilter from './FormLecturerClassificationFilter';
 import FormThesisCreate from './FormThesisCreate';
 import FormThesisEdit from './FormThesisEdit';
 import FormThesisDetail from './FormThesisDetail';
@@ -14,7 +14,7 @@ import FormThesisSeminarValidate from './FormThesisSeminarValidate';
 import FormProfile from './FormProfile';
 
 export {
-    FormLecturersClassificationFilter,
+    FormLecturerClassificationFilter,
     FormThesisCreate,
     FormThesisEdit,
     FormThesisDetail,

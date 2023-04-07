@@ -1,5 +1,6 @@
 {
     "name": "client-sistatis",
+    "proxy": "https://api-sistatis.000webhostapp.com/",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -9,6 +10,7 @@
         "@testing-library/user-event": "^13.5.0",
         "axios": "^1.2.1",
         "chart.js": "^4.2.1",
+        "chartjs-plugin-annotation": "^2.2.1",
         "moment": "^2.29.4",
         "react": "^18.2.0",
         "react-chartjs-2": "^5.2.0",

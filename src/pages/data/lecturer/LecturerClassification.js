@@ -1,11 +1,10 @@
-import { Card, Main } from '../../../components';
-import { DataLecturersClassification } from '../../../fetch';
+import { Card, LecturerClassificationTable, Main } from '../../../components';
 
 function LecturerClassification() {
     return (
         <Main title="Data Dosen">
             <Card>
-                <DataLecturersClassification />
+                <LecturerClassificationTable />
             </Card>
         </Main>
     );
