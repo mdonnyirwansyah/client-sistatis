@@ -4,7 +4,8 @@ const fetchClient = () => {
     const defaultOptions = {
         baseURL: 'https://api-sistatis.000webhostapp.com/api',
         headers: {
-            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
         },
     };
 
