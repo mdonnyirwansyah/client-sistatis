@@ -52,7 +52,7 @@ export const gpaOptions = {
                     borderColor: 'black',
                     borderDash: [6, 6],
                     borderDashOffset: 0,
-                    borderWidth: 3,
+                    borderWidth: 2,
                     label: {
                         enabled: true,
                         content: (ctx) => `Rata-rata ${avarage(ctx)}`,
@@ -88,7 +88,7 @@ export const studyOptions = {
                     borderColor: 'black',
                     borderDash: [6, 6],
                     borderDashOffset: 0,
-                    borderWidth: 3,
+                    borderWidth: 2,
                     label: {
                         enabled: true,
                         content: (ctx) => `Rata-rata ${avarage(ctx)}`,
@@ -124,7 +124,7 @@ export const thesisOptions = {
                     borderColor: 'black',
                     borderDash: [6, 6],
                     borderDashOffset: 0,
-                    borderWidth: 3,
+                    borderWidth: 2,
                     label: {
                         enabled: true,
                         content: (ctx) => `Rata-rata ${avarage(ctx)}`,
