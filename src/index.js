@@ -11,7 +11,10 @@ import { Provider } from 'react-redux';
 import axios from 'axios';
 // import swDev from "./swDev";
 
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.withCredentials = true;
+axios.defaults.crossDomain = true;
+
 const container = document.getElementById('root');
 const root = createRoot(container);
 const queryClient = new QueryClient();
