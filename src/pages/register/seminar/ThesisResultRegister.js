@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, FormThesisResultRegister, Main } from '../../components';
+import { Card, FormThesisResultRegister, Main } from '../../../components';
 
 function ThesisResultRegister() {
     return (

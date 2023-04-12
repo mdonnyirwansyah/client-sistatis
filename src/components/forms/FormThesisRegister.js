@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { FormInput, FormSelect, FormButton } from '../../components';
+import { FormInput, FormSelect, FormButton } from '..';
 import { DataFields, DataLecturers } from '../../fetch';
 import thesesApi from '../../api/thesesApi';
 import sistatisApi from '../../api';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
-const FormThesisCreate = () => {
+const FormThesisRegister = () => {
     const navigate = useNavigate();
     const [name, setName] = useState('');
     const [nim, setNim] = useState('');
@@ -194,4 +194,4 @@ const FormThesisCreate = () => {
     );
 };
 
-export default FormThesisCreate;
+export default FormThesisRegister;

@@ -1,9 +1,9 @@
 import FormLecturerClassificationFilter from './FormLecturerClassificationFilter';
-import FormThesisCreate from './FormThesisCreate';
 import FormThesisEdit from './FormThesisEdit';
 import FormThesisDetail from './FormThesisDetail';
 import FormThesesFilter from './FormThesesFilter';
 import FormThesesLecturerFilter from './FormThesesLecturerFilter';
+import FormThesisRegister from './FormThesisRegister';
 import FormThesisProposalRegister from './FormThesisProposalRegister';
 import FormThesisResultRegister from './FormThesisResultRegister';
 import FormThesisDefenceRegister from './FormThesisDefenceRegister';
@@ -15,11 +15,11 @@ import FormProfile from './FormProfile';
 
 export {
     FormLecturerClassificationFilter,
-    FormThesisCreate,
     FormThesisEdit,
     FormThesisDetail,
     FormThesesFilter,
     FormThesesLecturerFilter,
+    FormThesisRegister,
     FormThesisProposalRegister,
     FormThesisResultRegister,
     FormThesisDefenceRegister,

@@ -4,13 +4,13 @@ import LecturerClassification from './data/lecturer/LecturerClassification';
 import LecturerDetail from './data/lecturer/LecturerDetail';
 import Thesis from './data/thesis/Thesis';
 import ThesisLecturerFilter from './data/thesis/ThesisLecturerFilter';
-import ThesisCreate from './data/thesis/ThesisCreate';
+import ThesisRegister from './register/ThesisRegister';
 import ThesisDetail from './data/thesis/ThesisDetail';
 import ThesisEdit from './data/thesis/ThesisEdit';
 import ThesisProposal from './data/seminar/thesis-proposal/ThesisProposal';
 import ThesisProposalDetail from './data/seminar/thesis-proposal/ThesisProposalDetail';
 import ThesisProposalEdit from './data/seminar/thesis-proposal/ThesisProposalEdit';
-import ThesisProposalRegister from './seminar-register/ThesisProposalRegister';
+import ThesisProposalRegister from './register/seminar/ThesisProposalRegister';
 import ThesisProposalSchedule from './seminar-schedule/thesis-proposal/ThesisProposalSchedule';
 import ThesisProposalScheduleDetail from './seminar-schedule/thesis-proposal/ThesisProposalScheduleDetail';
 import ThesisProposalValidate from './seminar-validate/thesis-proposal/ThesisProposalValidate';
@@ -18,7 +18,7 @@ import ThesisProposalValidateDetail from './seminar-validate/thesis-proposal/The
 import ThesisResult from './data/seminar/thesis-result/ThesisResult';
 import ThesisResultDetail from './data/seminar/thesis-result/ThesisResultDetail';
 import ThesisResultEdit from './data/seminar/thesis-result/ThesisResultEdit';
-import ThesisResultRegister from './seminar-register/ThesisResultRegister';
+import ThesisResultRegister from './register/seminar/ThesisResultRegister';
 import ThesisResultSchedule from './seminar-schedule/thesis-result/ThesisResultSchedule';
 import ThesisResultScheduleDetail from './seminar-schedule/thesis-result/ThesisResultScheduleDetail';
 import ThesisResultValidate from './seminar-validate/thesis-result/ThesisResultValidate';
@@ -26,7 +26,7 @@ import ThesisResultValidateDetail from './seminar-validate/thesis-result/ThesisR
 import ThesisDefence from './data/seminar/thesis-defence/ThesisDefence';
 import ThesisDefenceDetail from './data/seminar/thesis-defence/ThesisDefenceDetail';
 import ThesisDefenceEdit from './data/seminar/thesis-defence/ThesisDefenceEdit';
-import ThesisDefenceRegister from './seminar-register/ThesisDefenceRegister';
+import ThesisDefenceRegister from './register/seminar/ThesisDefenceRegister';
 import ThesisDefenceSchedule from './seminar-schedule/thesis-defence/ThesisDefenceSchedule';
 import ThesisDefenceScheduleDetail from './seminar-schedule/thesis-defence/ThesisDefenceScheduleDetail';
 import ThesisDefenceValidate from './seminar-validate/thesis-defence/ThesisDefenceValidate';
@@ -42,7 +42,7 @@ export {
     LecturerDetail,
     Thesis,
     ThesisLecturerFilter,
-    ThesisCreate,
+    ThesisRegister,
     ThesisDetail,
     ThesisEdit,
     ThesisProposal,

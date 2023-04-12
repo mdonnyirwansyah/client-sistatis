@@ -10,7 +10,7 @@ import {
     LecturerDetail,
     Thesis,
     ThesisLecturerFilter,
-    ThesisCreate,
+    ThesisRegister,
     ThesisEdit,
     ThesisProposal,
     ThesisProposalDetail,
@@ -98,14 +98,6 @@ function App() {
                                 }
                             />
                         </Route>
-                        <Route
-                            path="create"
-                            element={
-                                <ProtectedRoutes>
-                                    <ThesisCreate />
-                                </ProtectedRoutes>
-                            }
-                        />
                         <Route
                             path="show/:id"
                             element={
@@ -204,31 +196,41 @@ function App() {
                         </Route>
                     </Route>
                 </Route>
-                <Route path="seminar-register">
+                <Route path="register">
                     <Route
-                        path="thesis-proposal"
+                        path="thesis"
                         element={
                             <ProtectedRoutes>
-                                <ThesisProposalRegister />
+                                <ThesisRegister />
                             </ProtectedRoutes>
                         }
                     />
-                    <Route
-                        path="thesis-result"
-                        element={
-                            <ProtectedRoutes>
-                                <ThesisResultRegister />
-                            </ProtectedRoutes>
-                        }
-                    />
-                    <Route
-                        path="thesis-defence"
-                        element={
-                            <ProtectedRoutes>
-                                <ThesisDefenceRegister />
-                            </ProtectedRoutes>
-                        }
-                    />
+                    <Route path="seminar">
+                        <Route
+                            path="thesis-proposal"
+                            element={
+                                <ProtectedRoutes>
+                                    <ThesisProposalRegister />
+                                </ProtectedRoutes>
+                            }
+                        />
+                        <Route
+                            path="thesis-result"
+                            element={
+                                <ProtectedRoutes>
+                                    <ThesisResultRegister />
+                                </ProtectedRoutes>
+                            }
+                        />
+                        <Route
+                            path="thesis-defence"
+                            element={
+                                <ProtectedRoutes>
+                                    <ThesisDefenceRegister />
+                                </ProtectedRoutes>
+                            }
+                        />
+                    </Route>
                 </Route>
                 <Route path="seminar-schedule">
                     <Route path="thesis-proposal">

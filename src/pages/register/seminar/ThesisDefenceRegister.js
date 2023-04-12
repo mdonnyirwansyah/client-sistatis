@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, FormThesisDefenceRegister, Main } from '../../components';
+import { Card, FormThesisDefenceRegister, Main } from '../../../components';
 
 function ThesisDefenceRegister() {
     return (
