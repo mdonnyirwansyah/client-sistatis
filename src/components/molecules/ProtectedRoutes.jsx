@@ -13,13 +13,13 @@ const ProtectedRoutes = ({ children }) => {
     const mutation = useMutation({
         mutationFn: getMe,
         onError: (error) => {
+            navigate(`/login`, { replace: true });
             if (error.response) {
                 if (error.response.status === 401) {
                     removeAuthentication();
                     removeAccount();
 
                     toast.error(error.response.data.message);
-                    navigate(`/login`, { replace: true });
                 }
             }
         },

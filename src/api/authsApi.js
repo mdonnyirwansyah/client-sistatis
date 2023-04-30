@@ -20,12 +20,12 @@ export const getMe = () =>
                 }
             } else {
                 var account = JSON.parse(localStorage.getItem('account'));
-                account.is_offline = true;
                 if (account) {
+                    account.is_offline = true;
                     return account;
                 }
 
-                throw error;
+                throw error.message;
             }
         });
 

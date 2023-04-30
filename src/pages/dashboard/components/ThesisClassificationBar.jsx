@@ -137,9 +137,9 @@ export const thesisOptions = {
 };
 
 export default function ThesisClassificationBar() {
-    const { isLoading, data } = useThesisClassificationCharts();
+    const { isLoading, isError, data } = useThesisClassificationCharts();
 
-    if (isLoading) {
+    if (isLoading || isError) {
         return (
             <Card>
                 <div className="d-flex justify-content-center align-items-center">
