@@ -14,12 +14,19 @@ export const getMe = () =>
             return response.data.data;
         })
         .catch((error) => {
-            var account = JSON.parse(localStorage.getItem('account'));
-            if (account) {
-                return account;
-            }
+            if (error.response) {
+                if (error.response.status === 401) {
+                    throw error;
+                }
+            } else {
+                var account = JSON.parse(localStorage.getItem('account'));
+                account.is_offline = true;
+                if (account) {
+                    return account;
+                }
 
-            throw error.message;
+                throw error;
+            }
         });
 
 export const logout = () => sistatisApi.post(`${authsApi}/logout`);

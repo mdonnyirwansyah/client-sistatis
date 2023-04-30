@@ -11,10 +11,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../api/authsApi';
 import { removeAccount, removeAuthentication } from '../../api';
 import { toast } from 'react-hot-toast';
+import { useGetMe } from '../../hooks/useAuths';
 
 function Header() {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
+    const { data } = useGetMe();
+
     const mutation = useMutation({
         mutationFn: logout,
         onError: (error) => {
@@ -53,7 +56,9 @@ function Header() {
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item dropdown">
                     <div
-                        className="nav-link"
+                        className={`nav-link ${
+                            data?.is_offline ? 'text-danger' : 'text-success'
+                        }`}
                         data-toggle="dropdown"
                         style={{ cursor: `pointer` }}
                     >
