@@ -13,7 +13,7 @@ export const getLecturers = () =>
             return response.data.data;
         })
         .catch((error) => {
-            var lecturers = JSON.parse(localStorage.getItem('lecturers'));
+            const lecturers = JSON.parse(localStorage.getItem('lecturers'));
             if (lecturers) {
                 return lecturers;
             }
@@ -21,24 +21,30 @@ export const getLecturers = () =>
             throw error.message;
         });
 
-export const getLecturersClassification = (params) =>
+export const getLecturerClassifications = (params) =>
     sistatisApi
         .get(`${lecturersApi}/classification`, {
             params: { semester: params.semester, page: params.page },
         })
         .then((response) => {
             localStorage.setItem(
-                'lecturersClassification',
-                JSON.stringify(response.data)
+                'lecturerClassifications',
+                JSON.stringify({
+                    data: response.data.data,
+                    meta: response.data.meta,
+                })
             );
-            return response.data;
+            return {
+                data: response.data.data,
+                meta: response.data.meta,
+            };
         })
         .catch((error) => {
-            var lecturersClassification = JSON.parse(
-                localStorage.getItem('lecturersClassification')
+            const lecturerClassifications = JSON.parse(
+                localStorage.getItem('lecturerClassifications')
             );
-            if (lecturersClassification) {
-                return lecturersClassification;
+            if (lecturerClassifications) {
+                return lecturerClassifications;
             }
 
             throw error.message;

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const fetchClient = () => {
     const defaultOptions = {
-        baseURL: 'http://api-sistatis.test/api',
+        baseURL: 'http://127.0.0.1:8000/api',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -27,12 +27,12 @@ export const storeAuthentication = (token) => {
     localStorage.setItem('access_token', token);
 };
 
-export const storeUser = (user) => {
-    localStorage.setItem('user', JSON.stringify(user));
-};
-
 export const removeAuthentication = () => {
     localStorage.removeItem('access_token');
+};
+
+export const removeAccount = () => {
+    localStorage.removeItem('account');
 };
 
 export default sistatisApi;

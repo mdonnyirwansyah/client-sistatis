@@ -12,12 +12,21 @@ var filesToCache = [
   "/index.html",
   "/",
   "/login",
+  "/data/lecturer",
   "/data/thesis",
   "/data/seminar/thesis-proposal",
-  "/seminar-register/thesis-proposal",
+  "/data/seminar/thesis-result",
+  "/data/seminar/thesis-defence",
+  "/register/thesis-proposal",
+  "/register/seminar",
   "/seminar-schedule/thesis-proposal",
+  "/seminar-schedule/thesis-result",
+  "/seminar-schedule/thesis-defence",
   "/seminar-validate/thesis-proposal",
+  "/seminar-validate/thesis-result",
+  "/seminar-validate/thesis-defence",
   "/account/profile",
+  "/account/update-password",
 ];
 
 this.addEventListener("install", function (e) {

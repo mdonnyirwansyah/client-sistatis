@@ -7,76 +7,41 @@ export const getThesisSeminar = (id) =>
         .get(`${seminarsApi}/${id}`)
         .then((response) => response.data.data);
 
-export const getThesisSeminars = (params) =>
+export const thesisSeminarRegister = (data) =>
+    sistatisApi.post(`${seminarsApi}/register`, data);
+
+export const thesisSeminarSchedule = (data) =>
+    sistatisApi.put(`${seminarsApi}/schedule/${data.id}`, data);
+
+export const thesisSeminarValidate = (data) =>
+    sistatisApi.put(`${seminarsApi}/validate/${data.id}`);
+
+export const thesisSeminarUpdate = (data) =>
+    sistatisApi.put(`${seminarsApi}/${data.id}`, data);
+
+export const getThesisSeminars = (params, key) =>
     sistatisApi
         .get(seminarsApi, {
-            params: { name: params.name, page: params.page },
+            params: {
+                type: params.type,
+                status: params.status,
+                page: params.page,
+            },
         })
         .then((response) => {
             localStorage.setItem(
-                'thesisSeminars',
-                JSON.stringify(response.data)
+                key,
+                JSON.stringify({
+                    data: response.data.data,
+                    meta: response.data.meta,
+                })
             );
             return response.data;
         })
         .catch((error) => {
-            var thesisSeminars = JSON.parse(
-                localStorage.getItem('thesisSeminars')
-            );
+            var thesisSeminars = JSON.parse(localStorage.getItem(key));
             if (thesisSeminars) {
                 return thesisSeminars;
-            }
-
-            throw error.message;
-        });
-
-export const getThesisSeminarsSchedule = (params) =>
-    sistatisApi
-        .get(seminarsApi, {
-            params: {
-                name: params.name,
-                status: params.status,
-            },
-        })
-        .then((response) => {
-            localStorage.setItem(
-                'thesisSeminarsSchedule',
-                JSON.stringify(response.data)
-            );
-            return response.data;
-        })
-        .catch((error) => {
-            var thesisSeminarsSchedule = JSON.parse(
-                localStorage.getItem('thesisSeminarsSchedule')
-            );
-            if (thesisSeminarsSchedule) {
-                return thesisSeminarsSchedule;
-            }
-
-            throw error.message;
-        });
-
-export const getThesisSeminarsValidate = (params) =>
-    sistatisApi
-        .get(seminarsApi, {
-            params: {
-                name: params.name,
-                status: params.status,
-            },
-        })
-        .then((response) => {
-            localStorage.setItem(
-                'thesisSeminarsValidate',
-                JSON.stringify(response.data)
-            );
-            return response.data;
-        })
-        .catch((error) => {
-            var thesisSeminarsValidate = JSON.parse(
-                localStorage.getItem('thesisSeminarsValidate')
-            );
-            if (thesisSeminarsValidate) {
-                return thesisSeminarsValidate;
             }
 
             throw error.message;

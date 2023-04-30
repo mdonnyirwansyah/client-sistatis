@@ -1,9 +1,15 @@
 import { useQuery } from 'react-query';
-import { getLecturersClassification } from '../api/lecturersApi';
+import { getLecturerClassifications, getLecturers } from '../api/lecturersApi';
 
-export const useLecturersClassification = (params) =>
+export const useLecturers = () =>
+    useQuery(['lecturers'], getLecturers, {
+        refetchOnMount: false,
+        refetchOnWindowFocus: false,
+    });
+
+export const useLecturerClassifications = (params) =>
     useQuery(
-        ['lecturersClassification', params],
-        () => getLecturersClassification(params),
+        ['lecturerClassifications', params],
+        () => getLecturerClassifications(params),
         { refetchOnMount: false, refetchOnWindowFocus: false }
     );
