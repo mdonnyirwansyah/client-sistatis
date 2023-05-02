@@ -33,7 +33,9 @@ const FormThesisSeminarEdit = ({ data }) => {
             register_date: data.seminar.register_date,
             date: data.seminar.date,
             time: data.seminar.time,
-            location_id: data.seminar.location.id,
+            location_id: data.seminar.location
+                ? data.seminar.location.id
+                : null,
             semester: data.seminar.semester,
             status: status,
             examiners: [
@@ -250,44 +252,48 @@ const FormThesisSeminarEdit = ({ data }) => {
                 value={form.seminar.register_date}
                 errors={errors?.seminar_register_date}
             />
-            <FormInput
-                label="Tanggal Seminar"
-                name="date"
-                id="date"
-                type="date"
-                onChange={handleForm}
-                value={form.seminar.date}
-                errors={errors?.seminar_date}
-            />
-            <FormInput
-                label="Jam Seminar"
-                name="time"
-                id="time"
-                type="time"
-                onChange={handleForm}
-                value={form.seminar.time}
-                errors={errors?.seminar_time}
-            />
-            <FormSelect
-                label="Lokasi"
-                name="location"
-                id="location"
-                onChange={handleForm}
-                value={form.seminar.location_id}
-                errors={errors?.seminar_location_id}
-            >
-                {locations?.length > 0 ? (
-                    locations?.map((location, index) => {
-                        return (
-                            <option key={index} value={location.id}>
-                                {location.name}
-                            </option>
-                        );
-                    })
-                ) : (
-                    <option disabled>Data not found.</option>
-                )}
-            </FormSelect>
+            {form.seminar.status !== '0' ? (
+                <>
+                    <FormInput
+                        label="Tanggal Seminar"
+                        name="date"
+                        id="date"
+                        type="date"
+                        onChange={handleForm}
+                        value={form.seminar.date}
+                        errors={errors?.seminar_date}
+                    />
+                    <FormInput
+                        label="Jam Seminar"
+                        name="time"
+                        id="time"
+                        type="time"
+                        onChange={handleForm}
+                        value={form.seminar.time}
+                        errors={errors?.seminar_time}
+                    />
+                    <FormSelect
+                        label="Lokasi"
+                        name="location"
+                        id="location"
+                        onChange={handleForm}
+                        value={form.seminar.location_id}
+                        errors={errors?.seminar_location_id}
+                    >
+                        {locations?.length > 0 ? (
+                            locations?.map((location, index) => {
+                                return (
+                                    <option key={index} value={location.id}>
+                                        {location.name}
+                                    </option>
+                                );
+                            })
+                        ) : (
+                            <option disabled>Data not found.</option>
+                        )}
+                    </FormSelect>
+                </>
+            ) : null}
             <FormSelect
                 label={form.seminar.examiners[0].status}
                 name={form.seminar.examiners[0].status

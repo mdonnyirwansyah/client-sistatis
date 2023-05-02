@@ -20,9 +20,12 @@ const FormThesisSeminarValidate = ({ data }) => {
         },
         onSuccess: (data) => {
             queryClient.setQueryData(
-                ['thesisSeminar', data.id.toString()],
+                ['thesisSeminar', data.data.data.id.toString()],
                 data.data.data
             );
+            queryClient.invalidateQueries({
+                queryKey: ['thesisProposalValidates'],
+            });
             toast.success(data.data.message);
 
             return navigate(-1);

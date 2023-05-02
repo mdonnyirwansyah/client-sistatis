@@ -8,6 +8,7 @@ import 'moment/locale/id';
 import { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import swDev from './swDev';
+// import { ReactQueryDevtools } from 'react-query/devtools';
 
 axios.defaults.withCredentials = true;
 axios.defaults.crossDomain = true;
@@ -23,6 +24,7 @@ root.render(
             <BrowserRouter>
                 <App />
                 <Toaster />
+                {/* <ReactQueryDevtools /> */}
             </BrowserRouter>
         </QueryClientProvider>
     </React.StrictMode>
