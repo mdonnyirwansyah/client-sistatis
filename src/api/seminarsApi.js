@@ -36,7 +36,10 @@ export const getThesisSeminars = (params, key) =>
                     meta: response.data.meta,
                 })
             );
-            return response.data;
+            return {
+                data: response.data.data,
+                meta: response.data.meta,
+            };
         })
         .catch((error) => {
             var thesisSeminars = JSON.parse(localStorage.getItem(key));

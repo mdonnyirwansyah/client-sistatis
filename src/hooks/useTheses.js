@@ -11,6 +11,7 @@ export const useTheses = (params) =>
     useQuery(['theses', params], () => getTheses(params), {
         refetchOnMount: false,
         refetchOnWindowFocus: false,
+        keepPreviousData: true,
     });
 
 export const useThesis = (id) =>
@@ -23,6 +24,7 @@ export const useThesisFilters = (params) =>
     useQuery(['thesisFilter', params], () => getThesisFilters(params), {
         refetchOnMount: false,
         refetchOnWindowFocus: false,
+        keepPreviousData: true,
     });
 
 export const useThesisClassificationCharts = () =>
@@ -33,7 +35,11 @@ export const useThesisClassificationCharts = () =>
 
 export const useThesisClassificationTables = (params) =>
     useQuery(
-        ['thesisClassificationTables'],
+        ['thesisClassificationTables', params],
         () => getThesisClassificationTables(params),
-        { refetchOnMount: false, refetchOnWindowFocus: false }
+        {
+            refetchOnMount: false,
+            refetchOnWindowFocus: false,
+            keepPreviousData: true,
+        }
     );

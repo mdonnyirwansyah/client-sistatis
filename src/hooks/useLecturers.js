@@ -11,5 +11,9 @@ export const useLecturerClassifications = (params) =>
     useQuery(
         ['lecturerClassifications', params],
         () => getLecturerClassifications(params),
-        { refetchOnMount: false, refetchOnWindowFocus: false }
+        {
+            refetchOnMount: false,
+            refetchOnWindowFocus: false,
+            keepPreviousData: true,
+        }
     );

@@ -5,12 +5,36 @@ import { thesisSeminarSchedule } from '../../../api/seminarsApi';
 import { useNavigate } from 'react-router-dom';
 import { useLocations } from '../../../hooks/useLocations';
 import { useMutation, useQueryClient } from 'react-query';
+import { useThesisSeminars } from '../../../hooks/useSeminars';
 
 const FormThesisSeminarSchedule = ({ data }) => {
     const navigate = useNavigate();
     const { data: locations } = useLocations();
     const [errors, setErrors] = useState({});
     const queryClient = useQueryClient();
+    const params = {
+        type: data.seminar.type,
+        status: '0',
+        page: '',
+    };
+
+    let queryKey;
+
+    switch (data.seminar.type) {
+        case 'Seminar Proposal Tugas Akhir':
+            queryKey = 'thesisProposalSchedules';
+            break;
+
+        case 'Seminar Hasil Tugas Akhir':
+            queryKey = 'thesisResultSchedules';
+            break;
+
+        default:
+            queryKey = 'thesisDefenceSchedules';
+            break;
+    }
+
+    const { refetch } = useThesisSeminars(params, queryKey);
 
     const [form, setForm] = useState({
         id: data.id,
@@ -77,6 +101,7 @@ const FormThesisSeminarSchedule = ({ data }) => {
                 ['thesisSeminar', form.id.toString()],
                 data.data.data
             );
+            refetch();
             toast.success(data.data.message);
 
             return navigate(-1);

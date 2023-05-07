@@ -80,7 +80,7 @@ const FormPasswordUpdate = () => {
                 label="New Password"
                 name="new_password"
                 id="new_password"
-                type="new_password"
+                type="password"
                 onChange={handleForm}
                 value={form.new_password}
                 errors={errors?.new_password}

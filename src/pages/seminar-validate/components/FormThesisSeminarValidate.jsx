@@ -2,10 +2,34 @@ import { useMutation, useQueryClient } from 'react-query';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { thesisSeminarValidate } from '../../../api/seminarsApi';
+import { useThesisSeminars } from '../../../hooks/useSeminars';
 
 const FormThesisSeminarValidate = ({ data }) => {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
+    const params = {
+        type: data.seminar.type,
+        status: '1',
+        page: '',
+    };
+
+    let queryKey;
+
+    switch (data.seminar.type) {
+        case 'Seminar Proposal Tugas Akhir':
+            queryKey = 'thesisProposalValidates';
+            break;
+
+        case 'Seminar Hasil Tugas Akhir':
+            queryKey = 'thesisResultValidates';
+            break;
+
+        default:
+            queryKey = 'thesisDefenceValidates';
+            break;
+    }
+
+    const { refetch } = useThesisSeminars(params, queryKey);
 
     const mutation = useMutation({
         mutationFn: thesisSeminarValidate,
@@ -23,9 +47,7 @@ const FormThesisSeminarValidate = ({ data }) => {
                 ['thesisSeminar', data.data.data.id.toString()],
                 data.data.data
             );
-            queryClient.invalidateQueries({
-                queryKey: ['thesisProposalValidates'],
-            });
+            refetch();
             toast.success(data.data.message);
 
             return navigate(-1);
